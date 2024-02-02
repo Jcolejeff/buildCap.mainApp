@@ -16,40 +16,61 @@ import FunkyPagesHero from 'components/general/FunkyPagesHero';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { shimmer, toBase64 } from 'utils/general/shimmer';
 import PatientsTableComponent from 'components/Tables/ProjectsTable/ProjectsTable';
+import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 
 const MainContractorOverview = () => {
   return (
-    <div className='container mt-8 flex  h-full w-full max-w-[150.75rem] flex-col overflow-auto border  border-red-600 bg-white px-container-base py-[2.1rem]'>
-      <div className='   w-full  px-container-base py-[1.875rem] '>
+    <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+      <div className='   w-full   py-[1.875rem] '>
         <FunkyPagesHero
           description='list of your active and inactive projects'
           title='Contractor Dashboard'
+          customBgClass='bg-primary-19'
         />
 
-        <section className='container bg-white px-container-base'>
-          <article className='mb-12 mt-7 flex items-center justify-between'>
-            <div>
-              <p className='font-bold md:text-[19px] '>Customize your Avatar</p>
-              <p className='text-sm text-gray-400'>
-                Personalize your avatar to look the way you want.
-              </p>
-            </div>
-
-            <button className='group   flex items-center justify-center gap-2 rounded-md bg-primary-1 px-6 py-2 text-[0.81rem] leading-[24px] tracking-[0.15px] text-white transition-opacity duration-300 ease-in-out hover:opacity-90'>
-              <Icon
-                name='addIcon'
-                svgProp={{
-                  className:
-                    'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                }}
-              />
-              <span className='opacity-95'>Save Avatar </span>
-            </button>
-          </article>
+        <article className=' mt-7 flex w-full items-center justify-end'>
+          <button className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px] tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'>
+            <span className='opacity-95'>New Project </span>
+            <Icon
+              name='addThreadIcon'
+              svgProp={{
+                className:
+                  'w-4 cursor-pointer fill-current hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
+              }}
+            />
+          </button>
+        </article>
+      </div>
+      <div>
+        <p className='font-bold md:text-[19px] '>Project Management</p>
+        <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
+          <NormalTableInfoCard
+            title='Registered Patients Today'
+            value={0}
+            border
+            description='This is the total number of patients you have registered today'
+          />
+          <NormalTableInfoCard
+            title='This Month '
+            value={0}
+            border
+            description='This is the total number of patients you have registered this month.'
+          />
+          <NormalTableInfoCard
+            title='Linked Patients'
+            value={0}
+            border
+            description='This is the total number of patients that are linked to another.'
+          />
+          {/* <NormalTableInfoCard
+          title='Linked Patients'
+          value={0}
+          border
+          description='This is the total number of patients that are linked to another.'
+        /> */}
         </section>
       </div>
-
-      <div className='relative grid w-full'>
+      <div className='relative mt-12 grid w-full'>
         <section>
           <PatientsTableComponent />
         </section>

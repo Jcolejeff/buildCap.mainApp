@@ -7,9 +7,10 @@ import AccountSettings from 'pages/app/subcontractor/account-settings';
 import SingleAssistantPage from 'pages/inner-pages/single-assistant-page';
 import Dashboard from 'pages/app/subcontractor/dashboard';
 import SingleWorkflowPage from 'pages/inner-pages/single-workflow';
-
+import SubcontractorManagement from 'pages/app/maincontractor/subcontractorManagement';
 import { routeTypes, routesInterface } from 'types';
 import MainContractorOverview from 'pages/app/maincontractor/overview';
+import MainContractorContractorFinancial from 'pages/app/maincontractor/contractFinancials';
 
 const internalRoute: routeTypes = [
   // {
@@ -47,12 +48,12 @@ const internalRoute: routeTypes = [
 
 export const maincontractorRoutes: routeTypes = [
   {
-    element: <Projects />,
+    element: <SubcontractorManagement />,
     path: 'subcontractor-management',
   },
   {
-    element: <Projects />,
-    path: 'projects',
+    element: <MainContractorContractorFinancial />,
+    path: 'contract-financials',
   },
 
   {

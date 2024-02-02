@@ -19,7 +19,8 @@ export type routePathTypes =
   | 'new-password'
   | 'create-assistant'
   | 'subcontractor-management'
-  | 'overview';
+  | 'overview'
+  | 'contract-financials';
 
 export interface routesInterface<T> {
   path: T;

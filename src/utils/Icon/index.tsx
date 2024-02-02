@@ -19,7 +19,7 @@ import { ReactComponent as PadLock } from 'assets/svg/padLock.svg';
 import { ReactComponent as PadLockV2 } from 'assets/svg/padLockV2.svg';
 import { ReactComponent as DemoDp } from 'assets/svg/demoDp.svg';
 import { ReactComponent as ExternalLink } from 'assets/svg/externalLink.svg';
-import { ReactComponent as FunkyPagesHero } from 'assets/svg/funkyPagesHero.svg';
+import { ReactComponent as FunkyPagesHero } from 'assets/svg/funkyPagesHero1.svg';
 import { ReactComponent as FunkyPagesTextTop } from 'assets/svg/funkyPagesTextTop.svg';
 import { ReactComponent as CashIcon } from 'assets/svg/cashIcon.svg';
 import { ReactComponent as ChatIcon } from 'assets/svg/chatIcon.svg';

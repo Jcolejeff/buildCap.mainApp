@@ -7,22 +7,12 @@ import { ItitleLinks, userTypes, routePathTypes } from 'types';
 import Icon from 'utils/Icon';
 
 type ISideNavTitles =
-  | 'Customize Avatar'
-  | 'View Pages'
-  | 'Deploy Assistant'
-  | 'Assistant Settings'
-  | 'Assets and Templates'
-  | 'CV Profile'
-  | 'Consultancy'
-  | 'Advertise a Service'
-  | 'Online Training'
-  | 'Master Classes'
-  | 'Bi-annual Bootcamps'
   | 'Settings'
   | 'Users'
   | 'Payment Plans'
   | 'Projects'
-  | 'Subcontractor Management';
+  | 'Subcontractor Management'
+  | 'Contract Financials';
 
 interface extendedRouteInterface extends ItitleLinks<ISideNavTitles, routePathTypes> {
   icons: JSX.Element;
@@ -37,21 +27,6 @@ interface ISideNavLinks {
 export const sideNavLinks: ISideNavLinks = {
   discussions: [
     {
-      link: 'projects',
-      title: 'Projects',
-      icons: (
-        <Icon
-          svgProp={{
-            width: 22.75,
-            height: 22.75,
-            className: 'text-current',
-          }}
-          name='fileIcon'
-        />
-      ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['projects'],
-    },
-    {
       link: 'subcontractor-management',
       title: 'Subcontractor Management',
       icons: (
@@ -65,6 +40,21 @@ export const sideNavLinks: ISideNavLinks = {
         />
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['subcontractor-management'],
+    },
+    {
+      link: 'contract-financials',
+      title: 'Contract Financials',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='fileIcon'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['contract-financials'],
     },
 
     {
@@ -169,7 +159,7 @@ const SideNav = () => {
           </div>
         </div>
       </div>
-      <div className='no-scrollbar flex flex-grow flex-col gap-[1.125rem] overflow-y-auto overflow-x-hidden'>
+      <div className='no-scrollbar flex flex-grow flex-col gap-[0.425rem] overflow-y-auto overflow-x-hidden'>
         <div className='px-4 '>
           <div
             onClick={() => navigate(`/mc/${CONSTANTS.ROUTES['overview']}`)}
@@ -276,27 +266,26 @@ const SideNav = () => {
           ))}
         </div>
 
-        {/* <div className='w-full px-4 '>
+        <div
+          className={`' w-full px-4 ${
+            navOpen ? `opacity-100` : `scale-0 opacity-0`
+          } transition-all duration-300 ease-linear`}
+        >
           <div
-            className={`group h-[60px] w-full  cursor-pointer rounded-[8px] bg-primary-1 px-3 text-white transition duration-300`}
+            className={`group  w-full  cursor-pointer rounded-[8px] bg-green-200/70 p-3  shadow-6 transition duration-300`}
           >
-            <ManageSubscriptions
-              triggerClassName='w-full h-full'
-              trigger={
-                <div className='flex h-full w-full items-center gap-[0.8rem]'>
-                  <div className='flex items-center'>{planTokens[currentTypeOfUser]?.icon}</div>
-                  <h6
-                    className={`whitespace-nowrap text-[16px] font-[600] leading-[24px] tracking-[0.15px] ${
-                      navOpen ? `opacity-100` : `scale-0 opacity-0`
-                    } duration-300`}
-                  >
-                    {planTokens[currentTypeOfUser]?.name}
-                  </h6>
-                </div>
-              }
-            />
+            <div className='flex h-full w-full flex-col items-center '>
+              <div className='flex items-center text-sm'>Need help?</div>
+              <h6
+                className={`whitespace-nowrap text-[11px] font-[600] leading-[24px] tracking-[0.15px] underline ${
+                  navOpen ? `opacity-100` : `scale-0 opacity-0`
+                } duration-300`}
+              >
+                Contact us
+              </h6>
+            </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

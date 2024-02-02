@@ -24,6 +24,8 @@ import CONSTANTS from 'constant';
 import { useNavigate } from 'react-router-dom';
 import UserPageGuard from 'guards/UserPageGuard';
 import useStore, { StoreType } from 'store';
+import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
+import PatientsTableComponent from 'components/Tables/ProjectsTable/ProjectsTable';
 
 const SubcontractorManagement = () => {
   const navigate = useNavigate();
@@ -41,46 +43,54 @@ const SubcontractorManagement = () => {
 
   return (
     <UserPageGuard page={CONSTANTS.ROUTES['subcontractor-management']}>
-      <div className='container   w-full  px-container-base py-[1.875rem] '>
-        <FunkyPagesHero
-          description='list of your active and inactive projects'
-          title='Subcontractor Management'
-        />
-
-        <section className='container  bg-white px-container-base'>
-          <article className='mb-12 mt-7 flex items-center justify-between'>
-            <div>
-              <p className='font-bold md:text-[19px] '>Customize your Avatar</p>
-              <p className='text-sm text-gray-400'>
-                Personalize your avatar to look the way you want.
-              </p>
-            </div>
-
-            <button className='group   flex items-center justify-center gap-2 rounded-md bg-primary-1 px-6 py-2 text-[0.81rem] leading-[24px] tracking-[0.15px] text-white transition-opacity duration-300 ease-in-out hover:opacity-90'>
-              <Icon
-                name='addIcon'
-                svgProp={{
-                  className:
-                    'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                }}
-              />
-              <span className='opacity-95'>Save Avatar </span>
-            </button>
-          </article>
-          <FeaturedLoader isLoading={false}>
-            <div className='mb-[2.5rem] flex flex-col items-center gap-8 lg:flex-row'>
-              <div className='w-full max-w-[424px] overflow-hidden rounded-[8px]'>
-                <LazyLoadImage
-                  placeholderSrc={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
-                  className='h-full w-full bg-cover'
-                  // src={`${CONSTANTS.TIMBU_KEYS.IMAGE_BASE_URL}/${data?.items[0]?.photos?.[0]?.url}`}
-                  effect='blur'
-                  alt=' '
-                />
-              </div>
-            </div>
-          </FeaturedLoader>
-        </section>
+      <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+        <div className='   w-full   py-[1.875rem] '>
+          <FunkyPagesHero
+            description='list of your active and inactive projects'
+            title='Contractor Dashboard'
+            customBgClass='bg-primary-20'
+            textColor='text-black'
+          />
+        </div>
+        <div>
+          <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
+          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
+            <NormalTableInfoCard
+              title='Registered Patients Today'
+              value={0}
+              border
+              description='This is the total number of patients you have registered today'
+            />
+            <NormalTableInfoCard
+              title='This Month '
+              value={0}
+              border
+              description='This is the total number of patients you have registered this month.'
+            />
+            <NormalTableInfoCard
+              title='Linked Patients'
+              value={0}
+              border
+              description='This is the total number of patients that are linked to another.'
+            />
+            {/* <NormalTableInfoCard
+          title='Linked Patients'
+          value={0}
+          border
+          description='This is the total number of patients that are linked to another.'
+        /> */}
+          </section>
+        </div>
+        <div className='relative mt-12 grid w-full'>
+          <section>
+            <PatientsTableComponent />
+          </section>
+        </div>
+        <div className='relative mt-12 grid w-full'>
+          <section>
+            <PatientsTableComponent />
+          </section>
+        </div>
       </div>
     </UserPageGuard>
   );

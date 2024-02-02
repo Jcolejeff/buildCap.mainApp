@@ -218,7 +218,7 @@ function ProjectsTableComponents() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Patient Name
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
@@ -250,7 +250,7 @@ function ProjectsTableComponents() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Age
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
@@ -270,7 +270,7 @@ function ProjectsTableComponents() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Status
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
@@ -294,7 +294,7 @@ function ProjectsTableComponents() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Gender
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
@@ -314,7 +314,7 @@ function ProjectsTableComponents() {
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
             Creation Date
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-3' }} />
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
@@ -428,31 +428,20 @@ function ProjectsTableComponents() {
   });
 
   return (
-    <div className='flex w-full flex-col gap-12'>
+    <div className='flex w-full flex-col gap-12 rounded-xl bg-slate-50/70 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold text-primary-1'>Patients Records</h3>
-        <div className='flex gap-3'>
+        <h3 className='font-semibold'>Project Status</h3>
+        <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input
               value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
               onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
-              className='form-input  max-w-xl flex-grow border-0  placeholder:text-sm placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0'
-              placeholder='Search Patients'
+              className='form-input max-w-xl flex-grow border-0  bg-inherit py-2  placeholder:text-xs placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0'
+              placeholder='Search Projects'
             />
-            <Icon name='searchIcon' svgProp={{ className: 'text-primary-9' }} />
+            <Icon name='searchIcon' svgProp={{ className: 'text-primary-9 w-3' }} />
           </div>
-          <button className='group flex  items-center justify-center gap-2  rounded-[5px] bg-primary-1  px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
-            <Icon
-              name='addIcon'
-              svgProp={{
-                className:
-                  'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-              }}
-            />
-            <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
-              New Patient
-            </span>
-          </button>
+
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant='ghost' className='h-12 w-12 p-0'>
@@ -502,40 +491,15 @@ function ProjectsTableComponents() {
           </DropdownMenu>
         </div>
       </div>
-      <section className='mt-12 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
-        <NormalTableInfoCard
-          title='Registered Patients Today'
-          value={0}
-          border
-          description='This is the total number of patients you have registered today'
-        />
-        <NormalTableInfoCard
-          title='This Month '
-          value={0}
-          border
-          description='This is the total number of patients you have registered this month.'
-        />
-        <NormalTableInfoCard
-          title='Linked Patients'
-          value={0}
-          border
-          description='This is the total number of patients that are linked to another.'
-        />
-        <NormalTableInfoCard
-          title='Linked Patients'
-          value={0}
-          border
-          description='This is the total number of patients that are linked to another.'
-        />
-      </section>
-      <div className='rounded-lg border bg-white px-2 py-4'>
+
+      <div className='  '>
         <Table className=''>
-          <TableHeader className='border-0 [&_tr]:border-b-0'>
+          <TableHeader className='border-0  [&_tr]:border-b-0'>
             {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className='border-0'>
+              <TableRow key={headerGroup.id} className='border-0 '>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className='border-0'>
+                    <TableHead key={header.id} className='border-b border-b-black/30 px-0'>
                       {header.isPlaceholder
                         ? null
                         : flexRender(header.column.columnDef.header, header.getContext())}
@@ -551,10 +515,10 @@ function ProjectsTableComponents() {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && 'selected'}
-                  className='border-t-0'
+                  className='border-0'
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell key={cell.id} className='px-0'>
                       {/* <Link to={`/${CONSTANTS.ROUTES['view-pages']}/${cell.id}`}> */}
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       {/* </Link> */}

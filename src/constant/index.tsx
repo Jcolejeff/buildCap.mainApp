@@ -20,6 +20,7 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   projects: 'projects',
   'subcontractor-management': 'subcontractor-management',
   overview: 'overview',
+  'contract-financials': 'contract-financials',
 };
 
 const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
@@ -42,6 +43,7 @@ const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
   projects: 'maincontractor',
   'subcontractor-management': 'maincontractor',
   overview: 'maincontractor',
+  'contract-financials': 'maincontractor',
 };
 
 const TIMBU_KEYS = {
