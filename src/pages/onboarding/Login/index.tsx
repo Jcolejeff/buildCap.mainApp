@@ -130,7 +130,7 @@ const Login = () => {
               </button>
             }
           /> */}
-        <div className=' flex w-4/12 flex-col items-center justify-center  text-white'>
+        <div className=' flex w-full flex-col items-center justify-center text-white  md:w-4/12'>
           <div className='mb-[1.5rem] flex w-full flex-col'>
             <p className='font-medium leading-[24px] tracking-[0.15px]'>
               Please login to your account
