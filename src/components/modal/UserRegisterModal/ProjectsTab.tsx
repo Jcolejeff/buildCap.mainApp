@@ -5,13 +5,7 @@ import React from 'react';
 import * as z from 'zod';
 import Icon from 'utils/Icon';
 
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormMessage,
-} from 'components/shadcn/ui/form';
+import { Form, FormControl, FormField, FormItem, FormMessage } from 'components/shadcn/ui/form';
 import { Input } from 'components/shadcn/input';
 import { toast } from 'components/shadcn/ui/use-toast';
 const FormSchema = z.object({
@@ -64,9 +58,9 @@ const ProjectsTab = ({
     });
   }
   return (
-    <TabsContent value='Projects' className='h-[70vh] mt-8  md:mx-8'>
-      <div className=' flex  flex-col  h-full '>
-        <div className='flex flex-col mb-8 px-1'>
+    <TabsContent value='Projects' className=' mt-8  md:mx-8'>
+      <div className=' flex  h-full  flex-col '>
+        <div className='mb-8 flex flex-col px-1'>
           <h2 className='text-lg'>Projects</h2>
           <h3 className='text-xs text-gray-500'>Add links to Projects you’ve worked on</h3>
         </div>
@@ -79,40 +73,40 @@ const ProjectsTab = ({
                 render={({ field }) => (
                   <FormItem>
                     <div className='relative'>
-                      <label className='absolute top-[-20%] left-2 bg-white rounded-full font-extralight text-secondary-1 text-xs px-1'>
+                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
                         Project Title
                       </label>
                       <FormControl>
                         <Input
-                          className=' placeholder:text-secondary-1 placeholder:text-xs text-secondary-3'
+                          className=' text-secondary-3 placeholder:text-xs placeholder:text-secondary-1'
                           placeholder='Add a title for your Project'
                           {...field}
                         />
                       </FormControl>
                     </div>
-                    <FormMessage className='text-xs mt-1' />
+                    <FormMessage className='mt-1 text-xs' />
                   </FormItem>
                 )}
               />
-              <section className='grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-6 mt-8'>
+              <section className='mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr]'>
                 <FormField
                   control={form.control}
                   name='role'
                   render={({ field }) => (
                     <FormItem>
                       <div className='relative'>
-                        <label className='absolute top-[-20%] left-2 bg-white rounded-full font-extralight text-secondary-1 text-xs px-1'>
+                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
                           Role
                         </label>
                         <FormControl>
                           <Input
-                            className=' placeholder:text-secondary-1 placeholder:text-xs text-secondary-3'
+                            className=' text-secondary-3 placeholder:text-xs placeholder:text-secondary-1'
                             placeholder='What was your role'
                             {...field}
                           />
                         </FormControl>
                       </div>
-                      <FormMessage className='text-xs mt-1' />
+                      <FormMessage className='mt-1 text-xs' />
                     </FormItem>
                   )}
                 />
@@ -122,18 +116,18 @@ const ProjectsTab = ({
                   render={({ field }) => (
                     <FormItem>
                       <div className='relative'>
-                        <label className='absolute top-[-20%] left-2 bg-white rounded-full font-extralight text-secondary-1 text-xs px-1'>
+                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
                           Project Link
                         </label>
                         <FormControl>
                           <Input
-                            className=' placeholder:text-secondary-1 placeholder:text-xs text-secondary-3'
+                            className=' text-secondary-3 placeholder:text-xs placeholder:text-secondary-1'
                             placeholder='Paste link to project (Vimeo or Youtube)'
                             {...field}
                           />
                         </FormControl>
                       </div>
-                      <FormMessage className='text-xs mt-1' />
+                      <FormMessage className='mt-1 text-xs' />
                     </FormItem>
                   )}
                 />
@@ -142,9 +136,9 @@ const ProjectsTab = ({
             <div className='flex justify-end'>
               <button
                 type='button'
-                className=' px-2 md:px-4 py-1   bg-transparent border-primary-1 border rounded-[7px] flex items-center justify-center gap-2 group hover:opacity-90 transition-all duration-300 ease-in-out'
+                className=' group flex items-center   justify-center gap-2 rounded-[7px] border border-primary-1 bg-transparent px-2 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-4'
               >
-                <span className='font-[400] text-gray-600 text-xs md:text-sm leading-[24px] tracking-[0.4px]'>
+                <span className='text-xs font-[400] leading-[24px] tracking-[0.4px] text-gray-600 md:text-sm'>
                   Add Project
                 </span>
                 <Icon
@@ -156,13 +150,13 @@ const ProjectsTab = ({
                 />
               </button>
             </div>
-            <div className='flex items-center justify-between w-full gap-4'>
+            <div className='flex w-full items-center justify-between gap-4'>
               <button
                 onClick={() => {
                   switchTab(tabData[3]);
                 }}
                 type='button'
-                className='w-max px-3 py-1 shadow-9 bg-white rounded-[6px] flex items-center justify-center gap-2 group hover:opacity-90 transition-all duration-300 ease-in-out'
+                className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <Icon
                   name='arrowBack'
@@ -171,15 +165,15 @@ const ProjectsTab = ({
                       'text-primary-1  w-4  cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
                   }}
                 />
-                <span className='font-[500] text-xs leading-[24px] tracking-[0.4px] text-primary-1 whitespace-nowrap'>
+                <span className='whitespace-nowrap text-xs font-[500] leading-[24px] tracking-[0.4px] text-primary-1'>
                   {`Previous`.toUpperCase()}
                 </span>
               </button>
               <button
                 type='submit'
-                className='px-4  py-1 bg-primary-1 rounded-[6px] flex items-center justify-center gap-2 group hover:opacity-90 transition-all duration-300 ease-in-out'
+                className='group  flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
-                <span className='font-[500] text-xs  leading-[24px] tracking-[0.4px] text-white'>
+                <span className='text-xs font-[500]  leading-[24px] tracking-[0.4px] text-white'>
                   {`Complete`.toUpperCase()}
                 </span>
                 <Icon

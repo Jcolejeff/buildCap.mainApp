@@ -66,7 +66,7 @@ const InformationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
     });
   }
   return (
-    <TabsContent value='Information' className='h-[70vh]   md:mx-8'>
+    <TabsContent value='Information' className='   md:mx-8'>
       <div className=' flex h-full  flex-col   gap-4 '>
         <div className='my-4 flex flex-col px-1'>
           <h2 className='text-lg'>Information</h2>

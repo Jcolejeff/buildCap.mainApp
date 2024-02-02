@@ -12,6 +12,7 @@ import ExternalLayout from 'layouts/external-layout';
 import AppLayout from 'layouts/app-layout';
 import authRoutes from 'routes/checkout';
 import { Toaster, resolveValue } from 'react-hot-toast';
+import ScrollToTopWrapper from 'components/general/ScrollToTopWrapper';
 
 function App() {
   // TODO: refresh auth on reload
@@ -40,7 +41,11 @@ function App() {
       </Toaster>
       <Routes>
         {authRoutes?.map((i, idx) => (
-          <Route key={`${idx}${i?.path}`} path={`/${i.path}`} element={i.element} />
+          <Route
+            key={`${idx}${i?.path}`}
+            path={`/${i.path}`}
+            element={<ScrollToTopWrapper>{i.element}</ScrollToTopWrapper>}
+          />
         ))}
 
         {maincontractorRoutes?.map((i, idx) => (

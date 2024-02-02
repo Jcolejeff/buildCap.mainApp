@@ -1,6 +1,7 @@
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import rocketBoy from 'assets/image/rocketBoy.png?format=webp&w=700&h=669.86&imagetools';
 import loginIcon from 'assets/image/login.jpg?format=webp&w=700&h=669.86&imagetools';
+import bgImg from 'assets/image/auth/bg.png';
 import Icon from 'utils/Icon';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Input } from 'components/shadcn/input';
@@ -21,6 +22,7 @@ import { authDetailsInterface } from 'types';
 import useStore from 'store';
 import API from 'services';
 import UserRegistrationModal from 'components/modal/UserRegisterModal';
+import AuthNavBar from 'components/auth/Nav';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -69,7 +71,15 @@ const Login = () => {
   }, []);
 
   return (
-    <div className='flex h-full w-full items-center'>
+    <div
+      className='no-scrollbar flex h-full w-full flex-col items-center overflow-scroll '
+      style={{
+        background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${bgImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       <Dialog open={emailVerifiedOpen} onOpenChange={setEmailVerifiedOpen}>
         <DialogContent className='h-screen !max-w-[1120px] bg-white sm:h-max sm:w-[80vw] lg:w-[50vw]'>
           <div className='mx-auto flex h-full w-full flex-col gap-[1.5rem] pb-[5.31rem] pt-[6.56rem]  md:max-w-[30rem]'>
@@ -99,44 +109,30 @@ const Login = () => {
           </div>
         </DialogContent>
       </Dialog>
-      <div className='hidden h-full w-1/2 basis-auto items-center justify-center overflow-hidden   bg-primary-15 md:flex'>
-        <div className='relative h-full w-full overflow-hidden  transition-all duration-300 after:absolute after:left-0 after:top-0 after:h-full after:w-full after:bg-black/20 after:transition-all after:duration-300'>
-          <LazyLoadImage
-            className='h-full w-full bg-current object-cover'
-            src={loginIcon}
-            effect='blur'
-            alt=' '
-          />
-        </div>
-      </div>
-      <div className='mx-auto w-1/2 bg-white px-4 md:px-[3rem]'>
-        <UserRegistrationModal
-          title='Add Categories'
-          trigger={
-            <button className=' group flex items-center  justify-center gap-2 rounded-[10px] border border-primary-1 bg-transparent px-2 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-3'>
-              <span className='text-xs font-[400]  leading-[24px] tracking-[0.4px]'>
-                Add Categories
-              </span>
-              <Icon
-                name='plusIcon'
-                svgProp={{
-                  className:
-                    'text-primary-1  w-4 font-light cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                }}
-              />
-            </button>
-          }
-        />
-        <div className='mx-auto flex w-full flex-col items-start justify-center'>
-          <div
-            className='mb-[2.125rem] flex   cursor-pointer
-             items-center gap-2'
-            onClick={() => navigate(`/`)}
-          >
-            <Icon name='nfmLogo' svgProp={{ className: 'w-[80px] md:w-[120px]' }} />{' '}
-          </div>
+
+      <AuthNavBar />
+
+      <section className='item-center xl:px-container-xl container flex h-full w-full max-w-[1700px] gap-24 bg-transparent px-container-base lg:px-container-lg'>
+        {/* <UserRegistrationModal
+            title='Add Categories'
+            trigger={
+              <button className=' group flex items-center  justify-center gap-2 rounded-[10px] border border-primary-1 bg-transparent px-2 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-3'>
+                <span className='text-xs font-[400]  leading-[24px] tracking-[0.4px]'>
+                  Add Categories
+                </span>
+                <Icon
+                  name='plusIcon'
+                  svgProp={{
+                    className:
+                      'text-primary-1  w-4 font-light cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
+                  }}
+                />
+              </button>
+            }
+          /> */}
+        <div className=' flex w-4/12 flex-col items-center justify-center  text-white'>
           <div className='mb-[1.5rem] flex w-full flex-col'>
-            <p className='leading-[24px] tracking-[0.15px] text-primary-9/[0.60]'>
+            <p className='font-medium leading-[24px] tracking-[0.15px]'>
               Please login to your account
             </p>
           </div>
@@ -149,14 +145,14 @@ const Login = () => {
               <InputErrorWrapper error={errors?.email?.message}>
                 <Input
                   {...register('email')}
-                  className='w-full placeholder:text-primary-9/[0.38]'
+                  className='w-full bg-secondary-11 text-white placeholder:text-white'
                   placeholder='Email'
                 />
               </InputErrorWrapper>
               <InputErrorWrapper error={errors?.password?.message}>
                 <Input
                   {...register('password')}
-                  className='w-full placeholder:text-primary-9/[0.38]'
+                  className='w-full bg-secondary-11 text-white placeholder:text-white'
                   placeholder='Password'
                 />
               </InputErrorWrapper>
@@ -169,12 +165,12 @@ const Login = () => {
             </div>
             <div className='mb-[1.75rem] flex w-full items-center justify-start gap-[0.75rem]'>
               <Checkbox
-                className='border-primary-9/[0.38] checked:!bg-primary-1 data-[state=checked]:bg-primary-1'
+                className='border-white/[0.38] checked:!bg-primary-1 data-[state=checked]:bg-primary-1'
                 id='Remember Me'
               />
               <Label
                 htmlFor='Remember Me'
-                className='text-[14px] leading-[21px] tracking-[0.15px] text-primary-9/[0.38]'
+                className='text-[14px] leading-[21px] tracking-[0.15px] text-white/[0.78]'
               >
                 Remember Me
               </Label>
@@ -189,7 +185,7 @@ const Login = () => {
             </button>
           </form>
 
-          <p className='mx-auto mb-8 text-center leading-[24px] tracking-[0.15px] text-primary-9/[0.87]'>
+          <p className='mx-auto mb-8 text-center leading-[24px] tracking-[0.15px] text-white/[0.87]'>
             New here?{' '}
             <button
               className='cursor-pointer text-primary-1 hover:underline'
@@ -199,18 +195,14 @@ const Login = () => {
               Create an account{' '}
             </button>
           </p>
-          {/* <div className='relative flex items-center w-full gap-2 mb-[2.5rem]'>
-            <div className='flex-grow border-b border-b-primary-9/[0.12] mt-1' />
-            <span className='eading-[24px] tracking-[0.15px] text-primary-9/[0.87]'>or</span>
-            <div className='flex-grow border-b border-b-primary-9/[0.12] mt-1' />
-          </div>
-          <div className='w-full flex justify-center items-center gap-[1.5rem]'>
-            <Icon name='facebook' />
-            <Icon name='twitter' />
-            <Icon name='google' />
-          </div> */}
         </div>
-      </div>
+
+        <div className='hidden h-full w-1/2 basis-auto items-center justify-center overflow-hidden    md:flex'>
+          <h3 className='text-center text-[3rem] font-bold leading-[3.3rem] text-white'>
+            Empowering Suppliers and Sub-Contractors for Seamless Project Excellence
+          </h3>
+        </div>
+      </section>
     </div>
   );
 };

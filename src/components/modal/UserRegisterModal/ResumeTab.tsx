@@ -46,16 +46,16 @@ const ResumeTab = ({ switchTab, data, handleComplete }: Iprops) => {
   // };
 
   return (
-    <TabsContent value='Resume' className='h-[70vh] mt-8  md:mx-8'>
-      <div className=' flex-col flex h-full '>
-        <div className='flex flex-col mb-8 px-1'>
+    <TabsContent value='Resume' className='  md:mx-8'>
+      <div className=' flex h-full flex-col '>
+        <div className='mb-8 flex flex-col px-1'>
           <h2 className='text-lg'>Resume & Skills</h2>
           <h3 className='text-xs text-gray-500'>Upload your resume and enter your skills</h3>
         </div>
         <ListInput items={items} setItems={setItems} />
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
-            <section className=' pb-[3rem] sm:pb-[4rem] md:pb-[2rem] lg:pb-[7rem] mb-4 sm:mb-4 md:mb-1 lg:mb-1 '>
+            <section className=' mb-4 pb-[3rem] sm:mb-4 sm:pb-[4rem] md:mb-1 md:pb-[2rem] lg:mb-1 lg:pb-[7rem] '>
               <h3 className='text-xs text-gray-500'>Upload Resume</h3>
 
               <FormField
@@ -69,13 +69,13 @@ const ResumeTab = ({ switchTab, data, handleComplete }: Iprops) => {
                 )}
               />
             </section>
-            <div className='flex items-center justify-between w-full gap-4'>
+            <div className='flex w-full items-center justify-between gap-4'>
               <button
                 onClick={() => {
                   switchTab(data[0]);
                 }}
                 type='button'
-                className='w-max px-4 py-1 shadow-9 bg-white rounded-[6px] flex items-center justify-center gap-2 group hover:opacity-90 transition-all duration-300 ease-in-out'
+                className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-4 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <Icon
                   name='arrowBack'
@@ -84,7 +84,7 @@ const ResumeTab = ({ switchTab, data, handleComplete }: Iprops) => {
                       'text-primary-1  w-4  cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
                   }}
                 />
-                <span className='font-[500] text-xs leading-[24px] tracking-[0.4px] text-primary-1 whitespace-nowrap'>
+                <span className='whitespace-nowrap text-xs font-[500] leading-[24px] tracking-[0.4px] text-primary-1'>
                   {`previous`.toUpperCase()}
                 </span>
               </button>
@@ -94,9 +94,9 @@ const ResumeTab = ({ switchTab, data, handleComplete }: Iprops) => {
                   handleComplete(data[1]);
                 }}
                 type='button'
-                className='px-3 py-1 bg-primary-1 rounded-[6px] flex items-center justify-center gap-2 group hover:opacity-90 transition-all duration-300 ease-in-out'
+                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-3 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
-                <span className='font-[500] text-xs  leading-[24px] tracking-[0.4px] text-white'>
+                <span className='text-xs font-[500]  leading-[24px] tracking-[0.4px] text-white'>
                   {`Save and continue`.toUpperCase()}
                 </span>
                 <Icon
