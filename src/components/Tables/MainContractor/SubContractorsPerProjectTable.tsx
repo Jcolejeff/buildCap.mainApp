@@ -50,14 +50,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useStore from 'store';
 import { cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
-import DeletePatient from 'components/modal/Patients/DeletePatient';
+import DeleteModal from 'components/modal/DeleteModal';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 import MergePatientModal from 'components/modal/Patients/MergePatient';
 import SampleAccordion from 'components/sampleAccordion';
 export type Page = {
   id: string;
-  value: string;
+  description: string;
   title: string;
   duration: string;
   subcontractors: number;
@@ -67,24 +67,24 @@ const projects = {
   items: [
     {
       id: 1,
-      value: 'N1,000,000',
+      description: 'Plumber',
       title: 'Hospitals',
       duration: '6 months',
-      subcontractors: 3,
+      subcontractors: 'John doe',
     },
     {
       id: 2,
-      value: 'N2,000,000',
+      description: 'Electrician',
       title: 'Flyover',
       duration: '3 months',
-      subcontractors: 1,
+      subcontractors: 'Jane Doe',
     },
     {
       id: 3,
-      value: 'N3,000,000',
+      description: 'Carpenter',
       title: 'Schools',
-      duration: '1 months',
-      subcontractors: 2,
+      duration: '1 month',
+      subcontractors: 'Chris Doe',
     },
   ],
 };
@@ -99,7 +99,7 @@ function SubcontractorsPerProjectTable() {
 
     return projects.items.map((i: any) => ({
       id: i?.id,
-      value: i?.value?.slice(0, 10),
+      description: i?.description,
       title: i?.title,
       duration: i?.duration,
       subcontractors: i?.subcontractors,
@@ -119,6 +119,26 @@ function SubcontractorsPerProjectTable() {
     setIsLoading(false);
   };
   const columns: ColumnDef<Page>[] = [
+    {
+      accessorKey: 'subcontractors',
+      header: ({ column }) => {
+        return (
+          <Button
+            className='px-0'
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Subcontractor
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className=''>{row.getValue('subcontractors')}</div>
+        // </Link>
+      ),
+    },
     {
       accessorKey: 'title',
       header: ({ column }) => {
@@ -141,6 +161,28 @@ function SubcontractorsPerProjectTable() {
       enableHiding: false,
     },
     {
+      accessorKey: 'description',
+      header: ({ column }) => {
+        return (
+          <Button
+            className='px-0 '
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Description
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='flex w-fit items-center   gap-2 rounded-lg'>
+          <p className='text-center text-sm '>{row.getValue('description')}</p>
+        </div>
+        // </Link>
+      ),
+    },
+    {
       id: 'duration',
       accessorKey: 'duration',
       header: 'Duration',
@@ -155,50 +197,6 @@ function SubcontractorsPerProjectTable() {
     },
 
     {
-      accessorKey: 'value',
-      header: ({ column }) => {
-        return (
-          <Button
-            className='px-0 '
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Project Value
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='flex w-fit items-center   gap-2 rounded-lg  p-3'>
-          <p className='text-center text-sm '>{row.getValue('value')}</p>
-        </div>
-        // </Link>
-      ),
-    },
-
-    {
-      accessorKey: 'subcontractors',
-      header: ({ column }) => {
-        return (
-          <Button
-            className='px-0'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Number of Subcontractors
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='lowercase'>{row.getValue('subcontractors')}</div>
-        // </Link>
-      ),
-    },
-
-    {
       id: 'actions',
       enableHiding: false,
       cell: ({ row }) => {
@@ -206,22 +204,6 @@ function SubcontractorsPerProjectTable() {
 
         return (
           <div className='flex items-center gap-4'>
-            <MergePatientModal
-              trigger={
-                <Button
-                  variant='outline'
-                  className='flex w-full items-center justify-start  gap-2 border-0 bg-primary-19 p-0 px-4 capitalize  text-primary-1  disabled:cursor-not-allowed disabled:opacity-50'
-                  onClick={() => {
-                    setTimeout(() => {
-                      console.log('delete');
-                    }, 500);
-                  }}
-                >
-                  <p>Add Subcontractor</p>
-                  <Icon name='addThreadIcon' svgProp={{ className: 'w-4' }}></Icon>
-                </Button>
-              }
-            ></MergePatientModal>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='h-8 w-8 p-0'>
@@ -230,24 +212,24 @@ function SubcontractorsPerProjectTable() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end' className='px-4 py-2'>
-                <MergePatientModal
-                  trigger={
-                    <Button
-                      variant='outline'
-                      className='flex w-full  items-center justify-start gap-2 border-0 p-0 px-2  capitalize  disabled:cursor-not-allowed disabled:opacity-50'
-                      onClick={() => {
-                        setTimeout(() => {
-                          console.log('delete');
-                        }, 500);
-                      }}
-                    >
-                      <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                      <p>Edit Project</p>
-                    </Button>
-                  }
-                ></MergePatientModal>
+                {/* <MergePatientModal
+                  trigger={ */}
+                <Button
+                  variant='outline'
+                  className='flex w-full  items-center justify-start gap-2 border-0 p-0 px-2  capitalize  disabled:cursor-not-allowed disabled:opacity-50'
+                  onClick={() => {
+                    setTimeout(() => {
+                      console.log('delete');
+                    }, 500);
+                  }}
+                >
+                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                  <p>Edit </p>
+                </Button>
+                {/* }
+                ></MergePatientModal> */}
                 <DropdownMenuSeparator />
-                <DeletePatient btnText='Delete Project' />
+                <DeleteModal btnText='Delete Subcontractor' />
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -282,7 +264,7 @@ function SubcontractorsPerProjectTable() {
   return (
     <div className='flex w-full flex-col gap-12 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>Subcontractors per Project</h3>
+        <h3 className='font-semibold'>Subcontractors Per Project</h3>
         <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input

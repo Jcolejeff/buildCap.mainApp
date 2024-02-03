@@ -67,6 +67,7 @@ module.exports = {
           18: '#9747FF',
           19: '#CDDCF0',
           20: '#FFF0CC',
+          21: '#DE825D',
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',
         },

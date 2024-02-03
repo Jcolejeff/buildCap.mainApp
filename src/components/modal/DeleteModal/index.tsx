@@ -13,7 +13,7 @@ import { Button } from 'components/shadcn/ui/button';
 import { tr } from 'date-fns/locale';
 import Icon from 'utils/Icon';
 
-export default function DeletePatient({
+export default function DeleteModal({
   btnText,
   title,
   description,
@@ -51,9 +51,9 @@ export default function DeletePatient({
       <AlertDialogContent className='bg-white'>
         <AlertDialogHeader className='flex flex-col items-center'>
           <AlertDialogTitle className='text-center capitalize'>{btnText}</AlertDialogTitle>
-          <AlertDialogDescription className='text-center text-gray-400'>
+          {/* <AlertDialogDescription className='text-center text-gray-400'>
             Deleting this patient’s profile removes all the information for this patient completely
-          </AlertDialogDescription>
+          </AlertDialogDescription> */}
           <AlertDialogDescription className='text-center font-semibold text-red-600'>
             This action can not be reversed!
           </AlertDialogDescription>

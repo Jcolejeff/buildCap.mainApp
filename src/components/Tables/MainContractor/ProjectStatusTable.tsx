@@ -50,7 +50,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useStore from 'store';
 import { cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
-import DeletePatient from 'components/modal/Patients/DeletePatient';
+import DeleteModal from 'components/modal/DeleteModal';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 import MergePatientModal from 'components/modal/Patients/MergePatient';
@@ -170,7 +170,7 @@ function ProjectStatusTable() {
       },
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='flex w-fit items-center   gap-2 rounded-lg  p-3'>
+        <div className='flex w-fit items-center   gap-2 rounded-lg '>
           <p className='text-center text-sm '>{row.getValue('value')}</p>
         </div>
         // </Link>
@@ -230,24 +230,24 @@ function ProjectStatusTable() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end' className='px-4 py-2'>
-                <MergePatientModal
-                  trigger={
-                    <Button
-                      variant='outline'
-                      className='flex w-full  items-center justify-start gap-2 border-0 p-0 px-2  capitalize  disabled:cursor-not-allowed disabled:opacity-50'
-                      onClick={() => {
-                        setTimeout(() => {
-                          console.log('delete');
-                        }, 500);
-                      }}
-                    >
-                      <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                      <p>Edit Project</p>
-                    </Button>
-                  }
-                ></MergePatientModal>
+                {/* <MergePatientModal
+                  trigger={ */}
+                <Button
+                  variant='outline'
+                  className='flex w-full  items-center justify-start gap-2 border-0 p-0 px-2  capitalize  disabled:cursor-not-allowed disabled:opacity-50'
+                  onClick={() => {
+                    setTimeout(() => {
+                      console.log('delete');
+                    }, 500);
+                  }}
+                >
+                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
+                  <p>Edit Project</p>
+                </Button>
+                {/* }
+                ></MergePatientModal> */}
                 <DropdownMenuSeparator />
-                <DeletePatient btnText='Delete Project' />
+                <DeleteModal btnText='Delete Project' />
               </DropdownMenuContent>
             </DropdownMenu>
           </div>

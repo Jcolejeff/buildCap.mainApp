@@ -59,7 +59,7 @@ const SubcontractorManagement = () => {
         </div>
         <div>
           <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
-          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
+          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr] '>
             <NormalTableInfoCard
               title='Total Subcontractors'
               value={10}
