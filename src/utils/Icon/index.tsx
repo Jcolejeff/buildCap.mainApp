@@ -4,7 +4,7 @@ import { ReactComponent as BigTIcon } from 'assets/svg/bigTIcon.svg';
 import { ReactComponent as BtsIcon } from 'assets/svg/btsIcon.svg';
 import { ReactComponent as ConsultancyIcon } from 'assets/svg/consultancyIcon.svg';
 import { ReactComponent as CvIcon } from 'assets/svg/cvIcon.svg';
-import { ReactComponent as DashboardIcon } from 'assets/svg/dashboardIcon.svg';
+import { ReactComponent as DashboardIcon } from 'assets/svg/das.svg';
 import { ReactComponent as FileIcon } from 'assets/svg/fileIcon.svg';
 import { ReactComponent as GForumIcon } from 'assets/svg/gForumIcon.svg';
 import { ReactComponent as MasterClassesIcon } from 'assets/svg/masterClassesIcon.svg';
@@ -118,6 +118,8 @@ import { ReactComponent as UserCheck } from 'assets/svg/userCheck.svg';
 import { ReactComponent as Trash } from 'assets/svg/trash.svg';
 import { ReactComponent as Save } from 'assets/svg/saveIcon.svg';
 import { ReactComponent as Menu } from 'assets/svg/menu.svg';
+import { ReactComponent as BriefCase } from 'assets/svg/briefcase.svg';
+import { ReactComponent as DollarIcon } from 'assets/svg/dollar.svg';
 import { ReactComponent as Sort } from 'assets/svg/sort.svg';
 
 export type iconTypes =
@@ -242,7 +244,9 @@ export type iconTypes =
   | 'trash'
   | 'saveIcon'
   | 'menu'
-  | 'sort';
+  | 'sort'
+  | 'DollarIcon'
+  | 'BriefCase';
 
 interface IconInterface {
   name: iconTypes;
@@ -251,6 +255,8 @@ interface IconInterface {
 
 const Icon = ({ name, svgProp }: IconInterface) => {
   const icons: Record<iconTypes, JSX.Element> = {
+    DollarIcon: <DollarIcon {...svgProp} />,
+    BriefCase: <BriefCase {...svgProp} />,
     sort: <Sort {...svgProp} />,
     filmReel: <FilmReel {...svgProp} />,
     externalLink: <ExternalLink {...svgProp} />,

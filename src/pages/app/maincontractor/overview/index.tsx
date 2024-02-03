@@ -25,11 +25,11 @@ const MainContractorOverview = () => {
         <FunkyPagesHero
           description='list of your active and inactive projects'
           title='Contractor Dashboard'
-          customBgClass='bg-primary-19'
+          // customBgClass='bg-primary-19'
         />
 
         <article className=' mt-7 flex w-full items-center justify-end'>
-          <button className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px] tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'>
+          <button className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px]  tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'>
             <span className='opacity-95'>New Project </span>
             <Icon
               name='addThreadIcon'

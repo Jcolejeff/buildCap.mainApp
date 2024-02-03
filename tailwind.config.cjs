@@ -66,7 +66,7 @@ module.exports = {
           17: 'rgba(125, 65, 225, 0.25)',
           18: '#7D41E1',
           19: '#9747FF',
-          20: '#FFF0CC',
+          20: '#FFFAAc',
           21: '#F8F9FD',
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))',

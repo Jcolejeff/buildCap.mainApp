@@ -36,7 +36,7 @@ export const sideNavLinks: ISideNavLinks = {
             height: 22.75,
             className: 'text-current',
           }}
-          name='fileIcon'
+          name='BriefCase'
         />
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['subcontractor-management'],
@@ -51,7 +51,7 @@ export const sideNavLinks: ISideNavLinks = {
             height: 22.75,
             className: 'text-current',
           }}
-          name='fileIcon'
+          name='DollarIcon'
         />
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['contract-financials'],
@@ -171,7 +171,7 @@ const SideNav = () => {
                 ? `bg-primary-1 !text-white/95`
                 : ``
             }
-            group cursor-pointer rounded-[6px] transition duration-300 ease-in-out`}
+            group cursor-pointer rounded-2xl transition-all duration-150 ease-linear`}
           >
             <div className='flex items-center'>
               {!isAllowed(`maincontractor`) ? (
@@ -195,7 +195,7 @@ const SideNav = () => {
             <h6
               className={`text-[14px] font-[400] leading-[24px] tracking-[0.15px] 
           ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
-          duration-300`}
+          duration-150`}
             >
               Overview
             </h6>
@@ -219,17 +219,17 @@ const SideNav = () => {
               <div className='px-4' key={idx}>
                 <div
                   onClick={() => navigate(`/mc/${i?.link}`)}
-                  className={`flex cursor-pointer items-center gap-[0.625rem] rounded-[6px] px-4 py-[0.625rem] text-secondary-9
+                  className={`flex cursor-pointer items-center gap-[0.625rem] rounded-2xl px-4 py-[0.625rem] text-secondary-9
                hover:bg-primary-light 
                 ${location?.pathname === `/mc/${i?.link}` ? `!bg-primary-1 !text-white/95` : ``}
                 group
-                transition duration-300 ease-in-out hover:text-primary-1`}
+             transition-all duration-150 ease-linear hover:text-primary-1`}
                 >
                   <div className='flex items-center'>{i?.icons}</div>
                   <h6
                     className={`whitespace-nowrap text-[14px] font-[400] leading-[24px]  tracking-[0.15px]
               ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
-              duration-300`}
+              duration-150`}
                   >
                     {i?.title}
                   </h6>
@@ -242,37 +242,37 @@ const SideNav = () => {
             navOpen ? `opacity-100` : `opacity-0`
           } transition-opacity duration-300`}
         ></div>
-        <div className='mb-[1.125rem] flex  flex-col'>
+        {/* <div className='mb-[1.125rem] flex  flex-col'>
           {sideNavLinks['features']?.map((i, idx) => (
             <div className='px-4' key={idx}>
               <div
                 onClick={() => navigate(`/mc/${i?.link}`)}
-                className={`flex cursor-pointer items-center gap-[0.625rem] rounded-[6px] px-4 py-[0.625rem] text-secondary-9
+                className={`flex cursor-pointer items-center gap-[0.625rem] rounded-2xl px-4 py-[0.625rem] text-secondary-9
             hover:bg-primary-light 
                 ${location?.pathname === `/mc/${i?.link}` ? `bg-primary-1 !text-white/95` : ``}
                 group
-                transition duration-300 ease-in-out hover:text-primary-1`}
+                transition-all duration-150 ease-linear hover:text-primary-1`}
               >
                 <div className='flex items-center'>{i?.icons}</div>
                 <h6
                   className={`whitespace-nowrap text-[14px] font-[400] leading-[24px]   tracking-[0.15px]
               ${navOpen ? `opacity-100` : `scale-0 opacity-0`}
-              duration-300`}
+              duration-150`}
                 >
                   {i?.title}
                 </h6>
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
 
         <div
-          className={`' w-full px-4 ${
+          className={`' mt-6 w-full px-4 ${
             navOpen ? `opacity-100` : `scale-0 opacity-0`
           } transition-all duration-300 ease-linear`}
         >
           <div
-            className={`group  w-full  cursor-pointer rounded-[8px] bg-green-200/70 p-3  shadow-6 transition duration-300`}
+            className={`group  w-full  cursor-pointer rounded-[8px] bg-green-200/70 p-3  shadow-6 transition duration-150`}
           >
             <div className='flex h-full w-full flex-col items-center '>
               <div className='flex items-center text-sm'>Need help?</div>

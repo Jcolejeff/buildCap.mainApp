@@ -48,8 +48,8 @@ const SubcontractorManagement = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Contractor Dashboard'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
+            // customBgClass='bg-primary-19'
+            // textColor='text-black'
           />
         </div>
         <div>
