@@ -7,6 +7,8 @@ import ResumeTab from './testResume';
 import ExperiencesTab from '../UserRegisterModal/CompanyInfoTab';
 import EducationTab from '../UserRegisterModal/PasswordTab';
 import ProjectsTab from './testprojects';
+import CreatNewPageForm from '../CreateNewPage/form';
+import CreateProjectForm from './createProjectForm';
 
 interface Iprop {
   trigger: JSX.Element;
@@ -14,7 +16,7 @@ interface Iprop {
   title?: string;
 }
 
-const MainUserAddInfoModal = ({ trigger, triggerClassName }: Iprop) => {
+const CreateProjectModal = ({ trigger, triggerClassName }: Iprop) => {
   const [showForms, setShowForms] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<string>('Information');
@@ -48,39 +50,7 @@ const MainUserAddInfoModal = ({ trigger, triggerClassName }: Iprop) => {
       <Dialog onOpenChange={(i) => setModalOpen(i)} open={modalOpen}>
         <DialogTrigger className={triggerClassName}>{trigger}</DialogTrigger>
         <DialogContent className='no-scrollbar h-screen max-w-full overflow-auto  overflow-x-hidden bg-white  px-6 sm:w-[70vw] md:h-[92vh] md:!max-w-[1200px] lg:px-[2rem] lg:pt-[1.5rem]'>
-          <div className=' flex w-full flex-col items-center justify-center gap-6 '>
-            <div></div>
-            <Icon name='noCvProfileIcon' svgProp={{ className: 'w-[50%] md:w-[90%]' }} />
-            <h2 className='max-w-md text-center text-xl font-semibold'>
-              Would you like to take a moment to create a custom CV profile?
-            </h2>
-            <h3 className='max-w-lg text-center text-sm text-gray-500'>
-              This would help you be easily discoverable to other filmmakers for networking or
-              project purposes!
-            </h3>
-            <div className='flex  w-full items-center justify-between gap-4'>
-              <button
-                onClick={() => {
-                  setModalOpen(false);
-                }}
-                type='button'
-                className='group flex w-max items-center justify-center gap-2 rounded-[6px] border border-primary-1 bg-white px-3 py-2 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
-              >
-                <span className='whitespace-nowrap text-xs font-[500] leading-[24px]   tracking-[0.4px]'>
-                  No, I’ll create it later
-                </span>
-              </button>
-              <button
-                onClick={() => setShowForms(true)}
-                type='button'
-                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-10 py-2 transition-all duration-300 ease-in-out hover:opacity-90'
-              >
-                <span className='text-xs font-[500]  leading-[24px] tracking-[0.4px] text-white'>
-                  Yes Continue
-                </span>
-              </button>
-            </div>
-          </div>
+          <CreateProjectForm setModalOpen={setModalOpen} />
         </DialogContent>
       </Dialog>
     );
@@ -244,4 +214,4 @@ const MainUserAddInfoModal = ({ trigger, triggerClassName }: Iprop) => {
   );
 };
 
-export default MainUserAddInfoModal;
+export default CreateProjectModal;

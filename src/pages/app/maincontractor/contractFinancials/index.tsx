@@ -15,7 +15,7 @@ import useStore, { StoreType } from 'store';
 import FunkyPagesHero from 'components/general/FunkyPagesHero';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { shimmer, toBase64 } from 'utils/general/shimmer';
-import PatientsTableComponent from 'components/Tables/ProjectsTable/ProjectsTable';
+import PatientsTableComponent from 'components/Tables/MainContractor/ProjectStatusTable';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 
 const MainContractorContractorFinancial = () => {

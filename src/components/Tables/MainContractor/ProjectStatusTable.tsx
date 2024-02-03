@@ -57,147 +57,58 @@ import MergePatientModal from 'components/modal/Patients/MergePatient';
 import SampleAccordion from 'components/sampleAccordion';
 export type Page = {
   id: string;
-  type: string;
+  value: string;
   title: string;
-  url: string;
+  duration: string;
+  subcontractors: number;
 };
 
-const pages = {
+const projects = {
   items: [
     {
       id: 1,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-      title: 'Home Page',
-      url: '/app/home',
+      value: 'N1,000,000',
+      title: 'Hospitals',
+      duration: '6 months',
+      subcontractors: 3,
     },
     {
       id: 2,
-      description: 'Nulla facilisi. Sed id tellus nec orci ullamcorper.',
-      title: 'About Page',
-      url: '/dash/about',
+      value: 'N2,000,000',
+      title: 'Flyover',
+      duration: '3 months',
+      subcontractors: 1,
     },
     {
       id: 3,
-      description: 'Fusce a dolor sit amet velit ultrices laoreet.',
-      title: 'Contact Page',
-      url: '/contact',
-    },
-    {
-      id: 4,
-      description:
-        'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-      title: 'Blog Page',
-      url: '/blog',
-    },
-    {
-      id: 5,
-      description:
-        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.',
-      title: 'Services Page',
-      url: '/services',
-    },
-    {
-      id: 6,
-      description: 'Donec eu est non lacus lacinia semper.',
-      title: 'Portfolio Page',
-      url: '/portfolio',
-    },
-    {
-      id: 7,
-      description: 'Suspendisse in orci enim.',
-      title: 'Testimonials Page',
-      url: '/testimonials',
-    },
-    {
-      id: 8,
-      description: 'Aenean nec eros.',
-      title: 'FAQ Page',
-      url: '/faq',
-    },
-    {
-      id: 9,
-      description: 'Morbi in sem quis dui placerat ornare.',
-      title: 'Terms of Service Page',
-      url: '/terms-of-service',
-    },
-    {
-      id: 10,
-      description: 'Aliquam dapibus tincidunt metus.',
-      title: 'Privacy Policy Page',
-      url: '/privacy-policy',
-    },
-    {
-      id: 3,
-      description: 'Fusce a dolor sit amet velit ultrices laoreet.',
-      title: 'Contact Page',
-      url: '/contact',
-    },
-    {
-      id: 4,
-      description:
-        'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
-      title: 'Blog Page',
-      url: '/blog',
-    },
-    {
-      id: 5,
-      description:
-        'Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed aliquam, nisi quis porttitor congue, elit erat euismod orci, ac placerat dolor lectus quis orci.',
-      title: 'Services Page',
-      url: '/services',
-    },
-    {
-      id: 6,
-      description: 'Donec eu est non lacus lacinia semper.',
-      title: 'Portfolio Page',
-      url: '/portfolio',
-    },
-    {
-      id: 7,
-      description: 'Suspendisse in orci enim.',
-      title: 'Testimonials Page',
-      url: '/testimonials',
-    },
-    {
-      id: 8,
-      description: 'Aenean nec eros.',
-      title: 'FAQ Page',
-      url: '/faq',
-    },
-    {
-      id: 9,
-      description: 'Morbi in sem quis dui placerat ornare.',
-      title: 'Terms of Service Page',
-      url: '/terms-of-service',
-    },
-    {
-      id: 10,
-      description: 'Aliquam dapibus tincidunt metus.',
-      title: 'Privacy Policy Page',
-      url: '/privacy-policy',
+      value: 'N3,000,000',
+      title: 'Schools',
+      duration: '1 months',
+      subcontractors: 2,
     },
   ],
 };
 
-function ProjectsTableComponents() {
+function ProjectStatusTable() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
 
   // refactor this
   const data = React.useMemo(() => {
-    if (!pages?.items) return [];
+    if (!projects?.items) return [];
 
-    return pages.items.map((i: any) => ({
+    return projects.items.map((i: any) => ({
       id: i?.id,
-      type: i?.description?.slice(0, 10),
+      value: i?.value?.slice(0, 10),
       title: i?.title,
-      url: i?.url,
+      duration: i?.duration,
+      subcontractors: i?.subcontractors,
     }));
-  }, [pages]);
+  }, [projects]);
   const deletePage = async (id: string) => {
     setIsLoading(true);
     //     try {
-    //       const res = await API.delete(`/pages/${id}`);
+    //       const res = await API.delete(`/projects/${id}`);
     //       toast.success('Page deleted successfully');
     //       setTimeout(() => {
     //         refetch();
@@ -217,75 +128,57 @@ function ProjectsTableComponents() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Patient Name
+            Name of Project
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
-        <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-          <div className='capitalize'>{row.getValue('title')}</div>
-        </Link>
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>{row.getValue('title')}</div>
+        // </Link>
       ),
-    },
-    {
-      id: 'patientId',
-      header: 'Patient ID',
-      cell: ({ row }) => (
-        <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-          <div className='capitalize'>{Number(row.original.id) * 1245632}</div>
-        </Link>
-      ),
-
-      enableSorting: false,
       enableHiding: false,
     },
     {
-      accessorKey: 'title',
-      header: ({ column }) => {
-        return (
-          <Button
-            className='px-0'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Age
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
-          </Button>
-        );
-      },
+      id: 'duration',
+      accessorKey: 'duration',
+      header: 'Duration',
       cell: ({ row }) => (
-        <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-          <div className='capitalize'>{Number(row.original.id) * 40}</div>
-        </Link>
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('duration')}
+        </div>
+        // </Link>
       ),
     },
+
     {
-      accessorKey: 'url',
+      accessorKey: 'value',
       header: ({ column }) => {
         return (
           <Button
-            className='px-0'
+            className='px-0 '
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Status
+            Project Value
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
-        <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-          {/* <div className='lowercase'>{row.getValue('url')}</div> */}
-          <div className='flex w-fit items-center   gap-2 rounded-lg bg-green-200/40 p-3'>
-            {/* <div className='h-3 w-3 rounded-full bg-green-500'></div> */}
-            <p className='text-center text-xs font-semibold text-green-500'>Active</p>
-          </div>
-        </Link>
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='flex w-fit items-center   gap-2 rounded-lg  p-3'>
+          <p className='text-center text-sm '>{row.getValue('value')}</p>
+        </div>
+        // </Link>
       ),
     },
+
     {
-      accessorKey: 'url',
+      accessorKey: 'subcontractors',
       header: ({ column }) => {
         return (
           <Button
@@ -293,35 +186,15 @@ function ProjectsTableComponents() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Gender
+            Number of Subcontractors
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
-        <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-          <div className='lowercase'>{row.getValue('url')}</div>
-        </Link>
-      ),
-    },
-    {
-      accessorKey: 'type',
-      header: ({ column }) => {
-        return (
-          <Button
-            className='px-0'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Creation Date
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-          <div className='lowercase'>{row.getValue('type')}</div>
-        </Link>
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='lowercase'>{row.getValue('subcontractors')}</div>
+        // </Link>
       ),
     },
 
@@ -333,18 +206,22 @@ function ProjectsTableComponents() {
 
         return (
           <div className='flex items-center gap-4'>
-            <button className='group flex  items-center justify-center gap-2  rounded-[5px]  px-4 text-base font-semibold text-white transition-all duration-300 ease-in-out hover:opacity-90'>
-              <Icon
-                name='linkIcon'
-                svgProp={{
-                  className:
-                    'text-primary-1 cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                }}
-              ></Icon>{' '}
-              {/* <span className='text-xs font-[500] leading-[24px] tracking-[0.4px] text-white md:text-sm'>
-                New Patient
-              </span> */}
-            </button>
+            <MergePatientModal
+              trigger={
+                <Button
+                  variant='outline'
+                  className='flex w-full items-center justify-start  gap-2 border-0 bg-primary-19 p-0 px-4 capitalize  text-primary-1  disabled:cursor-not-allowed disabled:opacity-50'
+                  onClick={() => {
+                    setTimeout(() => {
+                      console.log('delete');
+                    }, 500);
+                  }}
+                >
+                  <p>Add Subcontractor</p>
+                  <Icon name='addThreadIcon' svgProp={{ className: 'w-4' }}></Icon>
+                </Button>
+              }
+            ></MergePatientModal>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='h-8 w-8 p-0'>
@@ -353,30 +230,6 @@ function ProjectsTableComponents() {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align='end' className='px-4 py-2'>
-                <DropdownMenuItem
-                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
-                  className='flex items-center gap-2'
-                >
-                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                  <p> View Patient</p>
-                </DropdownMenuItem>{' '}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
-                  className='flex items-center gap-2'
-                >
-                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                  <p> Create Visit</p>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem
-                  onClick={() => navigate(`/${CONSTANTS.ROUTES['profile']}/${page.id}`)}
-                  className='flex items-center gap-2'
-                >
-                  <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                  <p> Create Appointment</p>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
                 <MergePatientModal
                   trigger={
                     <Button
@@ -389,13 +242,12 @@ function ProjectsTableComponents() {
                       }}
                     >
                       <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                      <p>Merge Patient</p>
+                      <p>Edit Project</p>
                     </Button>
                   }
                 ></MergePatientModal>
                 <DropdownMenuSeparator />
-                <DeletePatient btnText='Deactivate Patient' />
-                <DeletePatient btnText='delete Patients' />
+                <DeletePatient btnText='Delete Project' />
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -428,7 +280,7 @@ function ProjectsTableComponents() {
   });
 
   return (
-    <div className='flex w-full flex-col gap-12 rounded-xl bg-slate-50/70 px-6  py-6'>
+    <div className='flex w-full flex-col gap-12 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
         <h3 className='font-semibold'>Project Status</h3>
         <div className='flex items-center gap-3'>
@@ -449,13 +301,15 @@ function ProjectsTableComponents() {
                 <MoreHorizontal className='h-4 w-4' />
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align='end' className='px-4 py-2  pb-4'>
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuContent align='end' className='px-4 py-4  pb-4'>
+              {/* <DropdownMenuLabel className='px-0 text-center text-sm font-normal'>
+                Actions
+              </DropdownMenuLabel> */}
               <DropdownMenuItem
                 onClick={() => {
                   table.resetSorting();
                 }}
-                className='flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-center'
+                className='flex cursor-pointer items-center gap-2 rounded-md border px-3 py-2 text-center text-xs'
               >
                 Reset Sorting
               </DropdownMenuItem>
@@ -464,8 +318,8 @@ function ProjectsTableComponents() {
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <div className=''>
-                    <Button variant='outline' className='py-2'>
-                      Columns <ChevronDown className='ml-2 h-4 w-4' />
+                    <Button variant='outline' className='py-1 text-xs'>
+                      Columns <ChevronDown className='ml-2 h-3 w-3' />
                     </Button>
                   </div>
                 </DropdownMenuTrigger>
@@ -477,7 +331,7 @@ function ProjectsTableComponents() {
                       return (
                         <DropdownMenuCheckboxItem
                           key={column.id}
-                          className='capitalize'
+                          className='text-xs capitalize'
                           checked={column.getIsVisible()}
                           onCheckedChange={(value) => column.toggleVisibility(!!value)}
                         >
@@ -518,8 +372,8 @@ function ProjectsTableComponents() {
                   className='border-0'
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className='px-0'>
-                      {/* <Link to={`/${CONSTANTS.ROUTES['view-pages']}/${cell.id}`}> */}
+                    <TableCell key={cell.id} className='px-0 py-3 font-medium'>
+                      {/* <Link to={`/${CONSTANTS.ROUTES['view-projects']}/${cell.id}`}> */}
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       {/* </Link> */}
                     </TableCell>
@@ -530,10 +384,7 @@ function ProjectsTableComponents() {
               <TableRow>
                 <TableCell colSpan={columns.length} className='h-[400px] text-center'>
                   <div>
-                    <p className='text-base font-semibold text-gray-500'>No Patients Records</p>
-                    <p className='text-sm leading-6 tracking-normal text-gray-400'>
-                      Create a patient to populate list
-                    </p>
+                    <p className='text-base font-semibold text-gray-500'>No Project Records</p>
                   </div>
                 </TableCell>
               </TableRow>
@@ -568,4 +419,4 @@ function ProjectsTableComponents() {
   );
 }
 
-export default ProjectsTableComponents;
+export default ProjectStatusTable;

@@ -140,7 +140,7 @@ const SideNav = () => {
     >
       <button
         onClick={() => setNavOpen((prev) => !prev)}
-        className='absolute -right-[11px] top-[2rem] z-10 h-[15px] w-[22px] rounded-[5px] bg-primary-1 ring-[7px] ring-primary-15'
+        className='absolute -right-[11px] top-[2rem] z-10 h-[15px] w-[22px] rounded-[5px] bg-primary-1 ring-[7px] ring-primary-13/60'
       />
       <div className=' pb-[2.5rem]'>
         <div

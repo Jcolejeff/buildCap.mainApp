@@ -25,7 +25,7 @@ import { useNavigate } from 'react-router-dom';
 import UserPageGuard from 'guards/UserPageGuard';
 import useStore, { StoreType } from 'store';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
-import PatientsTableComponent from 'components/Tables/ProjectsTable/ProjectsTable';
+import PatientsTableComponent from 'components/Tables/MainContractor/ProjectStatusTable';
 
 const SubcontractorManagement = () => {
   const navigate = useNavigate();

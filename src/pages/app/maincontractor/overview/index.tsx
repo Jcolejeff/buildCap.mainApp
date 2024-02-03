@@ -15,51 +15,59 @@ import useStore, { StoreType } from 'store';
 import FunkyPagesHero from 'components/general/FunkyPagesHero';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { shimmer, toBase64 } from 'utils/general/shimmer';
-import PatientsTableComponent from 'components/Tables/ProjectsTable/ProjectsTable';
+import ProjectStatusTable from 'components/Tables/MainContractor/ProjectStatusTable';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
+import CreateProjectModal from 'components/modal/CreateProject';
+import { ExternalNav } from 'components/partials/external-nav';
 
 const MainContractorOverview = () => {
   return (
     <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+      <ExternalNav />
+
       <div className='   w-full   py-[1.875rem] '>
         <FunkyPagesHero
           description='list of your active and inactive projects'
           title='Contractor Dashboard'
-          // customBgClass='bg-primary-19'
+          customBgClass='bg-primary-18'
         />
 
         <article className=' mt-7 flex w-full items-center justify-end'>
-          <button className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px]  tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'>
-            <span className='opacity-95'>New Project </span>
-            <Icon
-              name='addThreadIcon'
-              svgProp={{
-                className:
-                  'w-4 cursor-pointer fill-current hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-              }}
-            />
-          </button>
+          <CreateProjectModal
+            trigger={
+              <button className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px]  tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'>
+                <span className='opacity-95'>New Project </span>
+                <Icon
+                  name='addThreadIcon'
+                  svgProp={{
+                    className:
+                      'w-4 cursor-pointer fill-current hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
+                  }}
+                />
+              </button>
+            }
+          />
         </article>
       </div>
       <div>
         <p className='font-bold md:text-[19px] '>Project Management</p>
-        <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
+        <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  '>
           <NormalTableInfoCard
-            title='Registered Patients Today'
-            value={0}
-            border
+            title='All Projects'
+            value={40}
+            bgColor='bg-primary-15'
             description='This is the total number of patients you have registered today'
           />
           <NormalTableInfoCard
-            title='This Month '
-            value={0}
-            border
+            title='Active Projects '
+            value={45}
+            bgColor='bg-primary-16'
             description='This is the total number of patients you have registered this month.'
           />
           <NormalTableInfoCard
-            title='Linked Patients'
-            value={0}
-            border
+            title='Completed Projects'
+            bgColor='bg-primary-17'
+            value={89}
             description='This is the total number of patients that are linked to another.'
           />
           {/* <NormalTableInfoCard
@@ -72,7 +80,7 @@ const MainContractorOverview = () => {
       </div>
       <div className='relative mt-12 grid w-full'>
         <section>
-          <PatientsTableComponent />
+          <ProjectStatusTable />
         </section>
       </div>
     </div>

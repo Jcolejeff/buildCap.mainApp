@@ -60,7 +60,7 @@ const FormSchema = z.object({
     }),
 });
 
-const CreatNewPageForm = ({ setModalOpen, refetch }: Iprops) => {
+const CreateProjectForm = ({ setModalOpen, refetch }: Iprops) => {
   const [formIsLoading, setFormIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -111,8 +111,8 @@ const CreatNewPageForm = ({ setModalOpen, refetch }: Iprops) => {
   }
 
   return (
-    <section className='container relative '>
-      <div className=' mx-auto    flex max-w-2xl  flex-col gap-1 rounded-[15px] bg-white  md:p-[1.5rem]'>
+    <section className=' relative '>
+      <div className=' mx-auto      flex-col gap-1 rounded-[15px] bg-white  md:p-[1.5rem]'>
         <h5 className='  text-[1.2rem] font-[700] leading-[2rem] tracking-[0.01125rem]'>
           Add new page
         </h5>
@@ -214,4 +214,4 @@ const CreatNewPageForm = ({ setModalOpen, refetch }: Iprops) => {
   );
 };
 
-export default CreatNewPageForm;
+export default CreateProjectForm;
