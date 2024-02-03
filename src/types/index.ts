@@ -1,4 +1,5 @@
 export type userTypes = 'admin' | 'maincontractor' | 'subcontractor' | 'supplier';
+export type routePrefixTypes = 'admin' | 'mc' | 'sc' | 'sp';
 
 export type routePathTypes =
   | 'projects'

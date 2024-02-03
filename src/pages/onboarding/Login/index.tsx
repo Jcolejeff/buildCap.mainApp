@@ -23,11 +23,13 @@ import useStore from 'store';
 import API from 'services';
 import UserRegistrationModal from 'components/modal/UserRegisterModal';
 import AuthNavBar from 'components/auth/Nav';
+import { EyeOff, Eye } from 'lucide-react';
 
 const Login = () => {
   const navigate = useNavigate();
   const [emailVerifiedOpen, setEmailVerifiedOpen] = useState(false);
-  const { setAuthDetails, setLoggedIn } = useStore((store) => store);
+  const { setAuthDetails, setLoggedIn, typeOfUser } = useStore((store) => store);
+  const [showPassword, setShowPassword] = useState(true);
 
   const [params] = useSearchParams();
 
@@ -52,7 +54,7 @@ const Login = () => {
     onSuccess: (data) => {
       setAuthDetails(data);
       setLoggedIn(true);
-      navigate(`/${CONSTANTS.ROUTES['dashboard']}`);
+      navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${CONSTANTS.ROUTES['overview']}`);
     },
     onError: (err) => {
       processError(err);
@@ -61,7 +63,8 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<customerLoginFormInterface> = (data) => {
     // mutate(data);
-    navigate(`/${CONSTANTS.ROUTES['dashboard']}`);
+    navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${CONSTANTS.ROUTES['overview']}`);
+    console.log(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${CONSTANTS.ROUTES['overview']}`);
   };
 
   useEffect(() => {
@@ -110,7 +113,7 @@ const Login = () => {
         </DialogContent>
       </Dialog>
 
-      <AuthNavBar />
+      <AuthNavBar page='login' />
 
       <section className='item-center xl:px-container-xl container flex h-full w-full max-w-[1700px] gap-24 bg-transparent px-container-base lg:px-container-lg'>
         {/* <UserRegistrationModal
@@ -149,16 +152,29 @@ const Login = () => {
                   placeholder='Email'
                 />
               </InputErrorWrapper>
+
               <InputErrorWrapper error={errors?.password?.message}>
-                <Input
-                  {...register('password')}
-                  className='w-full bg-secondary-11 text-white placeholder:text-white'
-                  placeholder='Password'
-                />
+                <div className='flex items-center gap-4 rounded-lg border bg-secondary-11   pr-4'>
+                  <Input
+                    {...register('password')}
+                    className='w-full rounded-r-none  border-0 text-[0.8rem] text-white placeholder:text-[0.8rem]  placeholder:text-white focus-within:border-0 focus:border-0'
+                    placeholder='Password'
+                    type={showPassword ? 'text' : 'password'}
+                  ></Input>
+                  {showPassword ? (
+                    <button onClick={() => setShowPassword(false)} type='button'>
+                      <EyeOff className='h-full  w-5 text-white/20' />
+                    </button>
+                  ) : (
+                    <button onClick={() => setShowPassword(true)} type='button'>
+                      <Eye className='h-full w-5 text-white/40' />
+                    </button>
+                  )}
+                </div>
               </InputErrorWrapper>
               <button
                 onClick={() => navigate(`/${CONSTANTS.ROUTES['forgot-password']}`)}
-                className='cursor-pointer place-self-end text-[14px] leading-[21px] tracking-[0.15px] text-primary-1 hover:underline'
+                className='cursor-pointer place-self-end text-[14px] leading-[21px] tracking-[0.15px] text-secondary-3 hover:underline'
               >
                 Forgot Password?
               </button>
@@ -188,7 +204,7 @@ const Login = () => {
           <p className='mx-auto mb-8 text-center leading-[24px] tracking-[0.15px] text-white/[0.87]'>
             New here?{' '}
             <button
-              className='cursor-pointer text-primary-1 hover:underline'
+              className='cursor-pointer text-secondary-3 hover:underline'
               onClick={() => navigate(`/${CONSTANTS.ROUTES['create-account']}`)}
             >
               {' '}

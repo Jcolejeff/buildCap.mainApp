@@ -4,8 +4,14 @@ import Menu from 'components/auth/Menu';
 import { url } from 'lib/utils';
 import Icon from 'utils/Icon';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const AuthNavBar = () => {
+type pageType = 'login' | 'register';
+
+interface AuthNavBarProps {
+  page: pageType;
+}
+const AuthNavBar = ({ page }: AuthNavBarProps) => {
   const navigate = useNavigate();
 
   return (
@@ -22,22 +28,17 @@ const AuthNavBar = () => {
           />{' '}
         </div>
 
-        <div className='ml-24 hidden items-center gap-[0.5rem] lg:flex'>
+        <div className='ml-16 hidden items-center gap-[0.5rem] lg:flex'>
           <NavDrop />
         </div>
         <div className='invisible flex items-center justify-end gap-4 transition-all duration-500 ease-in-out md:visible md:mb-0 '>
-          <a href='#' className=''>
-            <div className='invisible flex items-center justify-center rounded-lg md:px-4 md:py-2 md:pr-6'>
-              <p className='text-[1.1rem] font-light tracking-wider'>Sign In</p>
-            </div>
-          </a>
-          <a href='#contact' className=''>
-            <div className='flex items-center justify-center rounded-lg bg-primary-1 md:px-6 md:py-3'>
+          <Link to={`${page == 'login' ? '/create-account' : '/login'}`} className=''>
+            <div className='flex items-center justify-center rounded-lg bg-primary-1 md:px-8 md:py-3'>
               <p className='text-sm font-bold tracking-wider text-white md:text-[0.8rem]'>
-                Get Started
+                {page == 'login' ? 'Sign Up' : 'Login'}
               </p>
             </div>
-          </a>
+          </Link>
         </div>
         <div className='flex md:hidden'>
           <Menu />

@@ -1,4 +1,4 @@
-import { userTypes, routePathTypes } from 'types';
+import { userTypes, routePathTypes, routePrefixTypes } from 'types';
 
 const ROUTES: Record<routePathTypes, routePathTypes> = {
   '': '',
@@ -46,12 +46,19 @@ const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
   'contract-financials': 'maincontractor',
 };
 
+const USER_ROUTES_PREFIX: Record<userTypes, routePrefixTypes> = {
+  admin: 'admin',
+  supplier: 'sp',
+  maincontractor: 'mc',
+  subcontractor: 'sc',
+};
+
 const TIMBU_KEYS = {
   BTS_ID: 'a3b42063504f4372ac9a1a6bd0f46d85',
   BLOG_ID: '696dccd73fb242448c41704b5179698f',
   IMAGE_BASE_URL: 'https://images.timbu.com',
 };
 
-const CONSTANTS = { ROUTES, TIMBU_KEYS, USER_PAGES_PERMISSIONS };
+const CONSTANTS = { ROUTES, TIMBU_KEYS, USER_PAGES_PERMISSIONS, USER_ROUTES_PREFIX };
 
 export default CONSTANTS;

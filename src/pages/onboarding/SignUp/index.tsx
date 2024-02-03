@@ -113,7 +113,7 @@ const SignUp = () => {
       }}
       className='no-scrollbar relative flex h-full w-full flex-col items-center gap-8 overflow-scroll bg-primary-1 '
     >
-      <AuthNavBar />
+      <AuthNavBar page='register' />
       <UserRegistrationForms />
     </div>
   );
