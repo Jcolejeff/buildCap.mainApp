@@ -40,7 +40,7 @@ const FormSchema = z.object({
     required_error: 'Address is required.',
   }),
 });
-const InformationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
+const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -234,11 +234,15 @@ const InformationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 </span>
               </button>
               <button
-                type='submit'
+                type='button'
+                onClick={() => {
+                  switchTab(tabData[1]);
+                  handleComplete(tabData[0]);
+                }}
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-3 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <span className='text-xs font-[300]  leading-[24px] tracking-[0.4px] text-white'>
-                  {`Save and Continue`.toUpperCase()}
+                  {`Proceed`.toUpperCase()}
                 </span>
 
                 <Icon
@@ -257,4 +261,4 @@ const InformationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
   );
 };
 
-export default InformationTab;
+export default UserInfoTap;

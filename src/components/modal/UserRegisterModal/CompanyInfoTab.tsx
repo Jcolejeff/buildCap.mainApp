@@ -41,7 +41,7 @@ const FormSchema = z.object({
     required_error: 'End date is required.',
   }),
 });
-const ExperiencesTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
+const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -253,28 +253,11 @@ const ExperiencesTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 />
               </section>
             </section>
-            <div className='flex justify-end'>
-              <button
-                type='button'
-                className=' group flex items-center   justify-center gap-2 rounded-[7px] border border-primary-1 bg-transparent px-2 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-4'
-              >
-                <span className='text-xs font-[400] leading-[24px] tracking-[0.4px] text-gray-600 md:text-sm'>
-                  Add Experience
-                </span>
-                <Icon
-                  name='plusIcon'
-                  svgProp={{
-                    className:
-                      'text-primary-1  w-4 font-light cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                  }}
-                />
-              </button>
-            </div>
 
             <div className='flex w-full items-center justify-between gap-4'>
               <button
                 onClick={() => {
-                  switchTab(tabData[1]);
+                  switchTab(tabData[0]);
                 }}
                 type='button'
                 className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
@@ -291,11 +274,15 @@ const ExperiencesTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 </span>
               </button>
               <button
-                type='submit'
+                type='button'
+                onClick={() => {
+                  switchTab(tabData[2]);
+                  handleComplete(tabData[1]);
+                }}
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <span className='text-xs font-[400]  leading-[24px] tracking-[0.4px] text-white'>
-                  {`Save and continue`.toUpperCase()}
+                  {`Proceed`.toUpperCase()}
                 </span>
                 <Icon
                   name='arrowTo'
@@ -313,4 +300,4 @@ const ExperiencesTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
   );
 };
 
-export default ExperiencesTab;
+export default CompanyInfoTab;

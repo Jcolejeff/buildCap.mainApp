@@ -21,7 +21,7 @@ import { authDetailsInterface } from 'types';
 import useStore from 'store';
 import API from 'services';
 import bgImg from 'assets/image/auth/bg.png';
-import UserRegistrationForms from 'components/modal/UserRegisterModal/UserInfoForm';
+import UserRegistrationForms from 'components/modal/UserRegisterModal';
 import AuthNavBar from 'components/auth/Nav';
 
 const SignUp = () => {

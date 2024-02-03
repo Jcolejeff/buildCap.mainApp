@@ -12,11 +12,13 @@ import { format } from 'date-fns';
 import { Calendar } from 'components/shadcn/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/shadcn/ui/popover';
 import Icon from 'utils/Icon';
+import SuccessfulSignUpModal from '../auth/successSignUp';
 interface Iprops {
   switchTab: (tab: string) => void;
   handleComplete: (tab: string) => void;
-
   data: string[];
+  setModalOpen?: React.Dispatch<React.SetStateAction<boolean>>;
+  setCompleted?: React.Dispatch<React.SetStateAction<string[]>>;
 }
 const FormSchema = z.object({
   placeOfStudy: z.string().min(2, {
@@ -33,7 +35,13 @@ const FormSchema = z.object({
     required_error: 'End date is required.',
   }),
 });
-const EducationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
+const PasswordTab = ({
+  switchTab,
+  data: tabData,
+  handleComplete,
+  setModalOpen,
+  setCompleted,
+}: Iprops) => {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -44,8 +52,15 @@ const EducationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
     //   startDate: format(data.startDate, 'yyyy-MM-dd'),
     //   endDate: format(data.endDate, 'yyyy-MM-dd'),
     // };
-    switchTab(tabData[4]);
-    handleComplete(tabData[3]);
+    console.log(data);
+    if (setModalOpen) {
+      setModalOpen(false);
+    }
+    switchTab(tabData[0]);
+    handleComplete(tabData[4]);
+    if (setCompleted) {
+      setCompleted([]); //would consider taking this line out
+    }
 
     toast({
       title: 'You submitted the following values:',
@@ -212,27 +227,11 @@ const EducationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                 )}
               />
             </section>
-            <div className='flex justify-end'>
-              <button
-                type='button'
-                className=' group flex items-center   justify-center gap-2 rounded-[7px] border border-primary-1 bg-transparent px-2 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-4'
-              >
-                <span className='text-xs font-[400] leading-[24px] tracking-[0.4px] text-gray-600 md:text-sm'>
-                  Add Education
-                </span>
-                <Icon
-                  name='plusIcon'
-                  svgProp={{
-                    className:
-                      'text-primary-1  w-4 font-light cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                  }}
-                />
-              </button>
-            </div>
+
             <div className='flex w-full items-center justify-between gap-4'>
               <button
                 onClick={() => {
-                  switchTab(tabData[2]);
+                  switchTab(tabData[1]);
                 }}
                 type='button'
                 className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-4 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
@@ -248,12 +247,23 @@ const EducationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                   {`Previous`.toUpperCase()}
                 </span>
               </button>
+              <SuccessfulSignUpModal />
               <button
-                type='submit'
+                type='button'
+                onClick={() => {
+                  if (setModalOpen) {
+                    setModalOpen(false);
+                  }
+                  switchTab(tabData[0]);
+                  handleComplete(tabData[2]);
+                  if (setCompleted) {
+                    setCompleted([]); //would consider taking this line out
+                  }
+                }}
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <span className='text-xs font-[500]  leading-[24px] tracking-[0.4px] text-white'>
-                  {`Save and continue`.toUpperCase()}
+                  {`Proceed`.toUpperCase()}
                 </span>
                 <Icon
                   name='arrowTo'
@@ -271,4 +281,4 @@ const EducationTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
   );
 };
 
-export default EducationTab;
+export default PasswordTab;
