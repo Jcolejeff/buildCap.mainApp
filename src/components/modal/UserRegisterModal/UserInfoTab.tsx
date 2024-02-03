@@ -66,11 +66,11 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
     });
   }
   return (
-    <TabsContent value='Information' className='   md:mx-8'>
+    <TabsContent value='PersonalInfo' className='   md:mx-8'>
       <div className=' flex h-full  flex-col   gap-4 '>
-        <div className='my-4 flex flex-col px-1'>
-          <h2 className='text-lg'>Information</h2>
-          <h3 className='text-xs text-gray-500'>Enter Your personal information</h3>
+        <div className='my-4 flex flex-col items-center px-1'>
+          <h2 className='text-2xl font-semibold'>Tell us about you</h2>
+          <h3 className='text-sm text-gray-600'>Enter your information correctly</h3>
         </div>
 
         <Form {...form}>
@@ -230,7 +230,7 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                   }}
                 />
                 <span className='whitespace-nowrap text-xs font-[500] leading-[24px] tracking-[0.4px] text-gray-400'>
-                  {`Previous`.toUpperCase()}
+                  {`Previous`}
                 </span>
               </button>
               <button
@@ -242,7 +242,7 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-3 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <span className='text-xs font-[300]  leading-[24px] tracking-[0.4px] text-white'>
-                  {`Proceed`.toUpperCase()}
+                  {`Proceed`}
                 </span>
 
                 <Icon

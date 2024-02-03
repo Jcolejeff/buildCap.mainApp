@@ -121,6 +121,7 @@ import { ReactComponent as Menu } from 'assets/svg/menu.svg';
 import { ReactComponent as BriefCase } from 'assets/svg/briefcase.svg';
 import { ReactComponent as DollarIcon } from 'assets/svg/dollar.svg';
 import { ReactComponent as Sort } from 'assets/svg/sort.svg';
+import { ReactComponent as SuccessCheck } from 'assets/svg/successCheck.svg';
 
 export type iconTypes =
   | 'filmReel'
@@ -246,7 +247,8 @@ export type iconTypes =
   | 'menu'
   | 'sort'
   | 'DollarIcon'
-  | 'BriefCase';
+  | 'BriefCase'
+  | 'SuccessCheck';
 
 interface IconInterface {
   name: iconTypes;
@@ -255,6 +257,7 @@ interface IconInterface {
 
 const Icon = ({ name, svgProp }: IconInterface) => {
   const icons: Record<iconTypes, JSX.Element> = {
+    SuccessCheck: <SuccessCheck {...svgProp} />,
     DollarIcon: <DollarIcon {...svgProp} />,
     BriefCase: <BriefCase {...svgProp} />,
     sort: <Sort {...svgProp} />,

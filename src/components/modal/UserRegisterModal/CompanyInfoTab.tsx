@@ -65,11 +65,13 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
     });
   }
   return (
-    <TabsContent value='Experiences' className=' mt-8  md:mx-8'>
-      <div className=' flex h-full  flex-col  '>
-        <div className='mb-8 flex flex-col px-1'>
-          <h2 className='text-lg'>Experiences</h2>
-          <h3 className='text-xs text-gray-500'>Tell us about your experience</h3>
+    <TabsContent value='CompanyInfo' className=' mt-8  md:mx-8'>
+      <div className=' flex h-full  flex-col  gap-4'>
+        <div className='my-4 flex flex-col items-center px-1'>
+          <h2 className='text-2xl font-semibold'>Tell us about your Company</h2>
+          <h3 className='text-sm text-gray-600'>
+            Please enter your company details in the fields below
+          </h3>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
@@ -253,7 +255,27 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 />
               </section>
             </section>
-
+            <FormField
+              control={form.control}
+              name='placeOfWork'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='relative'>
+                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
+                      Place of Work
+                    </label>
+                    <FormControl>
+                      <Input
+                        className=' text-secondary-3 placeholder:text-secondary-1'
+                        placeholder='Where did you work?'
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
             <div className='flex w-full items-center justify-between gap-4'>
               <button
                 onClick={() => {
@@ -270,7 +292,7 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                   }}
                 />
                 <span className='whitespace-nowrap text-xs font-[400] leading-[24px] tracking-[0.4px] text-primary-1'>
-                  {`previous`.toUpperCase()}
+                  {`previous`}
                 </span>
               </button>
               <button
@@ -282,7 +304,7 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <span className='text-xs font-[400]  leading-[24px] tracking-[0.4px] text-white'>
-                  {`Proceed`.toUpperCase()}
+                  {`Proceed`}
                 </span>
                 <Icon
                   name='arrowTo'

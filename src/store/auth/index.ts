@@ -14,8 +14,8 @@ export type AuthStateType = {
   setAppId: (arg: string) => void;
   pageId: string;
   setPageId: (arg: string) => void;
-  currentApp: any;
-  setCurrentApp: (arg: any) => void;
+  IsSuccessModalOpen: boolean;
+  setSuccessModalOpen: (arg: boolean) => void;
   currentPage: any;
   setCurrentPage: (arg: any) => void;
   currentWorkflow: any;
@@ -47,9 +47,9 @@ const authStore: StateCreator<AuthStateType, [['zustand/devtools', never]], []> 
   setIsLoading: (arg) => {
     set({ isLoading: arg });
   },
-  currentApp: {},
-  setCurrentApp: (arg) => {
-    set({ currentApp: arg });
+  IsSuccessModalOpen: false,
+  setSuccessModalOpen: (arg) => {
+    set({ IsSuccessModalOpen: arg });
   },
   currentPage: {},
   setCurrentPage: (arg) => {

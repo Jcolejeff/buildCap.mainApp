@@ -7,12 +7,12 @@ import { cn } from 'lib/utils';
 import { Form, FormControl, FormField, FormItem, FormMessage } from 'components/shadcn/ui/form';
 import { Input } from 'components/shadcn/input';
 import { toast } from 'components/shadcn/ui/use-toast';
-
 import { format } from 'date-fns';
 import { Calendar } from 'components/shadcn/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from 'components/shadcn/ui/popover';
 import Icon from 'utils/Icon';
 import SuccessfulSignUpModal from '../auth/successSignUp';
+import useStore from 'store';
 interface Iprops {
   switchTab: (tab: string) => void;
   handleComplete: (tab: string) => void;
@@ -42,6 +42,8 @@ const PasswordTab = ({
   setModalOpen,
   setCompleted,
 }: Iprops) => {
+  const { setSuccessModalOpen } = useStore((state) => state);
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
   });
@@ -53,9 +55,8 @@ const PasswordTab = ({
     //   endDate: format(data.endDate, 'yyyy-MM-dd'),
     // };
     console.log(data);
-    if (setModalOpen) {
-      setModalOpen(false);
-    }
+    setSuccessModalOpen(true);
+
     switchTab(tabData[0]);
     handleComplete(tabData[4]);
     if (setCompleted) {
@@ -72,11 +73,11 @@ const PasswordTab = ({
     });
   }
   return (
-    <TabsContent value='Education' className=' mt-8  md:mx-8'>
-      <div className='flex h-full  flex-col  '>
-        <div className='mb-8 flex flex-col px-1'>
-          <h2 className='text-lg'>Education</h2>
-          <h3 className='text-xs text-gray-500'>Tell us about your Education</h3>
+    <TabsContent value='Password' className=' mt-8  md:mx-8'>
+      <div className='flex h-full  flex-col gap-4  '>
+        <div className='my-4 flex flex-col items-center px-1'>
+          <h2 className='text-2xl font-semibold'>You’re almost done!</h2>
+          <h3 className='text-sm text-gray-600'>Please create a password</h3>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
@@ -244,17 +245,16 @@ const PasswordTab = ({
                   }}
                 />
                 <span className='whitespace-nowrap text-xs font-[500] leading-[24px] tracking-[0.4px] text-primary-1'>
-                  {`Previous`.toUpperCase()}
+                  {`Previous`}
                 </span>
               </button>
               <SuccessfulSignUpModal />
               <button
                 type='button'
                 onClick={() => {
-                  if (setModalOpen) {
-                    setModalOpen(false);
-                  }
-                  switchTab(tabData[0]);
+                  setSuccessModalOpen(true);
+
+                  // switchTab(tabData[0]);
                   handleComplete(tabData[2]);
                   if (setCompleted) {
                     setCompleted([]); //would consider taking this line out
@@ -263,7 +263,7 @@ const PasswordTab = ({
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
               >
                 <span className='text-xs font-[500]  leading-[24px] tracking-[0.4px] text-white'>
-                  {`Proceed`.toUpperCase()}
+                  {`Proceed`}
                 </span>
                 <Icon
                   name='arrowTo'
