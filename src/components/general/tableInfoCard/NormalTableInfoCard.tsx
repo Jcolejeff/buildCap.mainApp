@@ -3,17 +3,18 @@ import { cn } from 'lib/utils';
 
 interface Props {
   title: string;
-  value: number;
+  value?: number;
   description: string;
   border?: boolean;
   bgColor?: string;
+  children?: React.ReactNode;
 }
 
-const NormalTableInfoCard = ({ title, value, description, border, bgColor }: Props) => {
+const NormalTableInfoCard = ({ title, value, description, border, bgColor, children }: Props) => {
   return (
     <article
       className={cn(
-        ` h-full w-full cursor-pointer rounded-xl   px-5 py-6 transition-all duration-500 ease-in-out ${
+        ` h-full w-full cursor-pointer rounded-xl px-5   py-6 shadow-sm transition-all duration-500 ease-in-out ${
           bgColor || 'bg-green-100'
         } ${border && 'border'}`,
       )}
@@ -24,6 +25,7 @@ const NormalTableInfoCard = ({ title, value, description, border, bgColor }: Pro
           <span className='font-bold md:text-[1.6rem]'>{value}</span>
           {/* <span className='text-[0.8rem] font-semibold'>%</span> */}
         </p>
+        {children}
       </div>
     </article>
   );

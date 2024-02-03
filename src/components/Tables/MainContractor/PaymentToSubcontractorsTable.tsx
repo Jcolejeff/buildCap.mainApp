@@ -322,7 +322,7 @@ function PaymentToSubcontractorsTable() {
   });
 
   return (
-    <div className='flex w-full flex-col gap-12 rounded-xl bg-slate-50 px-6  py-6'>
+    <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
         <h3 className='font-semibold'>Payment to Sub-contractors</h3>
         <div className='flex items-center gap-3'>

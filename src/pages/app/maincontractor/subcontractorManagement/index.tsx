@@ -74,10 +74,13 @@ const SubcontractorManagement = () => {
             />
             <NormalTableInfoCard
               title='Add Subcontractor'
-              value={10}
               bgColor='bg-primary-16'
               description='This is the total number of patients that are linked to another.'
-            />
+            >
+              <button className='items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
+                Register
+              </button>
+            </NormalTableInfoCard>
             {/* <NormalTableInfoCard
           title='Linked Patients'
           value={0}

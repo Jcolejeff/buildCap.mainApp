@@ -86,6 +86,111 @@ const projects = {
       description: 'Electrician',
       amount: 'N200,000,000',
     },
+    {
+      id: 1,
+      project: 'Hospital Project',
+      title: 'John Doe',
+      description: 'Carpenter',
+      amount: 'N1,000,000,000',
+    },
+    {
+      id: 2,
+      project: 'Road Project',
+      title: 'Jane Doe',
+      description: 'Plumber',
+      amount: 'N500,000,000',
+    },
+    {
+      id: 3,
+      project: 'Bridge Project',
+      title: 'Paul Doe',
+      description: 'Electrician',
+      amount: 'N200,000,000',
+    },
+    {
+      id: 1,
+      project: 'Hospital Project',
+      title: 'John Doe',
+      description: 'Carpenter',
+      amount: 'N1,000,000,000',
+    },
+    {
+      id: 2,
+      project: 'Road Project',
+      title: 'Jane Doe',
+      description: 'Plumber',
+      amount: 'N500,000,000',
+    },
+    {
+      id: 3,
+      project: 'Bridge Project',
+      title: 'Paul Doe',
+      description: 'Electrician',
+      amount: 'N200,000,000',
+    },
+    {
+      id: 1,
+      project: 'Hospital Project',
+      title: 'John Doe',
+      description: 'Carpenter',
+      amount: 'N1,000,000,000',
+    },
+    {
+      id: 2,
+      project: 'Road Project',
+      title: 'Jane Doe',
+      description: 'Plumber',
+      amount: 'N500,000,000',
+    },
+    {
+      id: 3,
+      project: 'Bridge Project',
+      title: 'Paul Doe',
+      description: 'Electrician',
+      amount: 'N200,000,000',
+    },
+    {
+      id: 1,
+      project: 'Hospital Project',
+      title: 'John Doe',
+      description: 'Carpenter',
+      amount: 'N1,000,000,000',
+    },
+    {
+      id: 2,
+      project: 'Road Project',
+      title: 'Jane Doe',
+      description: 'Plumber',
+      amount: 'N500,000,000',
+    },
+    {
+      id: 3,
+      project: 'Bridge Project',
+      title: 'Paul Doe',
+      description: 'Electrician',
+      amount: 'N200,000,000',
+    },
+    {
+      id: 1,
+      project: 'Hospital Project',
+      title: 'John Doe',
+      description: 'Carpenter',
+      amount: 'N1,000,000,000',
+    },
+    {
+      id: 2,
+      project: 'Road Project',
+      title: 'Jane Doe',
+      description: 'Plumber',
+      amount: 'N500,000,000',
+    },
+    {
+      id: 3,
+      project: 'Bridge Project',
+      title: 'Paul Doe',
+      description: 'Electrician',
+      amount: 'N200,000,000',
+    },
   ],
 };
 
@@ -264,7 +369,7 @@ function ContractAgreementTable() {
   });
 
   return (
-    <div className='flex w-full flex-col gap-12 rounded-xl bg-slate-50 px-6  py-6'>
+    <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
         <h3 className='font-semibold'>Contractual Agreements</h3>
         <div className='flex items-center gap-3'>
