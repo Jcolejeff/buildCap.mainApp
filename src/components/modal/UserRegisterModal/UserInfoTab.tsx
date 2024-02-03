@@ -4,9 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { cn } from 'lib/utils';
-import { Form, FormControl, FormField, FormItem, FormMessage } from 'components/shadcn/ui/form';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+  FormLabel,
+  FormDescription,
+} from 'components/shadcn/ui/form';
 import { Input } from 'components/shadcn/input';
 import { toast } from 'components/shadcn/ui/use-toast';
+import { RadioGroup, RadioGroupItem } from 'components/shadcn/ui/radio-group';
 
 import { format } from 'date-fns';
 import { Calendar } from 'components/shadcn/ui/calendar';
@@ -24,20 +33,21 @@ const FormSchema = z.object({
       message: 'Please enter a valid email.',
     })
     .email(),
-  phone: z.string().min(2, {
+  lastName: z.string().min(2, {
     message: 'Please enter a valid Number.',
   }),
-  bio: z.string({
+  firsName: z.string({
     required_error: 'Twitter is required.',
   }),
-  linkedin: z.string({
+  phone: z.string({
     required_error: ' Linkedin is required.',
   }),
-  dob: z.date({
-    required_error: 'Date of birth is required.',
-  }),
+
   address: z.string({
     required_error: 'Address is required.',
+  }),
+  type: z.enum(['maincontractor', 'subcontractor', 'supplier'], {
+    required_error: 'You need to select a payment method',
   }),
 });
 const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
@@ -48,7 +58,6 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
   function onSubmit(data: z.infer<typeof FormSchema>) {
     const newData = {
       ...data,
-      dob: format(data.dob, 'yyyy-MM-dd'),
     };
 
     switchTab(tabData[1]);
@@ -77,17 +86,120 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
             <FormField
               control={form.control}
-              name='bio'
+              name='type'
+              render={({ field }) => (
+                <FormItem className='space-y-3'>
+                  {/* <FormLabel>
+                    <span className='text-base font-semibold'>Select Payment Method</span>
+                  </FormLabel> */}
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className='flex items-center justify-between gap-16'
+                    >
+                      <FormItem
+                        className={cn(
+                          `flex w-full cursor-pointer transition-all duration-300 ease-in-out ${
+                            form.getValues('type') === 'maincontractor' && '!border-black '
+                          }  items-center space-x-3  space-y-0 border-b-2  border-white/0 px-2`,
+                        )}
+                      >
+                        <FormLabel className='flex w-full cursor-pointer  items-center justify-between   py-6 font-normal'>
+                          <p className='text-base font-semibold'>Main Contractor</p>
+                        </FormLabel>
+                        <FormControl>
+                          <RadioGroupItem value='maincontractor' className='' />
+                        </FormControl>
+                      </FormItem>
+                      <FormItem
+                        className={cn(
+                          `flex w-full cursor-pointer  transition-all duration-300 ease-in-out ${
+                            form.getValues('type') === 'subcontractor' && '!border-black'
+                          }  items-center space-x-3  space-y-0 border-b-2 border-white/0 px-2`,
+                        )}
+                      >
+                        <FormLabel className='flex w-full cursor-pointer items-center justify-between py-6  font-normal'>
+                          <p className='text-base font-semibold'>Sub-Contractor</p>
+                        </FormLabel>
+                        <FormControl>
+                          <RadioGroupItem value='subcontractor' />
+                        </FormControl>
+                      </FormItem>
+                      <FormItem
+                        className={cn(
+                          `flex w-full cursor-pointer transition-all duration-300 ease-in-out ${
+                            form.getValues('type') === 'supplier' && '!border-black'
+                          }  items-center space-x-3  space-y-0 border-b-2  border-white/0 px-2`,
+                        )}
+                      >
+                        <FormLabel className='flex w-full cursor-pointer  items-center justify-between py-6  font-normal'>
+                          <p className='text-base font-semibold'>Supplier</p>
+                        </FormLabel>
+                        <FormControl>
+                          <RadioGroupItem value='supplier' />
+                        </FormControl>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <section className=' grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr]  '>
+              <FormField
+                control={form.control}
+                name='firsName'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-2'>
+                      <label className=' rounded-full px-1  text-sm font-medium'>First Name</label>
+                      <FormControl>
+                        <Input
+                          className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                          placeholder='Enter your First Name'
+                          {...field}
+                        />
+                      </FormControl>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name='lastName'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-2'>
+                      <label className=' rounded-full px-1  text-sm font-medium'>Last Name</label>
+                      <FormControl>
+                        <Input
+                          className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                          placeholder='Enter your Last Name'
+                          {...field}
+                        />
+                      </FormControl>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
+            </section>
+
+            <FormField
+              control={form.control}
+              name='email'
               render={({ field }) => (
                 <FormItem>
-                  <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                      Bio
-                    </label>
+                  <div className='flex flex-col gap-2'>
+                    <label className=' rounded-full px-1  text-sm font-medium'>Email</label>
                     <FormControl>
                       <Input
-                        className='text-secondary-3 placeholder:text-xs placeholder:text-secondary-1'
-                        placeholder='Short Bio that talks about what you do (I.e Cinematographer & Animator)'
+                        className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                        placeholder='Enter your Email'
                         {...field}
                       />
                     </FormControl>
@@ -96,119 +208,38 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                 </FormItem>
               )}
             />
-            <section className=' grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr]  '>
-              <FormField
-                control={form.control}
-                name='email'
-                render={({ field }) => (
-                  <FormItem>
-                    <div className='relative'>
-                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                        Email
-                      </label>
-                      <FormControl>
-                        <Input className=' text-secondary-3' {...field} />
-                      </FormControl>
-                    </div>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='phone'
-                render={({ field }) => (
-                  <FormItem>
-                    <div className='relative'>
-                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                        Phone Number
-                      </label>
-                      <FormControl>
-                        <Input className=' text-secondary-3' {...field} />
-                      </FormControl>
-                    </div>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='dob'
-                render={({ field }) => (
-                  <FormItem className='flex flex-col'>
-                    <Popover>
-                      <div className='relative'>
-                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                          Date of Birth
-                        </label>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={'outline'}
-                              className={cn(
-                                'w-full pl-3 text-left font-normal  text-secondary-3',
-                                !field.value && 'text-muted-foreground',
-                              )}
-                            >
-                              {field.value ? format(field.value, 'PPP') : <span>Pick a date</span>}
-                              <Icon
-                                name='calendarIconBlack'
-                                svgProp={{
-                                  className:
-                                    ' cursor-pointer ml-auto h-4 w-4  transition-opacity duration-300 ease-in-out active:opacity-100',
-                                }}
-                              />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className='w-auto p-0' align='start'>
-                          <Calendar
-                            mode='single'
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={(date: any) =>
-                              date > new Date() || date < new Date('1900-01-01')
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </div>
-                    </Popover>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name='linkedin'
-                render={({ field }) => (
-                  <FormItem>
-                    <div className='relative'>
-                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                        LinkedIn Profile link
-                      </label>
-                      <FormControl>
-                        <Input className=' text-secondary-3' {...field} />
-                      </FormControl>
-                    </div>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-            </section>
+            <FormField
+              control={form.control}
+              name='phone'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='flex flex-col gap-2'>
+                    <label className=' rounded-full px-1  text-sm font-medium'>Phone Number</label>
+                    <FormControl>
+                      <Input
+                        className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                        placeholder='Enter your Phone Number'
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
             <FormField
               control={form.control}
               name='address'
               render={({ field }) => (
                 <FormItem>
-                  <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                      Address
-                    </label>
+                  <div className='flex flex-col gap-2'>
+                    <label className=' rounded-full px-1  text-sm font-medium'>Address</label>
                     <FormControl>
-                      <Input className=' text-secondary-3' {...field} />
+                      <Input
+                        className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                        placeholder='Enter your Address'
+                        {...field}
+                      />
                     </FormControl>
                   </div>
                   <FormMessage className='mt-1 text-xs' />
@@ -220,7 +251,7 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                 type='button'
                 // disabled={form.formState.isSubmitting}
                 disabled={true}
-                className='group flex items-center  justify-center gap-2 rounded-[6px] bg-gray-200 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90 disabled:cursor-not-allowed'
+                className='group flex items-center  justify-center gap-2 rounded-[6px] bg-gray-200 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90 disabled:cursor-not-allowed md:px-6 md:py-2'
               >
                 <Icon
                   name='arrowBack'
@@ -229,7 +260,7 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                       'text-gray-400  w-4  cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
                   }}
                 />
-                <span className='whitespace-nowrap text-xs font-[500] leading-[24px] tracking-[0.4px] text-gray-400'>
+                <span className='whitespace-nowrap text-sm font-[500] leading-[24px] tracking-[0.4px] text-gray-400'>
                   {`Previous`}
                 </span>
               </button>
@@ -239,9 +270,9 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                   switchTab(tabData[1]);
                   handleComplete(tabData[0]);
                 }}
-                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-3 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
+                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-3 py-1  transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
-                <span className='text-xs font-[300]  leading-[24px] tracking-[0.4px] text-white'>
+                <span className='text-sm font-[500]  leading-[24px] tracking-[0.4px] text-white'>
                   {`Proceed`}
                 </span>
 
