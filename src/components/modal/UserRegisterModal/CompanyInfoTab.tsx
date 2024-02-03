@@ -241,7 +241,10 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
 
             <div className='flex w-full items-center justify-between gap-4'>
               <button
-                type='submit'
+                type='button'
+                onClick={() => {
+                  switchTab(tabData[0]);
+                }}
                 className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
                 <Icon
