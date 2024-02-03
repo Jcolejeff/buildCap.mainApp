@@ -20,6 +20,7 @@ import { ReactComponent as PadLockV2 } from 'assets/svg/padLockV2.svg';
 import { ReactComponent as DemoDp } from 'assets/svg/demoDp.svg';
 import { ReactComponent as ExternalLink } from 'assets/svg/externalLink.svg';
 import { ReactComponent as FunkyPagesHero } from 'assets/svg/funkyPagesHero1.svg';
+import { ReactComponent as FunkyPagesHero2 } from 'assets/svg/funkyPagesHero2.svg';
 import { ReactComponent as FunkyPagesTextTop } from 'assets/svg/funkyPagesTextTop.svg';
 import { ReactComponent as CashIcon } from 'assets/svg/cashIcon.svg';
 import { ReactComponent as ChatIcon } from 'assets/svg/chatIcon.svg';
@@ -248,7 +249,8 @@ export type iconTypes =
   | 'sort'
   | 'DollarIcon'
   | 'BriefCase'
-  | 'SuccessCheck';
+  | 'SuccessCheck'
+  | 'funkyPagesHero2';
 
 interface IconInterface {
   name: iconTypes;
@@ -257,6 +259,7 @@ interface IconInterface {
 
 const Icon = ({ name, svgProp }: IconInterface) => {
   const icons: Record<iconTypes, JSX.Element> = {
+    funkyPagesHero2: <FunkyPagesHero2 {...svgProp} />,
     SuccessCheck: <SuccessCheck {...svgProp} />,
     DollarIcon: <DollarIcon {...svgProp} />,
     BriefCase: <BriefCase {...svgProp} />,

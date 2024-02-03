@@ -13,20 +13,25 @@ import { useNavigate } from 'react-router-dom';
 import UserPageGuard from 'guards/UserPageGuard';
 import useStore, { StoreType } from 'store';
 import FunkyPagesHero from 'components/general/FunkyPagesHero';
+
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { shimmer, toBase64 } from 'utils/general/shimmer';
 import PatientsTableComponent from 'components/Tables/MainContractor/ProjectStatusTable';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
+import ContractAgreementTable from 'components/Tables/MainContractor/ContractsTable';
+import { ExternalNav } from 'components/partials/external-nav';
 
 const MainContractorContractorFinancial = () => {
   return (
     <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+      <ExternalNav />
       <div className='   w-full   py-[1.875rem] '>
         <FunkyPagesHero
           description='list of your active and inactive projects'
           title='Contractor Dashboard'
-          // customBgClass='bg-primary-19'
-          // textColor='text-black'
+          iconType='funkyPagesHero2'
+          customBgClass='bg-primary-20'
+          textColor='text-black'
         />
       </div>
       <div>
@@ -34,7 +39,7 @@ const MainContractorContractorFinancial = () => {
       </div>
       <div className='relative mt-12 grid w-full'>
         <section>
-          <PatientsTableComponent />
+          <ContractAgreementTable />
         </section>
       </div>
     </div>

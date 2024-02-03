@@ -26,6 +26,9 @@ import UserPageGuard from 'guards/UserPageGuard';
 import useStore, { StoreType } from 'store';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import PatientsTableComponent from 'components/Tables/MainContractor/ProjectStatusTable';
+import { ExternalNav } from 'components/partials/external-nav';
+import SubcontractorsPerProjectTable from 'components/Tables/MainContractor/SubContractorsPerProjectTable';
+import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 
 const SubcontractorManagement = () => {
   const navigate = useNavigate();
@@ -44,33 +47,35 @@ const SubcontractorManagement = () => {
   return (
     <UserPageGuard page={CONSTANTS.ROUTES['subcontractor-management']}>
       <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+        <ExternalNav />
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Contractor Dashboard'
-            // customBgClass='bg-primary-19'
-            // textColor='text-black'
+            iconType='funkyPagesHero2'
+            customBgClass='bg-primary-20'
+            textColor='text-black'
           />
         </div>
         <div>
           <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr]  xxl:grid-cols-[1fr_1fr_1fr_1fr]'>
             <NormalTableInfoCard
-              title='Registered Patients Today'
-              value={0}
-              border
+              title='Total Subcontractors'
+              value={10}
+              bgColor='bg-primary-16'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
-              title='This Month '
-              value={0}
-              border
+              title='Newly hired '
+              value={20}
+              bgColor='bg-primary-20'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
-              title='Linked Patients'
-              value={0}
-              border
+              title='Add Subcontractor'
+              value={10}
+              bgColor='bg-primary-16'
               description='This is the total number of patients that are linked to another.'
             />
             {/* <NormalTableInfoCard
@@ -83,12 +88,12 @@ const SubcontractorManagement = () => {
         </div>
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PatientsTableComponent />
+            <SubcontractorsPerProjectTable />
           </section>
         </div>
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PatientsTableComponent />
+            <PaymentToSubcontractorsTable />
           </section>
         </div>
       </div>
