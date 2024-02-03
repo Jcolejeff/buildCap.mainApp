@@ -25,20 +25,23 @@ interface Iprops {
   data: string[];
 }
 const FormSchema = z.object({
-  role: z.string().min(2, {
-    message: 'Please enter a valid role.',
+  ownershipType: z.string({
+    required_error: 'Ownership Type is required.',
   }),
-  placeOfWork: z.string().min(2, {
-    message: 'Please enter a valid Place of Work.',
+  companyType: z.string({
+    required_error: 'Company Type is required.',
   }),
-  jobMode: z.string({
-    required_error: 'Job Mode is required.',
+  companyRC: z.string().min(2, {
+    message: 'Please enter a valid Company RC/BN Number.',
   }),
-  startDate: z.date({
-    required_error: 'Start date is required.',
+  companyTax: z.string().min(2, {
+    message: 'Please enter a valid Company Tax Identification Number.',
   }),
-  endDate: z.date({
-    required_error: 'End date is required.',
+  address: z.string().min(2, {
+    message: 'Please enter a valid Address.',
+  }),
+  subcontractor: z.string().min(2, {
+    message: 'Please enter a valid Subcontractor.',
   }),
 });
 const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
@@ -75,20 +78,78 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
-            <section className='   '>
+            <section className=' flex flex-col gap-6 '>
               <FormField
                 control={form.control}
-                name='placeOfWork'
+                name='ownershipType'
                 render={({ field }) => (
                   <FormItem>
-                    <div className='relative'>
-                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                        Place of Work
+                    <div className='flex flex-col gap-1'>
+                      <label className=' rounded-full px-1  text-sm font-bold'>
+                        What is your company ownership type?
+                      </label>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className='w-full text-secondary-1'>
+                            <SelectValue
+                              placeholder='Company Ownership Type'
+                              className='text-secondary-1'
+                            />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value='internship'>Internship</SelectItem>
+                          <SelectItem value='Full Time'>Full Time</SelectItem>
+                          <SelectItem value='Part Time'>Part Time</SelectItem>
+                          <SelectItem value='Contract'>Contract</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='companyType'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-1'>
+                      <label className=' rounded-full px-1  text-sm font-bold'>
+                        What is your company type?
+                      </label>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className='w-full text-secondary-1'>
+                            <SelectValue placeholder='Company Type' className='text-secondary-1' />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value='internship'>Internship</SelectItem>
+                          <SelectItem value='Full Time'>Full Time</SelectItem>
+                          <SelectItem value='Part Time'>Part Time</SelectItem>
+                          <SelectItem value='Contract'>Contract</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name='companyRC'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-2'>
+                      <label className=' rounded-full px-1  text-sm font-bold'>
+                        Company RC/BN Number *
                       </label>
                       <FormControl>
                         <Input
-                          className=' text-secondary-3 placeholder:text-secondary-1'
-                          placeholder='Where did you work?'
+                          className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                          placeholder='e.g. 8962110'
                           {...field}
                         />
                       </FormControl>
@@ -98,191 +159,93 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 )}
               />
 
-              <section className='mt-8 grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr]'>
-                <FormField
-                  control={form.control}
-                  name='jobMode'
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className='relative'>
-                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                          Job Mode
-                        </label>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                          <FormControl>
-                            <SelectTrigger className='w-full text-secondary-1'>
-                              <SelectValue
-                                placeholder='Specify Job mode (Contract, Fulltime, etc)'
-                                className='text-secondary-1'
-                              />
-                            </SelectTrigger>
-                          </FormControl>
-                          <SelectContent>
-                            <SelectItem value='internship'>Internship</SelectItem>
-                            <SelectItem value='Full Time'>Full Time</SelectItem>
-                            <SelectItem value='Part Time'>Part Time</SelectItem>
-                            <SelectItem value='Contract'>Contract</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <FormMessage className='mt-1 text-xs' />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='role'
-                  render={({ field }) => (
-                    <FormItem>
-                      <div className='relative'>
-                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                          Role
-                        </label>
-                        <FormControl>
-                          <Input
-                            className=' text-secondary-3 placeholder:text-secondary-1'
-                            placeholder='What was your role?'
-                            {...field}
-                          />
-                        </FormControl>
-                      </div>
-                      <FormMessage className='mt-1 text-xs' />
-                    </FormItem>
-                  )}
-                />
+              <FormField
+                control={form.control}
+                name='companyTax'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-2'>
+                      <label className=' rounded-full px-1  text-sm font-bold'>
+                        Company Tax Identification Number
+                      </label>
+                      <p className='text-xs text-gray-400'>
+                        (This is a unique number allocated and issued to your company by FIRS as a
+                        duly registered Taxpayer in Nigeria.)
+                      </p>
+                      <FormControl>
+                        <Input
+                          className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                          placeholder='e.g. 05002743-0001'
+                          {...field}
+                        />
+                      </FormControl>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
 
-                <FormField
-                  control={form.control}
-                  name='startDate'
-                  render={({ field }) => (
-                    <FormItem className='flex flex-col'>
-                      <Popover>
-                        <div className='relative'>
-                          <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                            Start Date
-                          </label>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant={'outline'}
-                                className={cn(
-                                  'w-full  pl-3 text-left font-normal  text-secondary-3',
-                                  !field.value && 'text-muted-foreground',
-                                )}
-                              >
-                                {field.value ? (
-                                  format(field.value, 'PPP')
-                                ) : (
-                                  <span className='text-secondary-1'>Pick a date</span>
-                                )}
-                                <Icon
-                                  name='calendarIconBlack'
-                                  svgProp={{
-                                    className:
-                                      ' cursor-pointer ml-auto h-4 w-4  transition-opacity duration-300 ease-in-out active:opacity-100',
-                                  }}
-                                />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className='w-auto p-0' align='start'>
-                            <Calendar
-                              mode='single'
-                              selected={field.value}
-                              onSelect={field.onChange}
-                              disabled={(date: any) =>
-                                date > new Date() || date < new Date('1900-01-01')
-                              }
-                              initialFocus
+              <FormField
+                control={form.control}
+                name='address'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-2'>
+                      <label className=' rounded-full px-1  text-sm font-bold'>
+                        Current Business Address
+                      </label>
+
+                      <FormControl>
+                        <Input
+                          className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                          placeholder='Street Address'
+                          {...field}
+                        />
+                      </FormControl>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name='subcontractor'
+                render={({ field }) => (
+                  <FormItem>
+                    <div className='flex flex-col gap-1'>
+                      <label className=' rounded-full px-1  text-sm font-bold'>
+                        What is your type of Subcontractor?`
+                      </label>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className='w-full text-secondary-1'>
+                            <SelectValue
+                              placeholder='Company Ownership Type'
+                              className='text-secondary-1'
                             />
-                          </PopoverContent>
-                        </div>
-                      </Popover>
-                      <FormMessage className='mt-1 text-xs' />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name='endDate'
-                  render={({ field }) => (
-                    <FormItem className='flex flex-col'>
-                      <Popover>
-                        <div className='relative'>
-                          <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                            End Date
-                          </label>
-                          <PopoverTrigger asChild>
-                            <FormControl>
-                              <Button
-                                variant={'outline'}
-                                className={cn(
-                                  'w-full pl-3 text-left font-normal text-secondary-3',
-                                  !field.value && 'text-muted-foreground',
-                                )}
-                              >
-                                {field.value ? (
-                                  format(field.value, 'PPP')
-                                ) : (
-                                  <span className='text-secondary-1'>Pick a date</span>
-                                )}
-                                <Icon
-                                  name='calendarIconBlack'
-                                  svgProp={{
-                                    className:
-                                      ' cursor-pointer ml-auto h-4 w-4  transition-opacity duration-300 ease-in-out active:opacity-100',
-                                  }}
-                                />
-                              </Button>
-                            </FormControl>
-                          </PopoverTrigger>
-                          <PopoverContent className='w-auto p-0' align='start'>
-                            <Calendar
-                              mode='single'
-                              selected={field.value}
-                              onSelect={field.onChange}
-                              disabled={(date: any) =>
-                                date > new Date() || date < new Date('1900-01-01')
-                              }
-                              initialFocus
-                            />
-                          </PopoverContent>
-                        </div>
-                      </Popover>
-                      <FormMessage className='mt-1 text-xs' />
-                    </FormItem>
-                  )}
-                />
-              </section>
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value='internship'>Internship</SelectItem>
+                          <SelectItem value='Full Time'>Full Time</SelectItem>
+                          <SelectItem value='Part Time'>Part Time</SelectItem>
+                          <SelectItem value='Contract'>Contract</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <FormMessage className='mt-1 text-xs' />
+                  </FormItem>
+                )}
+              />
             </section>
-            <FormField
-              control={form.control}
-              name='placeOfWork'
-              render={({ field }) => (
-                <FormItem>
-                  <div className='relative'>
-                    <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                      Place of Work
-                    </label>
-                    <FormControl>
-                      <Input
-                        className=' text-secondary-3 placeholder:text-secondary-1'
-                        placeholder='Where did you work?'
-                        {...field}
-                      />
-                    </FormControl>
-                  </div>
-                  <FormMessage className='mt-1 text-xs' />
-                </FormItem>
-              )}
-            />
+
             <div className='flex w-full items-center justify-between gap-4'>
               <button
                 onClick={() => {
                   switchTab(tabData[0]);
                 }}
                 type='button'
-                className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
+                className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
                 <Icon
                   name='arrowBack'
@@ -291,8 +254,8 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                       'text-primary-1  w-4  cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
                   }}
                 />
-                <span className='whitespace-nowrap text-xs font-[400] leading-[24px] tracking-[0.4px] text-primary-1'>
-                  {`previous`}
+                <span className='whitespace-nowrap text-sm font-[500] leading-[24px] tracking-[0.4px] text-primary-1'>
+                  {`Previous`}
                 </span>
               </button>
               <button
@@ -301,9 +264,9 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                   switchTab(tabData[2]);
                   handleComplete(tabData[1]);
                 }}
-                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
+                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
-                <span className='text-xs font-[400]  leading-[24px] tracking-[0.4px] text-white'>
+                <span className='text-sm font-[500]  leading-[24px] tracking-[0.4px] text-white'>
                   {`Proceed`}
                 </span>
                 <Icon
