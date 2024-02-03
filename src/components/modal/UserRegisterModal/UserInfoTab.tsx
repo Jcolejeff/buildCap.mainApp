@@ -34,20 +34,20 @@ const FormSchema = z.object({
     })
     .email(),
   lastName: z.string().min(2, {
-    message: 'Please enter a valid Number.',
+    message: 'Please enter a valid last name.',
   }),
   firsName: z.string({
-    required_error: 'Twitter is required.',
+    required_error: 'First Name is required.',
   }),
   phone: z.string({
-    required_error: ' Linkedin is required.',
+    required_error: ' Phone Number is required.',
   }),
 
   address: z.string({
     required_error: 'Address is required.',
   }),
   type: z.enum(['maincontractor', 'subcontractor', 'supplier'], {
-    required_error: 'You need to select a payment method',
+    required_error: 'You must select a user type',
   }),
 });
 const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
@@ -265,11 +265,11 @@ const UserInfoTap = ({ switchTab, data: tabData, handleComplete }: Iprops) => {
                 </span>
               </button>
               <button
-                type='button'
-                onClick={() => {
-                  switchTab(tabData[1]);
-                  handleComplete(tabData[0]);
-                }}
+                type='submit'
+                // onClick={() => {
+                //   switchTab(tabData[1]);
+                //   handleComplete(tabData[0]);
+                // }}
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-3 py-1  transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
                 <span className='text-sm font-[500]  leading-[24px] tracking-[0.4px] text-white'>

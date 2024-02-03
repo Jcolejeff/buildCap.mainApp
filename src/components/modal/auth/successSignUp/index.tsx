@@ -14,6 +14,7 @@ import { tr } from 'date-fns/locale';
 import Icon from 'utils/Icon';
 import { useState } from 'react';
 import useStore from 'store';
+import { useNavigate } from 'react-router-dom';
 
 interface Iprop {
   triggerClassName?: string;
@@ -30,6 +31,7 @@ export default function SuccessfulSignUpModal({
   triggerClassName,
 }: Iprop) {
   const [modalOpen, setModalOpen] = useState(false);
+  const navigate = useNavigate();
   const { setSuccessModalOpen, IsSuccessModalOpen } = useStore((state) => state);
 
   return (
@@ -54,6 +56,7 @@ export default function SuccessfulSignUpModal({
           <AlertDialogAction
             className='group flex w-full items-center justify-center gap-1 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
             onClick={() => {
+              navigate('/login');
               setSuccessModalOpen(false);
               setTimeout(() => {
                 console.log('cancel');

@@ -37,7 +37,10 @@ const UserRegistrationForms = () => {
   };
 
   return (
-    <section className='relative z-50 mb-12 max-w-full  rounded-xl bg-white  px-6 py-8  sm:w-[90vw] md:!max-w-[1000px] lg:px-[2rem] lg:py-[3.5rem] xxl:!max-w-[1350px]'>
+    <section className='relative z-50 mb-12 max-w-full  rounded-xl bg-white  px-6 py-8  sm:w-[90vw] md:!max-w-[1000px] lg:px-[2rem] lg:pb-[3.5rem] lg:pt-8 xxl:!max-w-[1350px]'>
+      {/* <h4 className='mb-6 text-center'>
+        <span className='text-xl font-semibold'>Create Account</span>
+      </h4> */}
       <div className=' w-full gap-[0.87rem]'>
         <Tabs defaultValue='PersonalInfo' value={activeTab} className=''>
           <TabsList className='my-4 hidden w-full justify-around   bg-white lg:flex  '>

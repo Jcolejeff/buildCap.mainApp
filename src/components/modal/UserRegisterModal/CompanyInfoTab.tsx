@@ -55,8 +55,8 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
     //   startDate: format(data.startDate, 'yyyy-MM-dd'),
     //   endDate: format(data.endDate, 'yyyy-MM-dd'),
     // };
-    switchTab(tabData[3]);
-    handleComplete(tabData[2]);
+    switchTab(tabData[2]);
+    handleComplete(tabData[1]);
 
     toast({
       title: 'You submitted the following values:',
@@ -241,10 +241,7 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
 
             <div className='flex w-full items-center justify-between gap-4'>
               <button
-                onClick={() => {
-                  switchTab(tabData[0]);
-                }}
-                type='button'
+                type='submit'
                 className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
                 <Icon
@@ -259,11 +256,11 @@ const CompanyInfoTab = ({ switchTab, data: tabData, handleComplete }: Iprops) =>
                 </span>
               </button>
               <button
-                type='button'
-                onClick={() => {
-                  switchTab(tabData[2]);
-                  handleComplete(tabData[1]);
-                }}
+                type='submit'
+                // onClick={() => {
+                //   switchTab(tabData[2]);
+                //   handleComplete(tabData[1]);
+                // }}
                 className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
                 <span className='text-sm font-[500]  leading-[24px] tracking-[0.4px] text-white'>

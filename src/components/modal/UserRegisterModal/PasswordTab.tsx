@@ -20,21 +20,25 @@ interface Iprops {
   setModalOpen?: React.Dispatch<React.SetStateAction<boolean>>;
   setCompleted?: React.Dispatch<React.SetStateAction<string[]>>;
 }
-const FormSchema = z.object({
-  placeOfStudy: z.string().min(2, {
-    message: 'Please enter a valid place of study.',
-  }),
-  courseOfStudy: z.string().min(2, {
-    message: 'Please enter  a valid course of study.',
-  }),
-
-  startDate: z.date({
-    required_error: 'Start date is required.',
-  }),
-  endDate: z.date({
-    required_error: 'End date is required.',
-  }),
-});
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+const FormSchema = z
+  .object({
+    password: z.string().min(8, {
+      message: 'Password must be at least 8 characters long',
+    }),
+    confirmPassword: z.string().min(8, {
+      message: 'Password must be at least 8 characters long',
+    }),
+  })
+  // .refine((data) => passwordRegex.test(data.password), {
+  //   message:
+  //     'Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character',
+  //   path: ['password'],
+  // })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ['confirmPassword'],
+  });
 const PasswordTab = ({
   switchTab,
   data: tabData,
@@ -57,8 +61,8 @@ const PasswordTab = ({
     console.log(data);
     setSuccessModalOpen(true);
 
-    switchTab(tabData[0]);
-    handleComplete(tabData[4]);
+    // switchTab(tabData[0]);
+    handleComplete(tabData[2]);
     if (setCompleted) {
       setCompleted([]); //would consider taking this line out
     }
@@ -74,160 +78,64 @@ const PasswordTab = ({
   }
   return (
     <TabsContent value='Password' className=' mt-8  md:mx-8'>
-      <div className='flex h-full  flex-col gap-4  '>
+      <div className='mx-auto flex h-full flex-col  gap-4 md:w-1/2  '>
         <div className='my-4 flex flex-col items-center px-1'>
           <h2 className='text-2xl font-semibold'>You’re almost done!</h2>
           <h3 className='text-sm text-gray-600'>Please create a password</h3>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className='w-full space-y-6'>
-            <section className='   grid grid-cols-1 gap-6 md:grid-cols-[1fr_1fr] '>
-              <FormField
-                control={form.control}
-                name='placeOfStudy'
-                render={({ field }) => (
-                  <FormItem>
-                    <div className='relative'>
-                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                        Place of study
-                      </label>
-                      <FormControl>
-                        <Input
-                          className=' text-secondary-3 placeholder:text-secondary-1'
-                          placeholder='Where did you Study?'
-                          {...field}
-                        />
-                      </FormControl>
-                    </div>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='courseOfStudy'
-                render={({ field }) => (
-                  <FormItem>
-                    <div className='relative'>
-                      <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                        Course of study
-                      </label>
-                      <FormControl>
-                        <Input
-                          className='text-secondary-3 placeholder:text-secondary-1'
-                          placeholder='What did you study'
-                          {...field}
-                        />
-                      </FormControl>
-                    </div>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='flex flex-col gap-2'>
+                    <label className=' rounded-full px-1  text-sm font-bold'>Password</label>
+                    <FormControl>
+                      <Input
+                        className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                        placeholder='Enter a strong password'
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='confirmPassword'
+              render={({ field }) => (
+                <FormItem>
+                  <div className='flex flex-col gap-2'>
+                    <label className=' rounded-full px-1  text-sm font-bold'>
+                      Confirm Password
+                    </label>
+                    <FormControl>
+                      <Input
+                        className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                        placeholder='Enter your password again'
+                        {...field}
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-xs' />
+                </FormItem>
+              )}
+            />
 
-              <FormField
-                control={form.control}
-                name='startDate'
-                render={({ field }) => (
-                  <FormItem className='flex flex-col'>
-                    <Popover>
-                      <div className='relative'>
-                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                          Start Date
-                        </label>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={'outline'}
-                              className={cn(
-                                'w-full pl-3 text-left font-normal  text-secondary-3',
-                                !field.value && 'text-muted-foreground',
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, 'PPP')
-                              ) : (
-                                <span className='text-secondary-1'>Pick a date</span>
-                              )}
-                              <Icon
-                                name='calendarIconBlack'
-                                svgProp={{
-                                  className:
-                                    ' cursor-pointer ml-auto h-4 w-4  transition-opacity duration-300 ease-in-out active:opacity-100',
-                                }}
-                              />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className='w-auto p-0' align='start'>
-                          <Calendar
-                            mode='single'
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={(date: any) =>
-                              date > new Date() || date < new Date('1900-01-01')
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </div>
-                    </Popover>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name='endDate'
-                render={({ field }) => (
-                  <FormItem className='flex flex-col'>
-                    <Popover>
-                      <div className='relative'>
-                        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
-                          End Date
-                        </label>
-                        <PopoverTrigger asChild>
-                          <FormControl>
-                            <Button
-                              variant={'outline'}
-                              className={cn(
-                                'w-full pl-3 text-left font-normal text-secondary-3',
-                                !field.value && 'text-muted-foreground',
-                              )}
-                            >
-                              {field.value ? (
-                                format(field.value, 'PPP')
-                              ) : (
-                                <span className='text-secondary-1'>Pick a date</span>
-                              )}
-                              <Icon
-                                name='calendarIconBlack'
-                                svgProp={{
-                                  className:
-                                    ' cursor-pointer ml-auto h-4 w-4  transition-opacity duration-300 ease-in-out active:opacity-100',
-                                }}
-                              />
-                            </Button>
-                          </FormControl>
-                        </PopoverTrigger>
-                        <PopoverContent className='w-auto p-0' align='start'>
-                          <Calendar
-                            mode='single'
-                            selected={field.value}
-                            onSelect={field.onChange}
-                            disabled={(date: any) =>
-                              date > new Date() || date < new Date('1900-01-01')
-                            }
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </div>
-                    </Popover>
-                    <FormMessage className='mt-1 text-xs' />
-                  </FormItem>
-                )}
-              />
-            </section>
+            <div className='rounded-lg bg-slate-200/50 p-4'>
+              <p className='mb-6 font-semibold text-gray-400 md:text-sm'>Your password must have</p>
+              <ul className=' text-sm font-medium'>
+                <li>At least 8 characters</li>
+                <li>1 uppercase letter</li>
+                <li>1 lowercase letter</li>
+                <li>1 number</li>
+                <li>1 special character</li>
+              </ul>{' '}
+            </div>
 
             <div className='flex w-full items-center justify-between gap-4'>
               <button
@@ -235,7 +143,7 @@ const PasswordTab = ({
                   switchTab(tabData[1]);
                 }}
                 type='button'
-                className='group flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-4 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90'
+                className='group mt-9 flex w-max items-center justify-center gap-2 rounded-[6px] bg-white px-3 py-1 shadow-9 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
                 <Icon
                   name='arrowBack'
@@ -244,25 +152,16 @@ const PasswordTab = ({
                       'text-primary-1  w-4  cursor-pointer hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
                   }}
                 />
-                <span className='whitespace-nowrap text-xs font-[500] leading-[24px] tracking-[0.4px] text-primary-1'>
+                <span className='whitespace-nowrap text-sm font-[500] leading-[24px] tracking-[0.4px] text-primary-1'>
                   {`Previous`}
                 </span>
               </button>
               <SuccessfulSignUpModal />
               <button
-                type='button'
-                onClick={() => {
-                  setSuccessModalOpen(true);
-
-                  // switchTab(tabData[0]);
-                  handleComplete(tabData[2]);
-                  if (setCompleted) {
-                    setCompleted([]); //would consider taking this line out
-                  }
-                }}
-                className='group flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90'
+                type='submit'
+                className='group mt-9 flex items-center justify-center gap-2 rounded-[6px] bg-primary-1 px-4 py-1 transition-all duration-300 ease-in-out hover:opacity-90 md:px-6 md:py-2'
               >
-                <span className='text-xs font-[500]  leading-[24px] tracking-[0.4px] text-white'>
+                <span className='text-sm font-[500]  leading-[24px] tracking-[0.4px] text-white'>
                   {`Proceed`}
                 </span>
                 <Icon
