@@ -26,9 +26,16 @@ export type AuthStateType = {
   setSearchInput: (arg: string) => void;
   filteredApps: any[];
   setFilteredApps: (arg: any[]) => void;
+  currentApp: any;
+  setCurrentApp: (arg: any) => void;
 };
 
 const authStore: StateCreator<AuthStateType, [['zustand/devtools', never]], []> = (set) => ({
+  currentApp: '9393030',
+
+  setCurrentApp: (arg) => {
+    set({ currentApp: arg });
+  },
   searchInput: '',
   setSearchInput: (arg) => {
     set({ searchInput: arg });
