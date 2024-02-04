@@ -21,7 +21,7 @@ import BtnLoader from 'components/Hocs/BtnLoader';
 import { authDetailsInterface } from 'types';
 import useStore from 'store';
 import API from 'services';
-import UserRegistrationModal from 'components/modal/CreateProject';
+import UserRegistrationModal from 'components/modal/AddSubcontractor';
 import AuthNavBar from 'components/auth/Nav';
 import { EyeOff, Eye } from 'lucide-react';
 

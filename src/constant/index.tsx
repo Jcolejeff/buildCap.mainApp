@@ -21,6 +21,7 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   'subcontractor-management': 'subcontractor-management',
   overview: 'overview',
   'contract-financials': 'contract-financials',
+  'create-project': 'create-project',
 };
 
 const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
@@ -44,6 +45,7 @@ const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
   'subcontractor-management': 'maincontractor',
   overview: 'maincontractor',
   'contract-financials': 'maincontractor',
+  'create-project': 'maincontractor',
 };
 
 const USER_ROUTES_PREFIX: Record<userTypes, routePrefixTypes> = {

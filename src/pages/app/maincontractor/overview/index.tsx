@@ -17,8 +17,10 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { shimmer, toBase64 } from 'utils/general/shimmer';
 import ProjectStatusTable from 'components/Tables/MainContractor/ProjectStatusTable';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
-import CreateProjectModal from 'components/modal/CreateProject';
+import CreateProjectModal from 'components/modal/AddSubcontractor';
 import { ExternalNav } from 'components/partials/external-nav';
+import { Link } from 'react-router-dom';
+import CONSTANTS from 'constant';
 
 const MainContractorOverview = () => {
   return (
@@ -33,20 +35,19 @@ const MainContractorOverview = () => {
         />
 
         <article className=' mt-7 flex w-full items-center justify-end'>
-          <CreateProjectModal
-            trigger={
-              <button className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px]  tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'>
-                <span className='opacity-95'>New Project </span>
-                <Icon
-                  name='addThreadIcon'
-                  svgProp={{
-                    className:
-                      'w-4 cursor-pointer fill-current hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
-                  }}
-                />
-              </button>
-            }
-          />
+          <Link
+            to={`/${CONSTANTS.USER_ROUTES_PREFIX.maincontractor}/${CONSTANTS.ROUTES['create-project']}`}
+            className='group flex  items-center justify-center gap-2  rounded-md bg-green-200 px-6 py-2 text-[0.9rem] font-semibold leading-[24px]  tracking-[0.15px] text-[#008000] transition-opacity duration-300 ease-in-out hover:opacity-90'
+          >
+            <span className='opacity-95'>New Project </span>
+            <Icon
+              name='addThreadIcon'
+              svgProp={{
+                className:
+                  'w-4 cursor-pointer fill-current hover:opacity-95 transition-opacity duration-300 ease-in-out active:opacity-100',
+              }}
+            />
+          </Link>
         </article>
       </div>
       <div>

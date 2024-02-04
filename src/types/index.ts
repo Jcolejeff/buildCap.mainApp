@@ -21,7 +21,8 @@ export type routePathTypes =
   | 'create-assistant'
   | 'subcontractor-management'
   | 'overview'
-  | 'contract-financials';
+  | 'contract-financials'
+  | 'create-project';
 
 export interface routesInterface<T> {
   path: T;

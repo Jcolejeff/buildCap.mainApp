@@ -11,6 +11,7 @@ import SubcontractorManagement from 'pages/app/maincontractor/subcontractorManag
 import { routeTypes, routesInterface } from 'types';
 import MainContractorOverview from 'pages/app/maincontractor/overview';
 import MainContractorContractorFinancial from 'pages/app/maincontractor/contractFinancials';
+import CreateProject from 'pages/app/maincontractor/createProject';
 
 const internalRoute: routeTypes = [
   // {
@@ -77,6 +78,10 @@ export const maincontractorRoutes: routeTypes = [
   {
     element: <AccountSettings />,
     path: 'settings',
+  },
+  {
+    element: <CreateProject />,
+    path: 'create-project',
   },
 ];
 export const subcontractorRoutes: routeTypes = [
