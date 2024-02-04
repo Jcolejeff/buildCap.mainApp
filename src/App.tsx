@@ -55,14 +55,14 @@ function App() {
             </Route>
           </Route>
         ))}
-        {subcontractorRoutes?.map((i, idx) => (
+        {/* {subcontractorRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/sc/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))}
-        {supplierRoutes?.map((i, idx) => (
+        ))} */}
+        {/* {supplierRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/sp/${i.path}`} element={i.element} />
@@ -75,29 +75,29 @@ function App() {
               <Route path={`/admin/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))}
-        {internalRoute?.map((i, idx) => (
+        ))} */}
+        {/* {internalRoute?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))}
-        {innerInternalRoutes?.map((i, idx) => (
+        ))} */}
+        {/* {innerInternalRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))}
+        ))} */}
 
-        {externalRoute?.map((i, idx) => (
+        {/* {externalRoute?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<ExternalLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))}
+        ))} */}
 
         <Route path='notfound' element={<></>} />
         <Route path='*' element={<Navigate to='/notfound' replace />} />

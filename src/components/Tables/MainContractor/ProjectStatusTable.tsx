@@ -55,6 +55,7 @@ import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInf
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 import MergePatientModal from 'components/modal/Patients/MergePatient';
 import SampleAccordion from 'components/sampleAccordion';
+import AddSubcontractorModal from 'components/modal/AddSubcontractor';
 export type Page = {
   id: string;
   value: string;
@@ -206,7 +207,7 @@ function ProjectStatusTable() {
 
         return (
           <div className='flex items-center gap-4'>
-            <MergePatientModal
+            <AddSubcontractorModal
               trigger={
                 <Button
                   variant='outline'
@@ -221,7 +222,7 @@ function ProjectStatusTable() {
                   <Icon name='addThreadIcon' svgProp={{ className: 'w-4' }}></Icon>
                 </Button>
               }
-            ></MergePatientModal>
+            ></AddSubcontractorModal>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='h-8 w-8 p-0'>
