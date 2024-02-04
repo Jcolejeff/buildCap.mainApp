@@ -24,7 +24,7 @@ const FunkyPagesHero = ({
       <div className='absolute z-[10] flex h-full w-full items-center  px-2 '>
         <div className='z-[10] flex  h-max w-max flex-col  items-center px-6 '>
           <h4
-            className={`relative  text-[14px] font-[600] leading-[21px] tracking-[0.15px] ${
+            className={`relative  text-[1rem] font-[600] leading-[21px] tracking-[0.15px] ${
               textColor ? textColor : `text-white`
             }  `}
           >
