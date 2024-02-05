@@ -1,7 +1,4 @@
 import CONSTANTS from 'constant';
-import Projects from 'pages/app/subcontractor/projects';
-import PaymentPlans from 'pages/app/subcontractor/payment-plans';
-import UserList from 'pages/app/subcontractor/user-list';
 import Profile from 'pages/app/subcontractor/user-profile';
 import AccountSettings from 'pages/app/subcontractor/account-settings';
 import SingleAssistantPage from 'pages/inner-pages/single-assistant-page';
@@ -12,32 +9,23 @@ import { routeTypes, routesInterface } from 'types';
 import MainContractorOverview from 'pages/app/maincontractor/overview';
 import MainContractorContractorFinancial from 'pages/app/maincontractor/contractFinancials';
 import CreateProject from 'pages/app/maincontractor/createProject';
-import SubcontractorOverview from 'pages/app/subcontractor/subcontractoOverview';
+import SubcontractorOverview from 'pages/app/subcontractor/subcontractorOverview';
 import ProjectManagement from 'pages/app/subcontractor/projectManagement';
+import SubcontractorFinancialOverview from 'pages/app/subcontractor/financialOverview';
+import MaterialFinancing from 'pages/app/subcontractor/materialFinancing';
+import SubcontractorDocumentation from 'pages/app/subcontractor/documentations';
+import SubcontractorNotifications from 'pages/app/subcontractor/subcontractorNotifications';
+import SubcontractorInvoices from 'pages/app/subcontractor/subcontractorInvoices';
 
 const internalRoute: routeTypes = [
   // {
   //   element: <Dashboard />,
   //   path: '',
   // },
-  {
-    element: <Dashboard />,
-    path: 'dashboard',
-  },
-  {
-    element: <Projects />,
-    path: 'projects',
-  },
-
-  {
-    element: <PaymentPlans />,
-    path: 'payment-plans',
-  },
-
-  {
-    element: <UserList />,
-    path: 'users-list',
-  },
+  // {
+  //   element: <Dashboard />,
+  //   path: 'dashboard',
+  // },
 
   {
     element: <Profile />,
@@ -60,23 +48,18 @@ export const maincontractorRoutes: routeTypes = [
   },
 
   {
-    element: <PaymentPlans />,
-    path: 'payment-plans',
-  },
-
-  {
     element: <MainContractorOverview />,
     path: 'maincontractor-overview',
   },
-  // {
-  //   element: <MainContractorOverview />,
-  //   path: 'overview',
-  // },
-
   {
-    element: <Dashboard />,
-    path: 'dashboard',
+    element: <CreateProject />,
+    path: 'create-project',
   },
+
+  // {
+  //   element: <Dashboard />,
+  //   path: 'dashboard',
+  // },
   {
     element: <Profile />,
     path: 'profile',
@@ -84,10 +67,6 @@ export const maincontractorRoutes: routeTypes = [
   {
     element: <AccountSettings />,
     path: 'settings',
-  },
-  {
-    element: <CreateProject />,
-    path: 'create-project',
   },
 ];
 export const subcontractorRoutes: routeTypes = [
@@ -101,19 +80,27 @@ export const subcontractorRoutes: routeTypes = [
   },
 
   {
-    element: <PaymentPlans />,
-    path: 'payment-plans',
+    element: <SubcontractorFinancialOverview />,
+    path: 'subcontractor-financial-overview',
   },
 
   {
-    element: <UserList />,
-    path: 'users-list',
+    element: <MaterialFinancing />,
+    path: 'material-financing',
+  },
+  {
+    element: <SubcontractorDocumentation />,
+    path: 'documentation',
+  },
+  {
+    element: <SubcontractorNotifications />,
+    path: 'subcontractor-notifications',
+  },
+  {
+    element: <SubcontractorInvoices />,
+    path: 'subcontractor-invoices',
   },
 
-  {
-    element: <Dashboard />,
-    path: 'dashboard',
-  },
   {
     element: <Profile />,
     path: 'profile',
@@ -125,25 +112,10 @@ export const subcontractorRoutes: routeTypes = [
 ];
 
 export const supplierRoutes: routeTypes = [
-  {
-    element: <Projects />,
-    path: 'projects',
-  },
-
-  {
-    element: <PaymentPlans />,
-    path: 'payment-plans',
-  },
-
-  {
-    element: <UserList />,
-    path: 'users-list',
-  },
-
-  {
-    element: <Dashboard />,
-    path: 'dashboard',
-  },
+  // {
+  //   element: <Dashboard />,
+  //   path: 'dashboard',
+  // },
   {
     element: <Profile />,
     path: 'profile',

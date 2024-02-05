@@ -13,7 +13,14 @@ type ISideNavTitles =
   | 'Projects'
   | 'Subcontractor Management'
   | 'Contract Financials'
-  | 'Project Management';
+  | 'Project Management'
+  | 'Material Financing'
+  | 'Financial Overview'
+  | 'Supplier Invoices'
+  | 'Documentation'
+  | 'Notifications and Alerts'
+  | 'Invoice Management'
+  | 'Payment Status';
 
 interface extendedRouteInterface extends ItitleLinks<ISideNavTitles, routePathTypes> {
   icons: JSX.Element;
@@ -21,13 +28,14 @@ interface extendedRouteInterface extends ItitleLinks<ISideNavTitles, routePathTy
 }
 
 interface ISideNavLinks {
-  discussions: extendedRouteInterface[];
-  features: extendedRouteInterface[];
+  admin?: extendedRouteInterface[];
+  supplier: extendedRouteInterface[];
   subcontractor: extendedRouteInterface[];
+  maincontractor: extendedRouteInterface[];
 }
 
 export const sideNavLinks: ISideNavLinks = {
-  discussions: [
+  maincontractor: [
     {
       link: 'subcontractor-management',
       title: 'Subcontractor Management',
@@ -107,8 +115,83 @@ export const sideNavLinks: ISideNavLinks = {
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
     },
+    {
+      link: 'material-financing',
+      title: 'Material Financing',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+    },
+    {
+      link: 'subcontractor-financial-overview',
+      title: 'Financial Overview',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+    },
+    {
+      link: 'subcontractor-invoices',
+      title: 'Supplier Invoices',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+    },
+    {
+      link: 'documentation',
+      title: 'Documentation',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+    },
+    {
+      link: 'subcontractor-notifications',
+      title: 'Notifications and Alerts',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+    },
   ],
-  features: [
+  supplier: [
     {
       link: 'settings',
       title: 'Settings',
@@ -243,7 +326,7 @@ const SideNav = () => {
         </div>
 
         <div className='mb-[1.125rem] flex flex-col'>
-          {sideNavLinks['subcontractor']
+          {sideNavLinks[currentTypeOfUser]
             ?.filter((item, index) => isAllowed(item?.userType))
             ?.map((i, idx) => (
               <div className='px-4' key={idx}>
@@ -280,7 +363,7 @@ const SideNav = () => {
           } transition-opacity duration-300`}
         ></div>
         {/* <div className='mb-[1.125rem] flex  flex-col'>
-          {sideNavLinks['features']?.map((i, idx) => (
+          {sideNavLinks['supplier']?.map((i, idx) => (
             <div className='px-4' key={idx}>
               <div
                 onClick={() => navigate(`/mc/${i?.link}`)}

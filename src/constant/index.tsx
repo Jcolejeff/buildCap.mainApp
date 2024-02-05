@@ -27,6 +27,16 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   'subcontractor-overview': 'subcontractor-overview',
   'supplier-overview': 'supplier-overview',
   'project-management': 'project-management',
+  'subcontractor-financial-overview': 'subcontractor-financial-overview',
+  'subcontractor-notifications': 'subcontractor-notifications',
+  documentation: 'documentation',
+  'subcontractor-invoices': 'subcontractor-invoices',
+  'material-financing': 'material-financing',
+  'invoice-management': 'invoice-management',
+  'supplier-financial-overview': 'supplier-financial-overview',
+  'supplier-invoices': 'supplier-invoices',
+  'supplier-notifications': 'supplier-notifications',
+  'payment-status': 'payment-status',
 };
 
 const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
@@ -56,6 +66,16 @@ const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
   'supplier-overview': 'supplier',
   'subcontractor-overview': 'subcontractor',
   'project-management': 'subcontractor',
+  'subcontractor-financial-overview': 'subcontractor',
+  'subcontractor-notifications': 'subcontractor',
+  documentation: 'subcontractor',
+  'subcontractor-invoices': 'subcontractor',
+  'material-financing': 'subcontractor',
+  'invoice-management': 'supplier',
+  'supplier-financial-overview': 'supplier',
+  'supplier-invoices': 'supplier',
+  'supplier-notifications': 'supplier',
+  'payment-status': 'supplier',
 };
 
 const USER_ROUTES_PREFIX: Record<userTypes, routePrefixTypes> = {

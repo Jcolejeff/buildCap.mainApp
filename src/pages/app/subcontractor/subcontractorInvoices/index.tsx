@@ -31,7 +31,7 @@ import SubcontractorsPerProjectTable from 'components/Tables/MainContractor/SubC
 import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 import AddSubcontractorModal from 'components/modal/AddSubcontractor';
 
-const SubcontractorManagement = () => {
+const SubcontractorInvoices = () => {
   const navigate = useNavigate();
 
   const { supplierName } = useStore((state: StoreType) => state);
@@ -46,7 +46,7 @@ const SubcontractorManagement = () => {
   console.log(supplierName);
 
   return (
-    <UserPageGuard page={CONSTANTS.ROUTES['subcontractor-management']}>
+    <UserPageGuard page={CONSTANTS.ROUTES['subcontractor-financial-overview']}>
       <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
         <ExternalNav />
         <div className='   w-full   py-[1.875rem] '>
@@ -109,4 +109,4 @@ const SubcontractorManagement = () => {
   );
 };
 
-export default SubcontractorManagement;
+export default SubcontractorInvoices;

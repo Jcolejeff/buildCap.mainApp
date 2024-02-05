@@ -27,7 +27,17 @@ export type routePathTypes =
   | 'subcontractor-overview'
   | 'supplier-overview'
   | 'admin-overview'
-  | 'project-management';
+  | 'project-management'
+  | 'material-financing'
+  | 'subcontractor-financial-overview'
+  | 'subcontractor-invoices'
+  | 'documentation'
+  | 'subcontractor-notifications'
+  | 'invoice-management'
+  | 'payment-status'
+  | 'supplier-financial-overview'
+  | 'supplier-invoices'
+  | 'supplier-notifications';
 
 export interface routesInterface<T> {
   path: T;
