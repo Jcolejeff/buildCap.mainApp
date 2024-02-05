@@ -32,6 +32,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(true);
 
   const [params] = useSearchParams();
+  const overviewLink = `${typeOfUser}-overview`;
 
   const email_verfied = params.get('email');
 
@@ -54,7 +55,7 @@ const Login = () => {
     onSuccess: (data) => {
       setAuthDetails(data);
       setLoggedIn(true);
-      navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${CONSTANTS.ROUTES['overview']}`);
+      navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${overviewLink}`);
     },
     onError: (err) => {
       processError(err);
@@ -63,8 +64,7 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<customerLoginFormInterface> = (data) => {
     // mutate(data);
-    navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${CONSTANTS.ROUTES['overview']}`);
-    console.log(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${CONSTANTS.ROUTES['overview']}`);
+    navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[typeOfUser]}/${overviewLink}`);
   };
 
   useEffect(() => {

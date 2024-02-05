@@ -23,28 +23,26 @@ import { ExternalNav } from 'components/partials/external-nav';
 
 const MainContractorContractorFinancial = () => {
   return (
-    <UserPageGuard page={CONSTANTS.ROUTES['contract-financials']}>
-      <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
-        <ExternalNav />
-        <div className='   w-full   py-[1.875rem] '>
-          <FunkyPagesHero
-            description='list of your active and inactive projects'
-            title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
-          />
-        </div>
-        <div>
-          <p className='font-bold md:text-[19px] '>Contract Financials</p>
-        </div>
-        <div className='relative mt-12 grid w-full'>
-          <section>
-            <ContractAgreementTable />
-          </section>
-        </div>
+    <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+      <ExternalNav />
+      <div className='   w-full   py-[1.875rem] '>
+        <FunkyPagesHero
+          description='list of your active and inactive projects'
+          title='Contractor Dashboard'
+          iconType='funkyPagesHero2'
+          customBgClass='bg-primary-20'
+          textColor='text-black'
+        />
       </div>
-    </UserPageGuard>
+      <div>
+        <p className='font-bold md:text-[19px] '>Contract Financials</p>
+      </div>
+      <div className='relative mt-12 grid w-full'>
+        <section>
+          <ContractAgreementTable />
+        </section>
+      </div>
+    </div>
   );
 };
 

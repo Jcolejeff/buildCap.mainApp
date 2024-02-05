@@ -22,7 +22,12 @@ export type routePathTypes =
   | 'subcontractor-management'
   | 'overview'
   | 'contract-financials'
-  | 'create-project';
+  | 'create-project'
+  | 'maincontractor-overview'
+  | 'subcontractor-overview'
+  | 'supplier-overview'
+  | 'admin-overview'
+  | 'project-management';
 
 export interface routesInterface<T> {
   path: T;

@@ -12,7 +12,8 @@ type ISideNavTitles =
   | 'Payment Plans'
   | 'Projects'
   | 'Subcontractor Management'
-  | 'Contract Financials';
+  | 'Contract Financials'
+  | 'Project Management';
 
 interface extendedRouteInterface extends ItitleLinks<ISideNavTitles, routePathTypes> {
   icons: JSX.Element;
@@ -22,6 +23,7 @@ interface extendedRouteInterface extends ItitleLinks<ISideNavTitles, routePathTy
 interface ISideNavLinks {
   discussions: extendedRouteInterface[];
   features: extendedRouteInterface[];
+  subcontractor: extendedRouteInterface[];
 }
 
 export const sideNavLinks: ISideNavLinks = {
@@ -89,6 +91,23 @@ export const sideNavLinks: ISideNavLinks = {
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['users-list'],
     },
   ],
+  subcontractor: [
+    {
+      link: 'project-management',
+      title: 'Project Management',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+    },
+  ],
   features: [
     {
       link: 'settings',
@@ -131,6 +150,7 @@ const SideNav = () => {
   const { isAllowed } = useCheckTypeOfUser({ currentTypeOfUser: currentTypeOfUser });
 
   const location = useLocation();
+  const overviewLink = `${currentTypeOfUser}-overview`;
 
   return (
     <div
@@ -162,19 +182,29 @@ const SideNav = () => {
       <div className='no-scrollbar flex flex-grow flex-col gap-[0.425rem] overflow-y-auto overflow-x-hidden'>
         <div className='px-4 '>
           <div
-            onClick={() => navigate(`/mc/${CONSTANTS.ROUTES['overview']}`)}
+            onClick={() =>
+              navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[currentTypeOfUser]}/${overviewLink}`)
+            }
             className={`flex items-center gap-[0.625rem] px-4 py-[0.625rem] hover:bg-primary-light 
-            ${
-              isAllowed(`maincontractor`) ? `text-secondary-9` : `text-secondary-13`
-            } hover:text-primary-1 ${
-              location?.pathname === `/mc/${CONSTANTS.ROUTES['overview']}`
+           
+            
+            hover:text-primary-1 ${
+              location?.pathname ===
+              `/${CONSTANTS.USER_ROUTES_PREFIX[currentTypeOfUser]}/${overviewLink}`
                 ? `bg-primary-1 !text-white/95`
                 : ``
             }
             group cursor-pointer rounded-2xl transition-all duration-150 ease-linear`}
           >
             <div className='flex items-center'>
-              {!isAllowed(`maincontractor`) ? (
+              <Icon
+                name='dashboardIcon'
+                svgProp={{
+                  width: 22.75,
+                  height: 22.75,
+                }}
+              />
+              {/* {!isAllowed(`maincontractor`) ? (
                 <Icon
                   svgProp={{
                     width: 22.75,
@@ -190,7 +220,7 @@ const SideNav = () => {
                     height: 22.75,
                   }}
                 />
-              )}
+              )} */}
             </div>
             <h6
               className={`text-[14px] font-[400] leading-[24px] tracking-[0.15px] 
@@ -213,15 +243,22 @@ const SideNav = () => {
         </div>
 
         <div className='mb-[1.125rem] flex flex-col'>
-          {sideNavLinks['discussions']
+          {sideNavLinks['subcontractor']
             ?.filter((item, index) => isAllowed(item?.userType))
             ?.map((i, idx) => (
               <div className='px-4' key={idx}>
                 <div
-                  onClick={() => navigate(`/mc/${i?.link}`)}
+                  onClick={() =>
+                    navigate(`/${CONSTANTS.USER_ROUTES_PREFIX[currentTypeOfUser]}/${i?.link}`)
+                  }
                   className={`flex cursor-pointer items-center gap-[0.625rem] rounded-2xl px-4 py-[0.625rem] text-secondary-9
                hover:bg-primary-light 
-                ${location?.pathname === `/mc/${i?.link}` ? `!bg-primary-1 !text-white/95` : ``}
+                ${
+                  location?.pathname ===
+                  `/${CONSTANTS.USER_ROUTES_PREFIX[currentTypeOfUser]}/${i?.link}`
+                    ? `!bg-primary-1 !text-white/95`
+                    : ``
+                }
                 group
              transition-all duration-150 ease-linear hover:text-primary-1`}
                 >

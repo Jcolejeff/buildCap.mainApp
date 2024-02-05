@@ -25,19 +25,28 @@ export type StoreType = AuthStateType &
   adminStateType &
   maincontractorStateType;
 
+// const useStore = create<StoreType>()(
+//   persist(
+//     devtools((set, get, api) => ({
+//       ...authSlice(set, get, api),
+//       ...supplierStore(set, get, api),
+//       ...subContractorStore(set, get, api),
+//       ...adminStore(set, get, api),
+//       ...maincontractorStore(set, get, api),
+//     })),
+//     {
+//       name: 'store',
+//     },
+//   ),
+// );
 const useStore = create<StoreType>()(
-  persist(
-    devtools((set, get, api) => ({
-      ...authSlice(set, get, api),
-      ...supplierStore(set, get, api),
-      ...subContractorStore(set, get, api),
-      ...adminStore(set, get, api),
-      ...maincontractorStore(set, get, api),
-    })),
-    {
-      name: 'store',
-    },
-  ),
+  devtools((set, get, api) => ({
+    ...authSlice(set, get, api),
+    ...supplierStore(set, get, api),
+    ...subContractorStore(set, get, api),
+    ...adminStore(set, get, api),
+    ...maincontractorStore(set, get, api),
+  })),
 );
 
 export default useStore;

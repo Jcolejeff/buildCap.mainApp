@@ -55,13 +55,13 @@ function App() {
             </Route>
           </Route>
         ))}
-        {/* {subcontractorRoutes?.map((i, idx) => (
+        {subcontractorRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/sc/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))} */}
+        ))}
         {/* {supplierRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
@@ -99,8 +99,8 @@ function App() {
           </Route>
         ))} */}
 
-        <Route path='notfound' element={<></>} />
-        <Route path='*' element={<Navigate to='/notfound' replace />} />
+        {/* <Route path='notfound' element={<></>} />
+        <Route path='*' element={<Navigate to='/notfound' replace />} /> */}
       </Routes>
     </>
   );

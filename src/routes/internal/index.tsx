@@ -12,6 +12,8 @@ import { routeTypes, routesInterface } from 'types';
 import MainContractorOverview from 'pages/app/maincontractor/overview';
 import MainContractorContractorFinancial from 'pages/app/maincontractor/contractFinancials';
 import CreateProject from 'pages/app/maincontractor/createProject';
+import SubcontractorOverview from 'pages/app/subcontractor/subcontractoOverview';
+import ProjectManagement from 'pages/app/subcontractor/projectManagement';
 
 const internalRoute: routeTypes = [
   // {
@@ -64,8 +66,12 @@ export const maincontractorRoutes: routeTypes = [
 
   {
     element: <MainContractorOverview />,
-    path: 'overview',
+    path: 'maincontractor-overview',
   },
+  // {
+  //   element: <MainContractorOverview />,
+  //   path: 'overview',
+  // },
 
   {
     element: <Dashboard />,
@@ -86,8 +92,12 @@ export const maincontractorRoutes: routeTypes = [
 ];
 export const subcontractorRoutes: routeTypes = [
   {
-    element: <Projects />,
-    path: 'projects',
+    element: <SubcontractorOverview />,
+    path: 'subcontractor-overview',
+  },
+  {
+    element: <ProjectManagement />,
+    path: 'project-management',
   },
 
   {

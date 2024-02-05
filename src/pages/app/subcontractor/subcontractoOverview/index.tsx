@@ -22,16 +22,16 @@ import { ExternalNav } from 'components/partials/external-nav';
 import { Link } from 'react-router-dom';
 import CONSTANTS from 'constant';
 
-const MainContractorOverview = () => {
+const SubcontractorOverview = () => {
   return (
-    <UserPageGuard page={CONSTANTS.ROUTES.overview}>
+    <UserPageGuard page={CONSTANTS.ROUTES['subcontractor-overview']}>
       <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
         <ExternalNav />
 
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Contractor Dashboard'
+            title='Subcontractor Dashboard'
             customBgClass='bg-primary-18'
           />
 
@@ -90,4 +90,4 @@ const MainContractorOverview = () => {
   );
 };
 
-export default MainContractorOverview;
+export default SubcontractorOverview;

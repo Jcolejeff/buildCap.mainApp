@@ -70,7 +70,8 @@ const authStore: StateCreator<AuthStateType, [['zustand/devtools', never]], []> 
   setPageId: (arg) => {
     set({ pageId: arg });
   },
-  typeOfUser: 'maincontractor',
+  typeOfUser: 'subcontractor',
+
   setAuthLoading: (arg) => {
     set({ authLoading: arg });
   },
