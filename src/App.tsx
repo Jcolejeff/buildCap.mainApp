@@ -13,6 +13,7 @@ import AppLayout from 'layouts/app-layout';
 import authRoutes from 'routes/checkout';
 import { Toaster, resolveValue } from 'react-hot-toast';
 import ScrollToTopWrapper from 'components/general/ScrollToTopWrapper';
+import CONSTANTS from 'constant';
 
 function App() {
   // TODO: refresh auth on reload
@@ -51,31 +52,41 @@ function App() {
         {maincontractorRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
-              <Route path={`/mc/${i.path}`} element={i.element} />
+              <Route
+                path={`/${CONSTANTS.USER_ROUTES_PREFIX.maincontractor}/${i.path}`}
+                element={i.element}
+              />
             </Route>
           </Route>
         ))}
         {subcontractorRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
-              <Route path={`/sc/${i.path}`} element={i.element} />
+              <Route
+                path={`/${CONSTANTS.USER_ROUTES_PREFIX.subcontractor}/${i.path}`}
+                element={i.element}
+              />
             </Route>
           </Route>
         ))}
-        {/* {supplierRoutes?.map((i, idx) => (
+        {supplierRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
-              <Route path={`/sp/${i.path}`} element={i.element} />
+              <Route
+                path={`/${CONSTANTS.USER_ROUTES_PREFIX.supplier}/${i.path}`}
+                element={i.element}
+              />
             </Route>
           </Route>
         ))}
+        {/*
         {adminRoutes?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>
               <Route path={`/admin/${i.path}`} element={i.element} />
             </Route>
           </Route>
-        ))} */}
+        ))} 
         {/* {internalRoute?.map((i, idx) => (
           <Route key={`${idx}${i?.path}`} element={<AppLayout />}>
             <Route element={<RouteGuard />}>

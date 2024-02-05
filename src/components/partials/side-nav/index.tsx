@@ -66,38 +66,6 @@ export const sideNavLinks: ISideNavLinks = {
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['contract-financials'],
     },
-
-    {
-      link: 'payment-plans',
-      title: 'Payment Plans',
-      icons: (
-        <Icon
-          name='gForumIcon'
-          svgProp={{
-            width: 22.75,
-            height: 22.75,
-            className: 'text-current',
-          }}
-        />
-      ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['payment-plans'],
-    },
-
-    {
-      link: 'users-list',
-      title: 'Users',
-      icons: (
-        <Icon
-          svgProp={{
-            width: 22.75,
-            height: 22.75,
-            className: 'text-current',
-          }}
-          name='pForumIcon'
-        />
-      ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['users-list'],
-    },
   ],
   subcontractor: [
     {
@@ -125,10 +93,10 @@ export const sideNavLinks: ISideNavLinks = {
             height: 22.75,
             className: 'text-current',
           }}
-          name='BriefCase'
+          name='DollarIcon'
         />
       ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['material-financing'],
     },
     {
       link: 'subcontractor-financial-overview',
@@ -143,7 +111,7 @@ export const sideNavLinks: ISideNavLinks = {
           name='BriefCase'
         />
       ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['subcontractor-financial-overview'],
     },
     {
       link: 'subcontractor-invoices',
@@ -155,10 +123,10 @@ export const sideNavLinks: ISideNavLinks = {
             height: 22.75,
             className: 'text-current',
           }}
-          name='BriefCase'
+          name='DollarIcon'
         />
       ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['subcontractor-invoices'],
     },
     {
       link: 'documentation',
@@ -173,7 +141,7 @@ export const sideNavLinks: ISideNavLinks = {
           name='BriefCase'
         />
       ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['documentation'],
     },
     {
       link: 'subcontractor-notifications',
@@ -185,13 +153,104 @@ export const sideNavLinks: ISideNavLinks = {
             height: 22.75,
             className: 'text-current',
           }}
-          name='BriefCase'
+          name='DollarIcon'
         />
       ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['project-management'],
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['subcontractor-notifications'],
     },
   ],
   supplier: [
+    {
+      link: 'invoice-management',
+      title: 'Invoice Management',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['invoice-management'],
+    },
+
+    {
+      link: 'payment-status',
+      title: 'Payment Status',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['payment-status'],
+    },
+    {
+      link: 'supplier-financial-overview',
+      title: 'Financial Overview',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='DollarIcon'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['supplier-financial-overview'],
+    },
+    {
+      link: 'supplier-invoices',
+      title: 'Supplier Invoices',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['supplier-invoices'],
+    },
+    {
+      link: 'subcontractor-notifications',
+      title: 'Notifications and Alerts',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='DollarIcon'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['subcontractor-notifications'],
+    },
+    {
+      link: 'supplier-notifications',
+      title: 'Notifications and Alerts',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='btsIcon'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['supplier-notifications'],
+    },
     {
       link: 'settings',
       title: 'Settings',
@@ -207,21 +266,6 @@ export const sideNavLinks: ISideNavLinks = {
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['settings'],
     },
-
-    // {
-    //   link: 'cv-profile',
-    //   title: 'CV Profile',
-    //   icons: (
-    //     <Icon
-    //       svgProp={{
-    //         width: 22.75,
-    //         height: 22.75,
-    //         className: 'text-current',
-    //       }}
-    //       name='cvIcon'
-    //     />
-    //   ),
-    // },
   ],
 };
 

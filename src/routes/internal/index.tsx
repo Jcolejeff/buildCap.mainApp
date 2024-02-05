@@ -16,6 +16,12 @@ import MaterialFinancing from 'pages/app/subcontractor/materialFinancing';
 import SubcontractorDocumentation from 'pages/app/subcontractor/documentations';
 import SubcontractorNotifications from 'pages/app/subcontractor/subcontractorNotifications';
 import SubcontractorInvoices from 'pages/app/subcontractor/subcontractorInvoices';
+import SupplierOverview from 'pages/app/supplier/supplierOverview';
+import SupplierFinancialOverview from 'pages/app/supplier/supplierFinancialOverview';
+import SupplierInvoices from 'pages/app/supplier/supplierInvoices';
+import SupplierNotifications from 'pages/app/supplier/supplierNotifications';
+import PaymentStatus from 'pages/app/supplier/paymentStatus';
+import InvoiceManagement from 'pages/app/supplier/InvoiceManagement';
 
 const internalRoute: routeTypes = [
   // {
@@ -112,10 +118,30 @@ export const subcontractorRoutes: routeTypes = [
 ];
 
 export const supplierRoutes: routeTypes = [
-  // {
-  //   element: <Dashboard />,
-  //   path: 'dashboard',
-  // },
+  {
+    element: <SupplierOverview />,
+    path: 'supplier-overview',
+  },
+  {
+    element: <SupplierFinancialOverview />,
+    path: 'supplier-financial-overview',
+  },
+  {
+    element: <SupplierInvoices />,
+    path: 'supplier-invoices',
+  },
+  {
+    element: <SupplierNotifications />,
+    path: 'supplier-notifications',
+  },
+  {
+    element: <PaymentStatus />,
+    path: 'payment-status',
+  },
+  {
+    element: <InvoiceManagement />,
+    path: 'invoice-management',
+  },
   {
     element: <Profile />,
     path: 'profile',
