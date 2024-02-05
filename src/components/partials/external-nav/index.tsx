@@ -59,12 +59,12 @@ export const ExternalNav = () => {
 
   return (
     <div className='flex  w-full items-center justify-between pb-[0.175rem] transition-all duration-300 ease-in-out  '>
-      <div className='relative w-full max-w-[800px]  '>
-        <div className='w-full rounded-[12px]  bg-slate-100/60 px-[1.125rem]  py-[0.175rem] shadow-sm'>
+      <div className='relative max-w-[800px] md:w-full  '>
+        <div className='rounded-[12px] bg-slate-100/60  px-[1.125rem] py-[0.175rem]  shadow-sm md:w-full'>
           <div className='flex h-full w-full items-center'>
             <div className='flex-grow'>
               <input
-                className='form-input w-full border-0 bg-inherit placeholder:text-textColor-disabled focus:!ring-0'
+                className='form-input border-0 bg-inherit placeholder:text-textColor-disabled focus:!ring-0 md:w-full'
                 placeholder='Search'
                 type='text'
                 value={searchInput}
@@ -78,13 +78,15 @@ export const ExternalNav = () => {
       <div className='flex items-center gap-4 '>
         <div className='flex items-center gap-[1.125rem]'>
           <Icon name='notificationIcon' />
-
-          <DropdownMenu>
+          <div className='flex items-center md:hidden'>
+            <Menu />
+          </div>
+          {/* <DropdownMenu>
             <DropdownMenuTrigger
               className={`
                  focus-within:outline-0 focus-within:ring-0 focus:ring-0 active:ring-0`}
             >
-              {/* <Icon name='demoDp' /> */}
+              <Icon name='demoDp' />
             </DropdownMenuTrigger>
             <DropdownMenuContent className='mr-[1.5rem] w-[14.375rem]  bg-white shadow-5'>
               <DropdownMenuLabel className='flex items-center gap-[0.625rem] !px-[1.25rem] !py-[0.875rem]'>
@@ -142,11 +144,11 @@ export const ExternalNav = () => {
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
-          </DropdownMenu>
+          </DropdownMenu> */}
         </div>
-        <div className='flex items-center md:hidden'>
+        {/* <div className='flex items-center md:hidden'>
           <Menu />
-        </div>
+        </div> */}
       </div>
     </div>
   );

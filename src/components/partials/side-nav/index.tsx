@@ -331,23 +331,6 @@ const SideNav = () => {
                   height: 22.75,
                 }}
               />
-              {/* {!isAllowed(`maincontractor`) ? (
-                <Icon
-                  svgProp={{
-                    width: 22.75,
-                    height: 22.75,
-                  }}
-                  name='padLock'
-                />
-              ) : (
-                <Icon
-                  name='dashboardIcon'
-                  svgProp={{
-                    width: 22.75,
-                    height: 22.75,
-                  }}
-                />
-              )} */}
             </div>
             <h6
               className={`text-[14px] font-[400] leading-[24px] tracking-[0.15px] 

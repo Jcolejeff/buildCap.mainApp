@@ -24,7 +24,7 @@ import ProjectManagementTable from 'components/Tables/Subcontractor/Projectmanag
 const ProjectManagement = () => {
   return (
     <UserPageGuard page={CONSTANTS.ROUTES['subcontractor-overview']}>
-      <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+      <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col  border   bg-white px-container-base py-[1.1rem]'>
         <ExternalNav />
 
         <div className='   w-full   py-[1.875rem] '>
@@ -69,7 +69,7 @@ const ProjectManagement = () => {
         /> */}
           </section>
         </div>
-        <div className='relative mt-12 grid w-full'>
+        <div className='relative mt-12 grid w-full '>
           <section>
             <ProjectManagementTable />
           </section>

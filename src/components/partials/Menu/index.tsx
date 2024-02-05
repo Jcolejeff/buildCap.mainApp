@@ -20,7 +20,7 @@ const Menu = () => {
   useLockBodyScroll(menuOpen);
 
   return (
-    <div className='relative z-20 overflow-hidden'>
+    <div className=' relative z-20 overflow-hidden'>
       <button className='group relative flex items-center' onClick={() => setMenuOpen(true)}>
         <Hamburger menuOpen={menuOpen} />
       </button>
@@ -49,7 +49,7 @@ const Menu = () => {
                   <Hamburger menuOpen={menuOpen} />
                 </button>
               </div>
-              <div className='flex flex-grow flex-col overflow-y-auto overflow-x-hidden pb-[2.5rem]'>
+              <div className='no-scrollbar flex flex-grow flex-col overflow-y-auto overflow-x-hidden pb-[2.5rem]'>
                 <AuthMenu close={() => setMenuOpen(false)} />
               </div>
             </div>
