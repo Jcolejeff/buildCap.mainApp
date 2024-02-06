@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom';
 import CONSTANTS from 'constant';
 import ProjectManagementTable from 'components/Tables/Subcontractor/ProjectmanagementTable';
 import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
+import ListOfCustomersTable from 'components/Tables/supplier/listOfCustomersTable';
 
 const InvoiceManagement = () => {
   return (
@@ -31,34 +32,34 @@ const InvoiceManagement = () => {
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Subcontractor Dashboard'
-            customBgClass='bg-primary-18'
+            title='Supplier Dashboard'
+            customBgClass='bg-primary-22'
           />
         </div>
         <div>
-          <p className='font-bold md:text-[19px] '>Project Management</p>
+          <p className='font-bold md:text-[19px] '>Invoices</p>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr_1fr]  '>
             <NormalTableInfoCard
-              title='All Projects'
+              title='Today’s Money'
               value={40}
-              bgColor='bg-primary-15'
+              bgColor='bg-primary-16'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
-              title='Active Projects '
+              title='Total Sales '
               value={45}
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-15'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
-              title='In Review'
-              bgColor='bg-primary-17'
+              title='Total Invoices Sent'
+              bgColor='bg-primary-19'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
-              title='Not Approved'
-              bgColor='bg-primary-19'
+              title='Paid Invoices'
+              bgColor='bg-primary-20'
               value={9}
               description='This is the total number of patients that are linked to another.'
             />
@@ -66,7 +67,7 @@ const InvoiceManagement = () => {
         </div>
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PaymentToSubcontractorsTable />
+            <ListOfCustomersTable />
           </section>
         </div>
       </div>

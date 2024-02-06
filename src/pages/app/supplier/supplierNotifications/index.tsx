@@ -52,14 +52,12 @@ const SupplierNotifications = () => {
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
+            title='Supplier Dashboard'
+            customBgClass='bg-primary-22'
           />
         </div>
         <div>
-          <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
+          <p className='font-bold md:text-[19px] '>Notifications</p>
           <section className='mt-8 grid   gap-[1rem] rounded-lg  '>
             <NormalTableInfoCard
               title='Total Subcontractors'

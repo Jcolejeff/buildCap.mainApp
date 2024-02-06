@@ -20,8 +20,9 @@ import PatientsTableComponent from 'components/Tables/MainContractor/ProjectStat
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import ContractAgreementTable from 'components/Tables/MainContractor/ContractsTable';
 import { ExternalNav } from 'components/partials/external-nav';
+import ContractAgreementTableSubcontractor from 'components/Tables/Subcontractor/ContractsAgreementTable';
 
-const MainContractorContractorFinancial = () => {
+const SubContractorContractorFinancial = () => {
   return (
     <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
       <ExternalNav />
@@ -39,11 +40,11 @@ const MainContractorContractorFinancial = () => {
       </div>
       <div className='relative mt-12 grid w-full'>
         <section>
-          <ContractAgreementTable />
+          <ContractAgreementTableSubcontractor />
         </section>
       </div>
     </div>
   );
 };
 
-export default MainContractorContractorFinancial;
+export default SubContractorContractorFinancial;

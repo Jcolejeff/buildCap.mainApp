@@ -52,10 +52,8 @@ const SupplierFinancialOverview = () => {
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
+            title='Supplier Dashboard'
+            customBgClass='bg-primary-22'
           />
         </div>
         <div>

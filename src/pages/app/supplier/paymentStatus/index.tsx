@@ -30,6 +30,7 @@ import { ExternalNav } from 'components/partials/external-nav';
 import SubcontractorsPerProjectTable from 'components/Tables/MainContractor/SubContractorsPerProjectTable';
 import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 import AddSubcontractorModal from 'components/modal/AddSubcontractor';
+import InvoicePaymentTable from 'components/Tables/supplier/invoicePaymentstable';
 
 const PaymentStatus = () => {
   const navigate = useNavigate();
@@ -52,25 +53,23 @@ const PaymentStatus = () => {
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
+            title='Supplier Dashboard'
+            customBgClass='bg-primary-22'
           />
         </div>
         <div>
           <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr] '>
             <NormalTableInfoCard
-              title='Total Subcontractors'
+              title='Received Payments'
               value={10}
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-19'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
-              title='Newly hired '
+              title='Pending Payments '
               value={20}
-              bgColor='bg-primary-20'
+              bgColor='bg-primary-16'
               description='This is the total number of patients you have registered this month.'
             />
           </section>
@@ -78,7 +77,7 @@ const PaymentStatus = () => {
 
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PaymentToSubcontractorsTable />
+            <InvoicePaymentTable />
           </section>
         </div>
       </div>

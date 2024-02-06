@@ -30,6 +30,9 @@ import { ExternalNav } from 'components/partials/external-nav';
 import SubcontractorsPerProjectTable from 'components/Tables/MainContractor/SubContractorsPerProjectTable';
 import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 import AddSubcontractorModal from 'components/modal/AddSubcontractor';
+import GeneralTable from 'components/Tables/general/GeneralTable';
+import FinancialRequestsTable from 'components/Tables/Subcontractor/FinancialRequestsTable';
+import LoanStatusTable from 'components/Tables/Subcontractor/LoanStatusTable';
 
 const MaterialFinancing = () => {
   const navigate = useNavigate();
@@ -52,40 +55,37 @@ const MaterialFinancing = () => {
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
+            title='Subcontractor Dashboard'
+            customBgClass='bg-primary-18'
           />
         </div>
         <div>
-          <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
-          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr] '>
+          <p className='font-bold md:text-[19px] '>Material Financing</p>
+          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr_1fr]  '>
             <NormalTableInfoCard
-              title='Total Subcontractors'
-              value={10}
-              bgColor='bg-primary-16'
+              title='Total Requests'
+              value={40}
+              bgColor='bg-primary-19'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
-              title='Newly hired '
-              value={20}
-              bgColor='bg-primary-20'
+              title='Total Loans Disbursed'
+              value={45}
+              bgColor='bg-primary-16'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
-              title='Add Subcontractor'
-              bgColor='bg-primary-16'
+              title='Approved Requests'
+              bgColor='bg-primary-17'
+              value={89}
               description='This is the total number of patients that are linked to another.'
-            >
-              <AddSubcontractorModal
-                trigger={
-                  <button className='w-full items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
-                    Register
-                  </button>
-                }
-              />
-            </NormalTableInfoCard>
+            />
+            <NormalTableInfoCard
+              title='Pending Loans Disbursed'
+              bgColor='bg-primary-13'
+              value={9}
+              description='This is the total number of patients that are linked to another.'
+            />
             {/* <NormalTableInfoCard
           title='Linked Patients'
           value={0}
@@ -97,12 +97,12 @@ const MaterialFinancing = () => {
 
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PaymentToSubcontractorsTable />
+            <FinancialRequestsTable />
           </section>
         </div>
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PaymentToSubcontractorsTable />
+            <LoanStatusTable />
           </section>
         </div>
       </div>

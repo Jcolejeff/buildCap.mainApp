@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger,
 } from 'components/shadcn/dropdown-menu';
 import { Input } from 'components/shadcn/input';
+import { Progress } from 'components/shadcn/ui/progress';
 import {
   Table,
   TableBody,
@@ -48,21 +49,22 @@ import { processError } from 'helper/error';
 import Spinner from 'components/shadcn/ui/spinner';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useStore from 'store';
-import { cn } from 'lib/utils';
+import { checkStatus, cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
 import DeleteModal from 'components/modal/DeleteModal';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 import MergePatientModal from 'components/modal/Patients/MergePatient';
 import SampleAccordion from 'components/sampleAccordion';
-import AddSubcontractorModal from 'components/modal/AddSubcontractor';
-import RequestFinancingModal from 'components/modal/RequestFinancing';
+import { de } from 'date-fns/locale';
 export type Page = {
   id: string;
   value: string;
   title: string;
-  duration: string;
-  purchases: number;
+  invoiceDate: string;
+  status: string;
+  description: string;
+  progress: number;
 };
 
 const projects = {
@@ -71,27 +73,33 @@ const projects = {
       id: 1,
       value: 'N1,000,000',
       title: 'Hospitals',
-      duration: '6 months',
-      purchases: 3,
+      invoiceDate: 'Jan 5, 2024',
+      status: 'scheduled',
+      description: 'Plumber',
+      progress: 5,
     },
     {
-      id: 2,
+      id: 7,
       value: 'N2,000,000',
       title: 'Flyover',
-      duration: '3 months',
-      purchases: 1,
+      invoiceDate: 'Jan 5, 2024',
+      description: 'Carpenter',
+      status: 'completed',
+      progress: 7,
     },
     {
       id: 3,
       value: 'N3,000,000',
       title: 'Schools',
-      duration: '1 months',
-      purchases: 2,
+      invoiceDate: 'Jan 5, 2024',
+      status: 'scheduled',
+      description: 'Plumber',
+      progress: 2,
     },
   ],
 };
 
-function ProjectManagementTable() {
+function SupplierInvoicesTable() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
 
@@ -103,8 +111,10 @@ function ProjectManagementTable() {
       id: i?.id,
       value: i?.value?.slice(0, 10),
       title: i?.title,
-      duration: i?.duration,
-      purchases: i?.purchases,
+      invoiceDate: i?.invoiceDate,
+      status: i?.status,
+      description: i?.description,
+      progress: i?.progress,
     }));
   }, [projects]);
   const deletePage = async (id: string) => {
@@ -130,7 +140,7 @@ function ProjectManagementTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Name of Project
+            Project
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -143,17 +153,59 @@ function ProjectManagementTable() {
       enableHiding: false,
     },
     {
-      id: 'duration',
-      accessorKey: 'duration',
-      header: 'Duration',
+      accessorKey: 'description',
+      header: ({ column }) => {
+        return (
+          <Button
+            className='px-0 '
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Description
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='flex w-fit items-center   gap-2 rounded-lg'>
+          <p className='text-center text-sm '>{row.getValue('description')}</p>
+        </div>
+        // </Link>
+      ),
+    },
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Invoice Date',
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
         <div className='text-sm capitalize'>
           {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('duration')}
+          {row.getValue('invoiceDate')}
         </div>
         // </Link>
       ),
+    },
+    {
+      accessorKey: 'progress',
+      header: ({ column }) => {
+        return (
+          <Button className='px-0' variant='ghost'>
+            Payments Progress
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='flex flex-col gap-1'>
+          <Progress value={Number((row.getValue('progress') as number) * 10)} className='w-[80%]' />
+
+          <p>{row.getValue('progress')}/10 Payments</p>
+        </div>
+        // </Link>
+      ),
+      enableSorting: false,
     },
 
     {
@@ -165,14 +217,14 @@ function ProjectManagementTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Project Value
+            Amount
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='flex w-fit items-center   gap-2 rounded-lg '>
+        <div className='flex w-fit items-center   gap-2 rounded-lg  '>
           <p className='text-center text-sm '>{row.getValue('value')}</p>
         </div>
         // </Link>
@@ -180,51 +232,37 @@ function ProjectManagementTable() {
     },
 
     {
-      accessorKey: 'purchases',
+      accessorKey: 'status',
       header: ({ column }) => {
         return (
-          <Button
-            className='px-0'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Number of Purchases
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
+          <Button className='px-0' variant='ghost'>
+            Payment Status
           </Button>
         );
       },
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='lowercase'>{row.getValue('purchases')}</div>
+        <div
+          className={`flex w-fit items-center gap-2 rounded-2xl px-4  py-1 capitalize ${checkStatus(
+            row.getValue('status'),
+          )}`}
+        >
+          <Icon name='StatusIcon' svgProp={{ className: ' ' }} />
+          {row.getValue('status')}
+        </div>
         // </Link>
       ),
+      enableSorting: false,
     },
 
     {
       id: 'actions',
       enableHiding: false,
-      header: 'Add materials',
       cell: ({ row }) => {
         const page = row.original;
 
         return (
           <div className='flex items-center gap-4'>
-            <RequestFinancingModal
-              trigger={
-                <Button
-                  variant='outline'
-                  className='flex w-full items-center justify-start  gap-2 border-0 bg-primary-19 p-0 px-4 capitalize  text-primary-1  disabled:cursor-not-allowed disabled:opacity-50'
-                  onClick={() => {
-                    setTimeout(() => {
-                      console.log('delete');
-                    }, 500);
-                  }}
-                >
-                  <p>Request Financing</p>
-                  <Icon name='addThreadIcon' svgProp={{ className: 'w-4' }}></Icon>
-                </Button>
-              }
-            ></RequestFinancingModal>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='h-8 w-8 p-0'>
@@ -245,12 +283,12 @@ function ProjectManagementTable() {
                   }}
                 >
                   <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                  <p>Edit Project</p>
+                  <p>Edit </p>
                 </Button>
                 {/* }
                 ></MergePatientModal> */}
                 <DropdownMenuSeparator />
-                <DeleteModal btnText='Delete Project' />
+                <DeleteModal btnText='Delete Subcontractor' />
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
@@ -266,6 +304,7 @@ function ProjectManagementTable() {
   const table = useReactTable({
     data,
     columns,
+
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -285,7 +324,7 @@ function ProjectManagementTable() {
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>Project Status</h3>
+        <h3 className='font-semibold'>Payments</h3>
         <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input
@@ -422,4 +461,4 @@ function ProjectManagementTable() {
   );
 }
 
-export default ProjectManagementTable;
+export default SupplierInvoicesTable;

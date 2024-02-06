@@ -77,7 +77,7 @@ export const maincontractorRoutes: routeTypes = [
 ];
 export const subcontractorRoutes: routeTypes = [
   {
-    element: <SubcontractorOverview />,
+    element: <ProjectManagement />,
     path: 'subcontractor-overview',
   },
   {
@@ -119,7 +119,7 @@ export const subcontractorRoutes: routeTypes = [
 
 export const supplierRoutes: routeTypes = [
   {
-    element: <SupplierOverview />,
+    element: <InvoiceManagement />,
     path: 'supplier-overview',
   },
   {

@@ -31,6 +31,7 @@ import {
   DropdownMenuTrigger,
 } from 'components/shadcn/dropdown-menu';
 import { Input } from 'components/shadcn/input';
+import { Progress } from 'components/shadcn/ui/progress';
 import {
   Table,
   TableBody,
@@ -48,153 +49,57 @@ import { processError } from 'helper/error';
 import Spinner from 'components/shadcn/ui/spinner';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useStore from 'store';
-import { cn } from 'lib/utils';
+import { checkStatus, cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
 import DeleteModal from 'components/modal/DeleteModal';
 import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
 import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 import MergePatientModal from 'components/modal/Patients/MergePatient';
 import SampleAccordion from 'components/sampleAccordion';
+import { de } from 'date-fns/locale';
 export type Page = {
   id: string;
-  project: string;
+  value: string;
   title: string;
+  invoiceDate: string;
+  status: string;
   description: string;
-  amount: string;
+  progress: number;
 };
 
 const projects = {
   items: [
     {
       id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
-      amount: 'N1,000,000,000',
+      value: 'N1,000,000',
+      title: 'Hospitals',
+      invoiceDate: 'Jan 5, 2024',
+      status: 'scheduled',
+      description: 'Plumber',
+      progress: 5,
     },
     {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
-      description: 'Plumber',
-      amount: 'N500,000,000',
+      id: 7,
+      value: 'N2,000,000',
+      title: 'Flyover',
+      invoiceDate: 'Jan 5, 2024',
+      description: 'Carpenter',
+      status: 'completed',
+      progress: 7,
     },
     {
       id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
-    },
-    {
-      id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
-      amount: 'N1,000,000,000',
-    },
-    {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
+      value: 'N3,000,000',
+      title: 'Schools',
+      invoiceDate: 'Jan 5, 2024',
+      status: 'scheduled',
       description: 'Plumber',
-      amount: 'N500,000,000',
-    },
-    {
-      id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
-    },
-    {
-      id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
-      amount: 'N1,000,000,000',
-    },
-    {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
-      description: 'Plumber',
-      amount: 'N500,000,000',
-    },
-    {
-      id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
-    },
-    {
-      id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
-      amount: 'N1,000,000,000',
-    },
-    {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
-      description: 'Plumber',
-      amount: 'N500,000,000',
-    },
-    {
-      id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
-    },
-    {
-      id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
-      amount: 'N1,000,000,000',
-    },
-    {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
-      description: 'Plumber',
-      amount: 'N500,000,000',
-    },
-    {
-      id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
-    },
-    {
-      id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
-      amount: 'N1,000,000,000',
-    },
-    {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
-      description: 'Plumber',
-      amount: 'N500,000,000',
-    },
-    {
-      id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
+      progress: 2,
     },
   ],
 };
 
-function ContractAgreementTable() {
+function ListOfCustomersTable() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
 
@@ -204,10 +109,12 @@ function ContractAgreementTable() {
 
     return projects.items.map((i: any) => ({
       id: i?.id,
-      project: i?.project,
+      value: i?.value?.slice(0, 10),
       title: i?.title,
+      invoiceDate: i?.invoiceDate,
+      status: i?.status,
       description: i?.description,
-      amount: i?.amount,
+      progress: i?.progress,
     }));
   }, [projects]);
   const deletePage = async (id: string) => {
@@ -233,7 +140,7 @@ function ContractAgreementTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Name of Subcontractor
+            Project
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -246,21 +153,7 @@ function ContractAgreementTable() {
       enableHiding: false,
     },
     {
-      id: 'description',
       accessorKey: 'description',
-      header: 'Description',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('description')}
-        </div>
-        // </Link>
-      ),
-    },
-
-    {
-      accessorKey: 'project',
       header: ({ column }) => {
         return (
           <Button
@@ -268,39 +161,78 @@ function ContractAgreementTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Name of Project
+            Description
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='flex w-fit items-center   gap-2 rounded-lg '>
-          <p className='text-center text-sm '>{row.getValue('project')}</p>
+        <div className='flex w-fit items-center   gap-2 rounded-lg'>
+          <p className='text-center text-sm '>{row.getValue('description')}</p>
+        </div>
+        // </Link>
+      ),
+    },
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Invoice Date',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('invoiceDate')}
         </div>
         // </Link>
       ),
     },
 
     {
-      accessorKey: 'amount',
+      accessorKey: 'value',
       header: ({ column }) => {
         return (
           <Button
-            className='px-0'
+            className='px-0 '
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Total Contract Value (N)
+            Amount
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className=''>{row.getValue('amount')}</div>
+        <div className='flex w-fit items-center   gap-2 rounded-lg  '>
+          <p className='text-center text-sm '>{row.getValue('value')}</p>
+        </div>
         // </Link>
       ),
+    },
+
+    {
+      accessorKey: 'status',
+      header: ({ column }) => {
+        return (
+          <Button className='px-0' variant='ghost'>
+            Payment Status
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div
+          className={`flex w-fit items-center gap-2 rounded-2xl px-4  py-1 capitalize ${checkStatus(
+            row.getValue('status'),
+          )}`}
+        >
+          <Icon name='StatusIcon' svgProp={{ className: ' ' }} />
+          {row.getValue('status')}
+        </div>
+        // </Link>
+      ),
+      enableSorting: false,
     },
 
     {
@@ -331,7 +263,7 @@ function ContractAgreementTable() {
                   }}
                 >
                   <Icon name='editPen' svgProp={{ className: 'text-black' }}></Icon>
-                  <p>Edit</p>
+                  <p>Edit </p>
                 </Button>
                 {/* }
                 ></MergePatientModal> */}
@@ -352,6 +284,7 @@ function ContractAgreementTable() {
   const table = useReactTable({
     data,
     columns,
+
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
@@ -371,7 +304,7 @@ function ContractAgreementTable() {
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>Contractual Agreements</h3>
+        <h3 className='font-semibold'>List of Customers</h3>
         <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input
@@ -508,4 +441,4 @@ function ContractAgreementTable() {
   );
 }
 
-export default ContractAgreementTable;
+export default ListOfCustomersTable;

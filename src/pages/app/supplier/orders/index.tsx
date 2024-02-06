@@ -30,6 +30,7 @@ import { ExternalNav } from 'components/partials/external-nav';
 import SubcontractorsPerProjectTable from 'components/Tables/MainContractor/SubContractorsPerProjectTable';
 import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 import AddSubcontractorModal from 'components/modal/AddSubcontractor';
+import OrdersTable from 'components/Tables/supplier/ordersTable';
 
 const SupplierInvoices = () => {
   const navigate = useNavigate();
@@ -52,35 +53,33 @@ const SupplierInvoices = () => {
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero
             description='list of your active and inactive projects'
-            title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
+            title='Supplier Dashboard'
+            customBgClass='bg-primary-22'
           />
         </div>
         <div>
-          <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
+          <p className='font-bold md:text-[19px] '>Orders</p>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr_1fr]  '>
             <NormalTableInfoCard
-              title='All Projects'
+              title='Pending Orders'
               value={40}
-              bgColor='bg-primary-15'
+              bgColor='bg-primary-19'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
-              title='Active Projects '
+              title='Pending Orders'
               value={45}
               bgColor='bg-primary-16'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
-              title='In Review'
-              bgColor='bg-primary-17'
+              title='Out of Stock'
+              bgColor='bg-primary-15'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
-              title='Not Approved'
+              title='Our Clients'
               bgColor='bg-primary-19'
               value={9}
               description='This is the total number of patients that are linked to another.'
@@ -90,7 +89,7 @@ const SupplierInvoices = () => {
 
         <div className='relative mt-12 grid w-full'>
           <section>
-            <PaymentToSubcontractorsTable />
+            <OrdersTable />
           </section>
         </div>
       </div>
