@@ -28,7 +28,7 @@ import { EyeOff, Eye } from 'lucide-react';
 const Login = () => {
   const navigate = useNavigate();
   const [emailVerifiedOpen, setEmailVerifiedOpen] = useState(false);
-  const { setAuthDetails, setLoggedIn, typeOfUser } = useStore((store) => store);
+  const { setAuthDetails, setLoggedIn, typeOfUser, setTypeOfUser } = useStore((store) => store);
   const [showPassword, setShowPassword] = useState(true);
 
   const [params] = useSearchParams();
@@ -144,6 +144,27 @@ const Login = () => {
             onSubmit={handleSubmit(onSubmit)}
             className='mx-auto flex w-full flex-col items-start justify-center'
           >
+            <div className='my-5 w-full  space-y-3'>
+              <p>
+                Select the type of user<span className='text-red-500'>*</span>
+              </p>
+              <select
+                className='w-full rounded-lg border border-white bg-secondary-11 text-white placeholder:text-white'
+                onChange={(e) =>
+                  setTypeOfUser(e.target.value as 'supplier' | 'subcontractor' | 'maincontractor')
+                }
+              >
+                <option value='subcontractor' className='bg-black'>
+                  Subcontractor
+                </option>
+                <option value='supplier' className=' bg-black'>
+                  Supplier
+                </option>
+                <option value='maincontractor' className=' bg-black'>
+                  Maincontractor
+                </option>
+              </select>
+            </div>
             <div className='mb-[1.25rem] flex w-full flex-col gap-4'>
               <InputErrorWrapper error={errors?.email?.message}>
                 <Input

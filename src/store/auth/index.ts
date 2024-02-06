@@ -28,6 +28,7 @@ export type AuthStateType = {
   setFilteredApps: (arg: any[]) => void;
   currentApp: any;
   setCurrentApp: (arg: any) => void;
+  setTypeOfUser: (arg: userTypes) => void;
 };
 
 const authStore: StateCreator<AuthStateType, [['zustand/devtools', never]], []> = (set) => ({
@@ -71,6 +72,9 @@ const authStore: StateCreator<AuthStateType, [['zustand/devtools', never]], []> 
     set({ pageId: arg });
   },
   typeOfUser: 'subcontractor',
+  setTypeOfUser(arg: userTypes) {
+    set({ typeOfUser: arg });
+  },
 
   setAuthLoading: (arg) => {
     set({ authLoading: arg });
