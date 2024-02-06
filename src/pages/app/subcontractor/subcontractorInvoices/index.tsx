@@ -94,11 +94,7 @@ const SubcontractorInvoices = () => {
         /> */}
           </section>
         </div>
-        <div className='relative mt-12 grid w-full'>
-          <section>
-            <SubcontractorsPerProjectTable />
-          </section>
-        </div>
+
         <div className='relative mt-12 grid w-full'>
           <section>
             <PaymentToSubcontractorsTable />

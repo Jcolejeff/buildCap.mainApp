@@ -94,9 +94,10 @@ const MaterialFinancing = () => {
         /> */}
           </section>
         </div>
+
         <div className='relative mt-12 grid w-full'>
           <section>
-            <SubcontractorsPerProjectTable />
+            <PaymentToSubcontractorsTable />
           </section>
         </div>
         <div className='relative mt-12 grid w-full'>
