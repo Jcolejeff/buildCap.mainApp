@@ -18,7 +18,7 @@ import SubcontractorNotifications from 'pages/app/subcontractor/subcontractorNot
 import SubcontractorInvoices from 'pages/app/subcontractor/subcontractorInvoices';
 import SupplierOverview from 'pages/app/supplier/supplierOverview';
 import SupplierFinancialOverview from 'pages/app/supplier/supplierFinancialOverview';
-import SupplierInvoices from 'pages/app/supplier/supplierInvoices';
+import Orders from 'pages/app/supplier/orders';
 import SupplierNotifications from 'pages/app/supplier/supplierNotifications';
 import PaymentStatus from 'pages/app/supplier/paymentStatus';
 import InvoiceManagement from 'pages/app/supplier/InvoiceManagement';
@@ -127,8 +127,8 @@ export const supplierRoutes: routeTypes = [
     path: 'supplier-financial-overview',
   },
   {
-    element: <SupplierInvoices />,
-    path: 'supplier-invoices',
+    element: <Orders />,
+    path: 'orders',
   },
   {
     element: <SupplierNotifications />,

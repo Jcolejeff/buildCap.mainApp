@@ -20,6 +20,7 @@ import { ExternalNav } from 'components/partials/external-nav';
 import { Link } from 'react-router-dom';
 import CONSTANTS from 'constant';
 import ProjectManagementTable from 'components/Tables/Subcontractor/ProjectmanagementTable';
+import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 
 const InvoiceManagement = () => {
   return (
@@ -61,17 +62,11 @@ const InvoiceManagement = () => {
               value={9}
               description='This is the total number of patients that are linked to another.'
             />
-            {/* <NormalTableInfoCard
-          title='Linked Patients'
-          value={0}
-          border
-          description='This is the total number of patients that are linked to another.'
-        /> */}
           </section>
         </div>
         <div className='relative mt-12 grid w-full'>
           <section>
-            <ProjectManagementTable />
+            <PaymentToSubcontractorsTable />
           </section>
         </div>
       </div>

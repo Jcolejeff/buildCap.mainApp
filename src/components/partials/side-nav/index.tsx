@@ -20,7 +20,8 @@ type ISideNavTitles =
   | 'Documentation'
   | 'Notifications and Alerts'
   | 'Invoice Management'
-  | 'Payment Status';
+  | 'Payment Status'
+  | 'Orders';
 
 interface extendedRouteInterface extends ItitleLinks<ISideNavTitles, routePathTypes> {
   icons: JSX.Element;
@@ -192,6 +193,21 @@ export const sideNavLinks: ISideNavLinks = {
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['payment-status'],
     },
     {
+      link: 'orders',
+      title: 'Orders',
+      icons: (
+        <Icon
+          svgProp={{
+            width: 22.75,
+            height: 22.75,
+            className: 'text-current',
+          }}
+          name='BriefCase'
+        />
+      ),
+      userType: CONSTANTS.USER_PAGES_PERMISSIONS['orders'],
+    },
+    {
       link: 'supplier-financial-overview',
       title: 'Financial Overview',
       icons: (
@@ -206,21 +222,7 @@ export const sideNavLinks: ISideNavLinks = {
       ),
       userType: CONSTANTS.USER_PAGES_PERMISSIONS['supplier-financial-overview'],
     },
-    {
-      link: 'supplier-invoices',
-      title: 'Supplier Invoices',
-      icons: (
-        <Icon
-          svgProp={{
-            width: 22.75,
-            height: 22.75,
-            className: 'text-current',
-          }}
-          name='BriefCase'
-        />
-      ),
-      userType: CONSTANTS.USER_PAGES_PERMISSIONS['supplier-invoices'],
-    },
+
     {
       link: 'subcontractor-notifications',
       title: 'Notifications and Alerts',

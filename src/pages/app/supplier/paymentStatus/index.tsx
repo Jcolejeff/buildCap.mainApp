@@ -60,7 +60,7 @@ const PaymentStatus = () => {
         </div>
         <div>
           <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
-          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr] '>
+          <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr] '>
             <NormalTableInfoCard
               title='Total Subcontractors'
               value={10}
@@ -73,32 +73,9 @@ const PaymentStatus = () => {
               bgColor='bg-primary-20'
               description='This is the total number of patients you have registered this month.'
             />
-            <NormalTableInfoCard
-              title='Add Subcontractor'
-              bgColor='bg-primary-16'
-              description='This is the total number of patients that are linked to another.'
-            >
-              <AddSubcontractorModal
-                trigger={
-                  <button className='w-full items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
-                    Register
-                  </button>
-                }
-              />
-            </NormalTableInfoCard>
-            {/* <NormalTableInfoCard
-          title='Linked Patients'
-          value={0}
-          border
-          description='This is the total number of patients that are linked to another.'
-        /> */}
           </section>
         </div>
-        <div className='relative mt-12 grid w-full'>
-          <section>
-            <SubcontractorsPerProjectTable />
-          </section>
-        </div>
+
         <div className='relative mt-12 grid w-full'>
           <section>
             <PaymentToSubcontractorsTable />

@@ -34,7 +34,7 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   'material-financing': 'material-financing',
   'invoice-management': 'invoice-management',
   'supplier-financial-overview': 'supplier-financial-overview',
-  'supplier-invoices': 'supplier-invoices',
+  orders: 'orders',
   'supplier-notifications': 'supplier-notifications',
   'payment-status': 'payment-status',
 };
@@ -73,7 +73,7 @@ const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
   'material-financing': 'subcontractor',
   'invoice-management': 'supplier',
   'supplier-financial-overview': 'supplier',
-  'supplier-invoices': 'supplier',
+  orders: 'supplier',
   'supplier-notifications': 'supplier',
   'payment-status': 'supplier',
 };
