@@ -99,7 +99,7 @@ const projects = {
   ],
 };
 
-function ListOfCustomersTable() {
+function InvoicePaymentTable() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
 
@@ -132,6 +132,32 @@ function ListOfCustomersTable() {
   };
   const columns: ColumnDef<Page>[] = [
     {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Invoice',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          #{Number(row.original.id) * 1245632}
+          {/* {row.getValue('invoiceDate')} */}
+        </div>
+        // </Link>
+      ),
+    },
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Date Created',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('invoiceDate')}
+        </div>
+        // </Link>
+      ),
+    },
+    {
       accessorKey: 'title',
       header: ({ column }) => {
         return (
@@ -151,20 +177,6 @@ function ListOfCustomersTable() {
         // </Link>
       ),
       enableHiding: false,
-    },
-
-    {
-      id: 'invoiceDate',
-      accessorKey: 'invoiceDate',
-      header: 'Invoice',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('invoiceDate')}
-        </div>
-        // </Link>
-      ),
     },
     {
       accessorKey: 'description',
@@ -198,7 +210,7 @@ function ListOfCustomersTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Amount
+            Amount (N)
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -305,7 +317,7 @@ function ListOfCustomersTable() {
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>List of Customers</h3>
+        <h3 className='font-semibold'>Payments</h3>
         <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input
@@ -442,4 +454,4 @@ function ListOfCustomersTable() {
   );
 }
 
-export default ListOfCustomersTable;
+export default InvoicePaymentTable;
