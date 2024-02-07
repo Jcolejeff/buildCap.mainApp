@@ -32,6 +32,7 @@ import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/Payme
 import AddSubcontractorModal from 'components/modal/AddSubcontractor';
 import ContractAgreementTableSubcontractor from 'components/Tables/Subcontractor/ContractsAgreementTable';
 import FinancialStatementsTable from 'components/Tables/Subcontractor/FinancialStatements';
+import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
 
 const SubcontractorDocumentation = () => {
   const navigate = useNavigate();
@@ -62,59 +63,28 @@ const SubcontractorDocumentation = () => {
         </div>
         <div>
           <p className='font-bold md:text-[19px] '>Documentation</p>
+          <div>
+            <p className='my-4 font-semibold'>Registrations</p>
+            <div className=' flex gap-6 text-sm font-semibold'>
+              <p className='text-green-600'>
+                <span className='mr-2 inline-block h-2 w-2 rounded-full bg-green-600 text-green-600'></span>
+                Approved
+              </p>
+              <p className='text-yellow-400'>
+                <span className='mr-2 inline-block h-2 w-2 rounded-full bg-yellow-400 text-green-600'></span>
+                Pending
+              </p>
+              <p className='text-red-400'>
+                <span className='mr-2 inline-block h-2 w-2 rounded-full bg-red-400 text-green-600'></span>
+                Needs your attention
+              </p>
+            </div>
+          </div>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr_1fr] '>
-            <NormalTableInfoCard
-              title='Add Subcontractor'
-              bgColor='bg-primary-16'
-              description='This is the total number of patients that are linked to another.'
-            >
-              <AddSubcontractorModal
-                trigger={
-                  <button className='w-full items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
-                    Register
-                  </button>
-                }
-              />
-            </NormalTableInfoCard>
-            <NormalTableInfoCard
-              title='Add Subcontractor'
-              bgColor='bg-primary-16'
-              description='This is the total number of patients that are linked to another.'
-            >
-              <AddSubcontractorModal
-                trigger={
-                  <button className='w-full items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
-                    Register
-                  </button>
-                }
-              />
-            </NormalTableInfoCard>
-            <NormalTableInfoCard
-              title='Add Subcontractor'
-              bgColor='bg-primary-16'
-              description='This is the total number of patients that are linked to another.'
-            >
-              <AddSubcontractorModal
-                trigger={
-                  <button className='w-full items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
-                    Register
-                  </button>
-                }
-              />
-            </NormalTableInfoCard>
-            <NormalTableInfoCard
-              title='Add Subcontractor'
-              bgColor='bg-primary-16'
-              description='This is the total number of patients that are linked to another.'
-            >
-              <AddSubcontractorModal
-                trigger={
-                  <button className='w-full items-center justify-center gap-2 rounded-[6px]  bg-black px-3 py-2 text-sm font-[400] leading-[1.5rem] tracking-[0.02875rem] text-white shadow-lg shadow-muted-foreground  '>
-                    Register
-                  </button>
-                }
-              />
-            </NormalTableInfoCard>
+            <DoubleTableInfoCard title='CAC' type='approved'></DoubleTableInfoCard>
+            <DoubleTableInfoCard title='FIRS' type='pending'></DoubleTableInfoCard>
+            <DoubleTableInfoCard title='TIN' type='review'></DoubleTableInfoCard>
+            <DoubleTableInfoCard title='NIN' type='approved'></DoubleTableInfoCard>
           </section>
         </div>
 

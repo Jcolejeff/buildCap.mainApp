@@ -161,7 +161,7 @@ const Login = () => {
                   Supplier
                 </option>
                 <option value='maincontractor' className=' bg-black'>
-                  Maincontractor
+                  Main Contractor
                 </option>
               </select>
             </div>
