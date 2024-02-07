@@ -67,38 +67,24 @@ const projects = {
   items: [
     {
       id: 2,
-      project: 'Road Project',
+      project: '5 nov 2024',
       title: 'Jane Doe',
-      description: 'Plumber',
+      description: 'Statement',
       amount: 'N500,000,000',
     },
     {
       id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
+      project: '3 nov 2024',
+      title: 'Statement',
+      description: 'Statement',
       amount: 'N200,000,000',
     },
     {
       id: 1,
-      project: 'Hospital Project',
-      title: 'John Doe',
-      description: 'Carpenter',
+      project: '5 nov 2024',
+      title: 'Statement',
+      description: 'Statement',
       amount: 'N1,000,000,000',
-    },
-    {
-      id: 2,
-      project: 'Road Project',
-      title: 'Jane Doe',
-      description: 'Plumber',
-      amount: 'N500,000,000',
-    },
-    {
-      id: 3,
-      project: 'Bridge Project',
-      title: 'Paul Doe',
-      description: 'Electrician',
-      amount: 'N200,000,000',
     },
   ],
 };
@@ -134,27 +120,6 @@ function FinancialStatementsTable() {
   };
   const columns: ColumnDef<Page>[] = [
     {
-      accessorKey: 'title',
-      header: ({ column }) => {
-        return (
-          <Button
-            className='px-0'
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Name of Subcontractor
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>{row.getValue('title')}</div>
-        // </Link>
-      ),
-      enableHiding: false,
-    },
-    {
       id: 'description',
       accessorKey: 'description',
       header: 'Description',
@@ -177,7 +142,7 @@ function FinancialStatementsTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Name of Project
+            Due Date
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -200,14 +165,17 @@ function FinancialStatementsTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Total Contract Value (N)
+            Document
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
       },
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className=''>{row.getValue('amount')}</div>
+        <div className='flex gap-2'>
+          <Icon name='downloadIcon' svgProp={{ className: 'text-black' }}></Icon>
+          <span>PDF</span>
+        </div>
         // </Link>
       ),
     },
@@ -280,7 +248,7 @@ function FinancialStatementsTable() {
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>Financial Agreements</h3>
+        <h3 className='font-semibold'>Financial Statements</h3>
         <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input

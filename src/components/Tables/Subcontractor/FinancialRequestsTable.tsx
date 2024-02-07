@@ -140,7 +140,7 @@ function FinancialRequestsTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Project
+            Name of Project
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -174,39 +174,6 @@ function FinancialRequestsTable() {
         // </Link>
       ),
     },
-    {
-      id: 'invoiceDate',
-      accessorKey: 'invoiceDate',
-      header: 'Invoice Date',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('invoiceDate')}
-        </div>
-        // </Link>
-      ),
-    },
-    {
-      accessorKey: 'progress',
-      header: ({ column }) => {
-        return (
-          <Button className='px-0' variant='ghost'>
-            Payments Progress
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='flex flex-col gap-1'>
-          <Progress value={Number((row.getValue('progress') as number) * 10)} className='w-[80%]' />
-
-          <p>{row.getValue('progress')}/10 Payments</p>
-        </div>
-        // </Link>
-      ),
-      enableSorting: false,
-    },
 
     {
       accessorKey: 'value',
@@ -236,7 +203,7 @@ function FinancialRequestsTable() {
       header: ({ column }) => {
         return (
           <Button className='px-0' variant='ghost'>
-            Payment Status
+            Loan Status
           </Button>
         );
       },
@@ -253,6 +220,19 @@ function FinancialRequestsTable() {
         // </Link>
       ),
       enableSorting: false,
+    },
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Date requested',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('invoiceDate')}
+        </div>
+        // </Link>
+      ),
     },
 
     {
