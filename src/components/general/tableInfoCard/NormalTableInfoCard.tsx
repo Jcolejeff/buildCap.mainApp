@@ -3,7 +3,7 @@ import { cn } from 'lib/utils';
 
 interface Props {
   title: string;
-  value?: number;
+  value?: number | string;
   description: string;
   border?: boolean;
   bgColor?: string;

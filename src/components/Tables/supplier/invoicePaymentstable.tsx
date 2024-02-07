@@ -64,7 +64,6 @@ export type Page = {
   invoiceDate: string;
   status: string;
   description: string;
-  progress: number;
 };
 
 const projects = {
@@ -76,7 +75,6 @@ const projects = {
       invoiceDate: 'Jan 5, 2024',
       status: 'scheduled',
       description: 'Plumber',
-      progress: 5,
     },
     {
       id: 7,
@@ -85,7 +83,6 @@ const projects = {
       invoiceDate: 'Jan 5, 2024',
       description: 'Carpenter',
       status: 'completed',
-      progress: 7,
     },
     {
       id: 3,
@@ -94,7 +91,6 @@ const projects = {
       invoiceDate: 'Jan 5, 2024',
       status: 'scheduled',
       description: 'Plumber',
-      progress: 2,
     },
   ],
 };
@@ -132,6 +128,33 @@ function InvoicePaymentTable() {
   };
   const columns: ColumnDef<Page>[] = [
     {
+      id: 'invoice',
+      accessorKey: 'invoiceDate',
+      header: 'Invoice',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {Number(row.original.id) * 1245632}
+          {/* {row.getValue('id')} */}
+        </div>
+
+        // </Link>
+      ),
+    },
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Date Created',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('invoiceDate')}
+        </div>
+        // </Link>
+      ),
+    },
+    {
       accessorKey: 'title',
       header: ({ column }) => {
         return (
@@ -140,7 +163,7 @@ function InvoicePaymentTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Project
+            Customer
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -152,6 +175,7 @@ function InvoicePaymentTable() {
       ),
       enableHiding: false,
     },
+
     {
       accessorKey: 'description',
       header: ({ column }) => {
@@ -174,19 +198,6 @@ function InvoicePaymentTable() {
         // </Link>
       ),
     },
-    {
-      id: 'invoiceDate',
-      accessorKey: 'invoiceDate',
-      header: 'Invoice Date',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('invoiceDate')}
-        </div>
-        // </Link>
-      ),
-    },
 
     {
       accessorKey: 'value',
@@ -197,7 +208,7 @@ function InvoicePaymentTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Amount
+            Amount (N)
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -276,6 +287,7 @@ function InvoicePaymentTable() {
       },
     },
   ];
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});

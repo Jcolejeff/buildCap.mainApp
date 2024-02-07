@@ -132,6 +132,42 @@ function OrdersTable() {
   };
   const columns: ColumnDef<Page>[] = [
     {
+      id: 'invoice',
+      accessorKey: 'invoiceDate',
+      header: 'Order ID',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          #{Number(row.original.id) * 1245632}
+          {/* {row.getValue('id')} */}
+        </div>
+
+        // </Link>
+      ),
+    },
+    {
+      accessorKey: 'description',
+      header: ({ column }) => {
+        return (
+          <Button
+            className='px-0 '
+            variant='ghost'
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+          >
+            Client
+            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
+          </Button>
+        );
+      },
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='flex w-fit items-center   gap-2 rounded-lg'>
+          <p className='text-center text-sm '>{row.getValue('description')}</p>
+        </div>
+        // </Link>
+      ),
+    },
+    {
       accessorKey: 'title',
       header: ({ column }) => {
         return (
@@ -153,31 +189,9 @@ function OrdersTable() {
       enableHiding: false,
     },
     {
-      accessorKey: 'description',
-      header: ({ column }) => {
-        return (
-          <Button
-            className='px-0 '
-            variant='ghost'
-            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-          >
-            Description
-            <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
-          </Button>
-        );
-      },
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='flex w-fit items-center   gap-2 rounded-lg'>
-          <p className='text-center text-sm '>{row.getValue('description')}</p>
-        </div>
-        // </Link>
-      ),
-    },
-    {
       id: 'invoiceDate',
       accessorKey: 'invoiceDate',
-      header: 'Invoice Date',
+      header: 'Date of Order',
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
         <div className='text-sm capitalize'>
@@ -197,7 +211,7 @@ function OrdersTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Amount
+            Amount (N)
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );

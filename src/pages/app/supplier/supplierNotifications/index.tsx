@@ -30,6 +30,7 @@ import { ExternalNav } from 'components/partials/external-nav';
 import SubcontractorsPerProjectTable from 'components/Tables/MainContractor/SubContractorsPerProjectTable';
 import PaymentToSubcontractorsTable from 'components/Tables/MainContractor/PaymentToSubcontractorsTable';
 import AddSubcontractorModal from 'components/modal/AddSubcontractor';
+import NotificationsCard from 'components/general/tableInfoCard/NotifcationsCard';
 
 const SupplierNotifications = () => {
   const navigate = useNavigate();
@@ -58,43 +59,13 @@ const SupplierNotifications = () => {
         </div>
         <div>
           <p className='font-bold md:text-[19px] '>Notifications</p>
-          <section className='mt-8 grid   gap-[1rem] rounded-lg  '>
-            <NormalTableInfoCard
-              title='Total Subcontractors'
-              value={10}
-              bgColor='bg-primary-16'
-              description='This is the total number of patients you have registered today'
-            />
-            <NormalTableInfoCard
-              title='Newly hired '
-              value={20}
-              bgColor='bg-primary-20'
-              description='This is the total number of patients you have registered this month.'
-            />
-            <NormalTableInfoCard
-              title='Total Subcontractors'
-              value={10}
-              bgColor='bg-primary-16'
-              description='This is the total number of patients you have registered today'
-            />
-            <NormalTableInfoCard
-              title='Newly hired '
-              value={20}
-              bgColor='bg-primary-20'
-              description='This is the total number of patients you have registered this month.'
-            />
-            <NormalTableInfoCard
-              title='Total Subcontractors'
-              value={10}
-              bgColor='bg-primary-16'
-              description='This is the total number of patients you have registered today'
-            />
-            <NormalTableInfoCard
-              title='Newly hired '
-              value={20}
-              bgColor='bg-primary-20'
-              description='This is the total number of patients you have registered this month.'
-            />
+          <section className='mt-8 grid  rounded-lg  '>
+            <NotificationsCard title='Your Funding has been approved' description='just now' />
+            <NotificationsCard title='Your Funding has been approved' description='just now' />
+            <NotificationsCard title='Your Funding has been approved' description='just now' />
+            <NotificationsCard title='Your Funding has been approved' description='just now' />
+            <NotificationsCard title='Your Funding has been approved' description='just now' />
+            <NotificationsCard title='Your Funding has been approved' description='just now' />
           </section>
         </div>
       </div>

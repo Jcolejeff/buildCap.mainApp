@@ -72,7 +72,7 @@ const projects = {
     {
       id: 1,
       value: 'N1,000,000',
-      title: 'Hospitals',
+      title: 'Joh doe',
       invoiceDate: 'Jan 5, 2024',
       status: 'scheduled',
       description: 'Plumber',
@@ -81,7 +81,7 @@ const projects = {
     {
       id: 7,
       value: 'N2,000,000',
-      title: 'Flyover',
+      title: 'Jane doe',
       invoiceDate: 'Jan 5, 2024',
       description: 'Carpenter',
       status: 'completed',
@@ -90,7 +90,7 @@ const projects = {
     {
       id: 3,
       value: 'N3,000,000',
-      title: 'Schools',
+      title: 'John doe',
       invoiceDate: 'Jan 5, 2024',
       status: 'scheduled',
       description: 'Plumber',
@@ -140,7 +140,7 @@ function ListOfCustomersTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Project
+            Customer
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -151,6 +151,20 @@ function ListOfCustomersTable() {
         // </Link>
       ),
       enableHiding: false,
+    },
+
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Invoice',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('invoiceDate')}
+        </div>
+        // </Link>
+      ),
     },
     {
       accessorKey: 'description',
@@ -170,19 +184,6 @@ function ListOfCustomersTable() {
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
         <div className='flex w-fit items-center   gap-2 rounded-lg'>
           <p className='text-center text-sm '>{row.getValue('description')}</p>
-        </div>
-        // </Link>
-      ),
-    },
-    {
-      id: 'invoiceDate',
-      accessorKey: 'invoiceDate',
-      header: 'Invoice Date',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('invoiceDate')}
         </div>
         // </Link>
       ),
