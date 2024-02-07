@@ -52,13 +52,10 @@ import useStore from 'store';
 import { checkStatus, cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
 import DeleteModal from 'components/modal/DeleteModal';
-import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
-import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
-import MergePatientModal from 'components/modal/Patients/MergePatient';
-import SampleAccordion from 'components/sampleAccordion';
+
 import { de } from 'date-fns/locale';
 export type Page = {
-  id: string;
+  id: number;
   value: string;
   title: string;
   invoiceDate: string;
@@ -105,7 +102,7 @@ function InvoicePaymentTable() {
 
     return projects.items.map((i: any) => ({
       id: i?.id,
-      value: i?.value?.slice(0, 10),
+      value: i?.value,
       title: i?.title,
       invoiceDate: i?.invoiceDate,
       status: i?.status,
@@ -128,7 +125,6 @@ function InvoicePaymentTable() {
   };
   const columns: ColumnDef<Page>[] = [
     {
-      id: 'invoice',
       accessorKey: 'invoiceDate',
       header: 'Invoice',
       cell: ({ row }) => (
