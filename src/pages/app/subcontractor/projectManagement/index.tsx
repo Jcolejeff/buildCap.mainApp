@@ -69,10 +69,8 @@ const ProjectManagement = () => {
         /> */}
           </section>
         </div>
-        <div className='relative mt-12 grid w-full '>
-          <section>
-            <ProjectManagementTable />
-          </section>
+        <div className='relative mt-12  '>
+          <ProjectManagementTable />
         </div>
       </div>
     </UserPageGuard>

@@ -209,7 +209,7 @@ function ProjectManagementTable() {
 
         return (
           <div className='flex items-center gap-4'>
-            <RequestFinancingModal
+            {/* <RequestFinancingModal
               trigger={
                 <Button
                   variant='outline'
@@ -224,7 +224,17 @@ function ProjectManagementTable() {
                   <Icon name='addThreadIcon' svgProp={{ className: 'w-4' }}></Icon>
                 </Button>
               }
-            ></RequestFinancingModal>
+            ></RequestFinancingModal> */}
+            <Button
+              variant='outline'
+              className='flex  items-center justify-start  gap-2 border-0 bg-primary-19 p-0 px-4 capitalize  text-primary-1  disabled:cursor-not-allowed disabled:opacity-50'
+              onClick={() => {
+                navigate(`/sc/${CONSTANTS.ROUTES['request-financing']}?project=${page.id}`);
+              }}
+            >
+              <p>Request Financing</p>
+              <Icon name='addThreadIcon' svgProp={{ className: 'w-4' }}></Icon>
+            </Button>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='h-8 w-8 p-0'>

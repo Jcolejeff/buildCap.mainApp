@@ -37,7 +37,9 @@ export type routePathTypes =
   | 'payment-status'
   | 'supplier-financial-overview'
   | 'orders'
-  | 'supplier-notifications';
+  | 'supplier-notifications'
+  | 'request-financing'
+  | 'create-invoice';
 
 export interface routesInterface<T> {
   path: T;

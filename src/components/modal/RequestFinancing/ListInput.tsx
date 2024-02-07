@@ -28,7 +28,7 @@ const ListInput = ({ items, setItems }: IProps) => {
   return (
     <div>
       <div className='relative'>
-        <label className='absolute top-[-20%] left-2 bg-white rounded-full font-extralight text-secondary-1 text-xs px-1'>
+        <label className='absolute left-2 top-[-20%] rounded-full bg-white px-1 text-xs font-extralight text-secondary-1'>
           Skills
         </label>
 
@@ -38,17 +38,17 @@ const ListInput = ({ items, setItems }: IProps) => {
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
           placeholder='Input a skill and press enter to save'
-          className='placeholder:text-secondary-1 placeholder:text-xs w-full  border-gray-300 rounded-md p-2 py-4 pl-3 text-secondary-3 w-full'
+          className='w-full w-full rounded-md  border-gray-300 p-2 py-4 pl-3 text-secondary-3 placeholder:text-xs placeholder:text-secondary-1'
         />
       </div>
 
-      <div className='flex flex-wrap my-4 gap-2'>
+      <div className='my-4 flex flex-wrap gap-2'>
         {items.map((item, index) => (
           <div key={index}>
             <button
               type='button'
               onClick={() => handleRemove(index)}
-              className=' text-[0.5rem] md:text-[0.75rem] leading-[24px] tracking-[0.4px] text-gray-600 px-4 py-1 rounded-lg border  flex items-center justify-center gap-2 group hover:opacity-90 transition-all duration-300 ease-in-out'
+              className=' group flex items-center justify-center gap-2 rounded-lg border px-4 py-1  text-[0.5rem] leading-[24px] tracking-[0.4px] text-gray-600 transition-all duration-300 ease-in-out hover:opacity-90 md:text-[0.75rem]'
             >
               <span>{item} </span>
               <span>|</span>

@@ -37,6 +37,8 @@ const ROUTES: Record<routePathTypes, routePathTypes> = {
   orders: 'orders',
   'supplier-notifications': 'supplier-notifications',
   'payment-status': 'payment-status',
+  'request-financing': 'request-financing',
+  'create-invoice': 'create-invoice',
 };
 
 const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
@@ -71,11 +73,13 @@ const USER_PAGES_PERMISSIONS: Record<routePathTypes, userTypes> = {
   documentation: 'subcontractor',
   'subcontractor-invoices': 'subcontractor',
   'material-financing': 'subcontractor',
+  'request-financing': 'subcontractor',
   'invoice-management': 'supplier',
   'supplier-financial-overview': 'supplier',
   orders: 'supplier',
   'supplier-notifications': 'supplier',
   'payment-status': 'supplier',
+  'create-invoice': 'supplier',
 };
 
 const USER_ROUTES_PREFIX: Record<userTypes, routePrefixTypes> = {

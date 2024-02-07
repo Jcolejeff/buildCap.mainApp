@@ -22,6 +22,8 @@ import Orders from 'pages/app/supplier/orders';
 import SupplierNotifications from 'pages/app/supplier/supplierNotifications';
 import PaymentStatus from 'pages/app/supplier/paymentStatus';
 import InvoiceManagement from 'pages/app/supplier/InvoiceManagement';
+import RequestFinancingPage from 'pages/app/subcontractor/requestFinancing';
+import CreateInvoice from 'pages/app/supplier/createInvoice';
 
 const internalRoute: routeTypes = [
   // {
@@ -115,6 +117,10 @@ export const subcontractorRoutes: routeTypes = [
     element: <AccountSettings />,
     path: 'settings',
   },
+  {
+    element: <RequestFinancingPage />,
+    path: 'request-financing',
+  },
 ];
 
 export const supplierRoutes: routeTypes = [
@@ -141,6 +147,10 @@ export const supplierRoutes: routeTypes = [
   {
     element: <InvoiceManagement />,
     path: 'invoice-management',
+  },
+  {
+    element: <CreateInvoice />,
+    path: 'create-invoice',
   },
   {
     element: <Profile />,
