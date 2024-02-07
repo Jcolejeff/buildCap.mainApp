@@ -52,15 +52,19 @@ import useStore from 'store';
 import { checkStatus, cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
 import DeleteModal from 'components/modal/DeleteModal';
-
+import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
+import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
+import MergePatientModal from 'components/modal/Patients/MergePatient';
+import SampleAccordion from 'components/sampleAccordion';
 import { de } from 'date-fns/locale';
 export type Page = {
-  id: number;
+  id: string;
   value: string;
   title: string;
   invoiceDate: string;
   status: string;
   description: string;
+  progress: number;
 };
 
 const projects = {
@@ -68,31 +72,34 @@ const projects = {
     {
       id: 1,
       value: 'N1,000,000',
-      title: 'Hospitals',
+      title: 'Joh doe',
       invoiceDate: 'Jan 5, 2024',
       status: 'scheduled',
       description: 'Plumber',
+      progress: 5,
     },
     {
       id: 7,
       value: 'N2,000,000',
-      title: 'Flyover',
+      title: 'Jane doe',
       invoiceDate: 'Jan 5, 2024',
       description: 'Carpenter',
       status: 'completed',
+      progress: 7,
     },
     {
       id: 3,
       value: 'N3,000,000',
-      title: 'Schools',
+      title: 'John doe',
       invoiceDate: 'Jan 5, 2024',
       status: 'scheduled',
       description: 'Plumber',
+      progress: 2,
     },
   ],
 };
 
-function InvoicePaymentTable() {
+function ListOfCustomersTable() {
   const [isLoading, setIsLoading] = React.useState(false);
   const navigate = useNavigate();
 
@@ -102,7 +109,7 @@ function InvoicePaymentTable() {
 
     return projects.items.map((i: any) => ({
       id: i?.id,
-      value: i?.value,
+      value: i?.value?.slice(0, 10),
       title: i?.title,
       invoiceDate: i?.invoiceDate,
       status: i?.status,
@@ -125,32 +132,6 @@ function InvoicePaymentTable() {
   };
   const columns: ColumnDef<Page>[] = [
     {
-      accessorKey: 'invoiceDate',
-      header: 'Invoice',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {Number(row.original.id) * 1245632}
-          {/* {row.getValue('id')} */}
-        </div>
-
-        // </Link>
-      ),
-    },
-    {
-      id: 'invoiceDate',
-      accessorKey: 'invoiceDate',
-      header: 'Date Created',
-      cell: ({ row }) => (
-        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
-          {/* {Number(row.original.id) * 1245632} */}
-          {row.getValue('invoiceDate')}
-        </div>
-        // </Link>
-      ),
-    },
-    {
       accessorKey: 'title',
       header: ({ column }) => {
         return (
@@ -172,6 +153,19 @@ function InvoicePaymentTable() {
       enableHiding: false,
     },
 
+    {
+      id: 'invoiceDate',
+      accessorKey: 'invoiceDate',
+      header: 'Invoice',
+      cell: ({ row }) => (
+        // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
+        <div className='text-sm capitalize'>
+          {/* {Number(row.original.id) * 1245632} */}
+          {row.getValue('invoiceDate')}
+        </div>
+        // </Link>
+      ),
+    },
     {
       accessorKey: 'description',
       header: ({ column }) => {
@@ -204,7 +198,7 @@ function InvoicePaymentTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Amount (N)
+            Amount
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );
@@ -283,7 +277,6 @@ function InvoicePaymentTable() {
       },
     },
   ];
-
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -312,7 +305,7 @@ function InvoicePaymentTable() {
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
       <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>Payments</h3>
+        <h3 className='font-semibold'>List of Customers</h3>
         <div className='flex items-center gap-3'>
           <div className='flex  items-center rounded-lg border px-4'>
             <input
@@ -449,4 +442,4 @@ function InvoicePaymentTable() {
   );
 }
 
-export default InvoicePaymentTable;
+export default ListOfCustomersTable;
