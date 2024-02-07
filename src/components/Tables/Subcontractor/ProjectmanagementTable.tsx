@@ -51,12 +51,7 @@ import useStore from 'store';
 import { cn } from 'lib/utils';
 import sections from 'pages/app/maincontractor/overview/tempData';
 import DeleteModal from 'components/modal/DeleteModal';
-import NormalTableInfoCard from 'components/general/tableInfoCard/NormalTableInfoCard';
-import DoubleTableInfoCard from 'components/general/tableInfoCard/DoubleTableInfoCard';
-import MergePatientModal from 'components/modal/Patients/MergePatient';
-import SampleAccordion from 'components/sampleAccordion';
-import AddSubcontractorModal from 'components/modal/AddSubcontractor';
-import RequestFinancingModal from 'components/modal/RequestFinancing';
+
 export type Page = {
   id: string;
   value: string;
