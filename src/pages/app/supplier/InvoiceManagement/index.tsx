@@ -41,13 +41,13 @@ const InvoiceManagement = () => {
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr_1fr_1fr]  '>
             <NormalTableInfoCard
               title='Today’s Money'
-              value={40}
+              value='N72.6m'
               bgColor='bg-primary-16'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Total Sales '
-              value={45}
+              value='N12.6m'
               bgColor='bg-primary-15'
               description='This is the total number of patients you have registered this month.'
             />

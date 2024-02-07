@@ -61,14 +61,14 @@ const SupplierFinancialOverview = () => {
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr]  '>
             <NormalTableInfoCard
               title='Active Projects '
-              value={45}
+              value='N12.6m'
               bgColor='bg-primary-16'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
               title='In Review'
               bgColor='bg-primary-17'
-              value={89}
+              value='N12.6m'
               description='This is the total number of patients that are linked to another.'
             />
           </section>

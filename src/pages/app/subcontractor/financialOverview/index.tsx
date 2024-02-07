@@ -75,13 +75,13 @@ const SubcontractorFinancialOverview = () => {
             <NormalTableInfoCard
               title='Outstanding Loan Amount'
               bgColor='bg-primary-20'
-              value={89}
+              value='N15.6m'
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
               title='Total Amount Settled'
               bgColor='bg-primary-13'
-              value={9}
+              value='N15.6m'
               description='This is the total number of patients that are linked to another.'
             />
             {/* <NormalTableInfoCard
