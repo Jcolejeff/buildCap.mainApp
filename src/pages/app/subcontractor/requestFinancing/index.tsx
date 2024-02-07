@@ -28,6 +28,7 @@ import AddSubcontractorModal from 'components/modal/AddSubcontractor';
 import UserPageGuard from 'guards/UserPageGuard';
 import { useDropzone } from 'react-dropzone';
 import ListInput from './ListInput';
+import SuccessfulFinancialRequest from 'components/modal/auth/SuccessFinancialRequest';
 const RequestFinancingPage = () => {
   const FormSchema = z.object({
     name: z.string().min(2, {
@@ -67,6 +68,7 @@ const RequestFinancingPage = () => {
     setAuthDetails,
     setLoggedIn,
     authDetails,
+    setSuccessModalOpen,
     appId: currentAppId,
   } = useStore((store) => store);
 
@@ -88,6 +90,7 @@ const RequestFinancingPage = () => {
       });
       toast.success('Page Created Successfully');
       setMessage({ text: 'Page created', isError: false });
+      setSuccessModalOpen(true);
       // refetch();
     } catch (error: any) {
       processError(error);
@@ -129,6 +132,7 @@ const RequestFinancingPage = () => {
     <UserPageGuard page={CONSTANTS.ROUTES['request-financing']}>
       <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
         <div className='   w-full   py-[1.5rem] '>
+          <SuccessfulFinancialRequest />
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Material Financing'
