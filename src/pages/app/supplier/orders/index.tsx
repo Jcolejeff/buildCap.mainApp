@@ -48,7 +48,7 @@ const SupplierInvoices = () => {
 
   return (
     <UserPageGuard page={CONSTANTS.ROUTES['orders']}>
-      <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col overflow-auto border   bg-white px-container-base py-[1.1rem]'>
+      <div className='container  flex  h-full w-full max-w-[180.75rem] flex-col  border   bg-white px-container-base py-[1.1rem]'>
         <ExternalNav />
         <div className='   w-full   py-[1.875rem] '>
           <FunkyPagesHero

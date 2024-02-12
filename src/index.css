@@ -72,7 +72,7 @@
 html::-webkit-scrollbar,
 .main-wrapper::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  height: 8px;
+  height: 5px;
 
   width: 5px;
 }

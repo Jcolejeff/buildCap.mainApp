@@ -370,14 +370,14 @@ function ContractAgreementTable() {
 
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
-      <div className='flex items-center justify-between '>
-        <h3 className='font-semibold'>Contractual Agreements</h3>
-        <div className='flex items-center gap-3'>
-          <div className='flex  items-center rounded-lg border px-4'>
+      <div className='flex flex-col justify-between gap-4 md:flex-row md:items-center '>
+        <h3 className='font-semibold'>Contract Agreements</h3>
+        <div className='flex  items-center justify-between gap-3'>
+          <div className='flex items-center  rounded-lg border px-4'>
             <input
               value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
               onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
-              className='form-input max-w-xl flex-grow border-0  bg-inherit py-2  placeholder:text-xs placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0'
+              className='form-input w-32 max-w-xs flex-grow border-0 bg-inherit py-2  placeholder:text-xs placeholder:font-semibold  placeholder:text-textColor-disabled focus:!ring-0 md:w-full md:max-w-xl'
               placeholder='Search Projects'
             />
             <Icon name='searchIcon' svgProp={{ className: 'text-primary-9 w-3' }} />

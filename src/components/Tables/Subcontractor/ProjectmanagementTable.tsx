@@ -121,7 +121,7 @@ function ProjectManagementTable() {
       header: ({ column }) => {
         return (
           <Button
-            className='whitespace-nowrap px-0'
+            className='whitespace-nowrap px-0  text-xs'
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
@@ -156,7 +156,7 @@ function ProjectManagementTable() {
       header: ({ column }) => {
         return (
           <Button
-            className='whitespace-nowrap px-0'
+            className='whitespace-nowrap px-0 text-xs'
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
@@ -179,7 +179,7 @@ function ProjectManagementTable() {
       header: ({ column }) => {
         return (
           <Button
-            className='whitespace-nowrap px-0'
+            className='whitespace-nowrap px-0 text-xs'
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
@@ -293,12 +293,12 @@ function ProjectManagementTable() {
         <h3 className='font-semibold'>Project Status</h3>
         <div className='flex  items-center justify-between gap-3'>
           <div className='flex items-center  rounded-lg border px-4'>
-            {/* <input
+            <input
               value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
               onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
-              className='form-input max-w-xs flex-grow border-0 bg-inherit  py-2 placeholder:text-xs  placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0 md:max-w-xl'
+              className='form-input w-32 max-w-xs flex-grow border-0 bg-inherit py-2  placeholder:text-xs placeholder:font-semibold  placeholder:text-textColor-disabled focus:!ring-0 md:w-full md:max-w-xl'
               placeholder='Search Projects'
-            /> */}
+            />
             <Icon name='searchIcon' svgProp={{ className: 'text-primary-9 w-3' }} />
           </div>
 
@@ -357,7 +357,7 @@ function ProjectManagementTable() {
       <Table className=''>
         <TableHeader className='border-0  [&_tr]:border-b-0'>
           {table.getHeaderGroups().map((headerGroup) => (
-            <TableRow key={headerGroup.id} className='border-0 '>
+            <TableRow key={headerGroup.id} className=' border-0'>
               {headerGroup.headers.map((header) => {
                 return (
                   <TableHead key={header.id} className='mx-4 border-b border-b-black/30 px-0'>
@@ -379,7 +379,7 @@ function ProjectManagementTable() {
                 className='border-0'
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='px-0 py-3 font-medium'>
+                  <TableCell key={cell.id} className='px-2 py-3 font-medium'>
                     {/* <Link to={`/${CONSTANTS.ROUTES['view-projects']}/${cell.id}`}> */}
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     {/* </Link> */}
