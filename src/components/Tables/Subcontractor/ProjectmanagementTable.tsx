@@ -293,12 +293,12 @@ function ProjectManagementTable() {
         <h3 className='font-semibold'>Project Status</h3>
         <div className='flex  items-center justify-between gap-3'>
           <div className='flex items-center  rounded-lg border px-4'>
-            <input
+            {/* <input
               value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
               onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
-              className='form-input max-w-xl flex-grow border-0  bg-inherit py-2  placeholder:text-xs placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0'
+              className='form-input max-w-xs flex-grow border-0 bg-inherit  py-2 placeholder:text-xs  placeholder:font-semibold placeholder:text-textColor-disabled focus:!ring-0 md:max-w-xl'
               placeholder='Search Projects'
-            />
+            /> */}
             <Icon name='searchIcon' svgProp={{ className: 'text-primary-9 w-3' }} />
           </div>
 
