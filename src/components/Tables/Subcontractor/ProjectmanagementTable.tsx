@@ -160,7 +160,7 @@ function ProjectManagementTable() {
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
-            Project Value
+            Contract value
             <Icon name='sort' svgProp={{ className: 'ml-2 h-3 w-2' }} />
           </Button>
         );

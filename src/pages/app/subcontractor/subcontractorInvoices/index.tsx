@@ -54,7 +54,6 @@ const SubcontractorInvoices = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Contractor Dashboard'
-            customBgClass='bg-primary-18'
           />
         </div>
         <div>

@@ -88,9 +88,6 @@ const CreateInvoicePage = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='New Project'
-            //     iconType='funkyPagesHero2'
-            customBgClass='bg-primary-18'
-            //     textColor='text-black'
           />
         </div>
         <div className='mb-6'>

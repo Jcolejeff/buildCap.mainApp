@@ -32,7 +32,6 @@ const MainContractorOverview = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Contractor Dashboard'
-            customBgClass='bg-primary-18'
           />
 
           <article className=' mt-7 flex w-full items-center justify-end'>

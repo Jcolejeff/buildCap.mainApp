@@ -136,9 +136,6 @@ const RequestFinancingPage = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Material Financing'
-            //     iconType='funkyPagesHero2'
-            customBgClass='bg-primary-18'
-            //     textColor='text-black'
           />
         </div>
         <div className='mb-6'>

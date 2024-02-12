@@ -61,6 +61,9 @@ const FormSchema = z.object({
   nameOfSubcontractor: z.string().min(2, {
     message: 'Please enter a valid name of subcontractor.',
   }),
+  companyOfSubcontractor: z.string().min(2, {
+    message: 'Please enter a valid company of subcontractor.',
+  }),
 });
 
 const CreateProjectForm = ({ setModalOpen, refetch }: Iprops) => {
@@ -193,11 +196,32 @@ const CreateProjectForm = ({ setModalOpen, refetch }: Iprops) => {
             />
             <FormField
               control={form.control}
+              name='companyOfSubcontractor'
+              render={({ field }) => (
+                <FormItem className='mt-0'>
+                  <FormLabel className='my-4 text-sm font-semibold text-gray-600'>
+                    Name of Company
+                  </FormLabel>
+                  <div className='relative'>
+                    <FormControl>
+                      <Input
+                        className=' placeholder:text-sm placeholder:text-secondary-1/50'
+                        {...field}
+                        // placeholder='https://example.com'
+                      />
+                    </FormControl>
+                  </div>
+                  <FormMessage className='mt-1 text-base' />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
               name='subcontractorType'
               render={({ field }) => (
                 <FormItem>
                   <div className='flex flex-col gap-1'>
-                    <label className=' rounded-full px-1  text-sm font-bold'>
+                    <label className=' rounded-full px-1  text-sm  font-bold text-gray-600'>
                       What is your type of Subcontractor?`
                     </label>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>

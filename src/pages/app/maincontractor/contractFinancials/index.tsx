@@ -30,9 +30,6 @@ const MainContractorContractorFinancial = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
           />
         </div>
         <div>

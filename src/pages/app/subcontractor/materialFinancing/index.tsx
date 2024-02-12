@@ -56,7 +56,6 @@ const MaterialFinancing = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Subcontractor Dashboard'
-            customBgClass='bg-primary-18'
           />
         </div>
         <div>

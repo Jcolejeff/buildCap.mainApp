@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useStore from 'store';
 import { ItitleLinks, userTypes, routePathTypes } from 'types';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Icon from 'utils/Icon';
 
 type ISideNavTitles =
@@ -289,8 +290,12 @@ const SideNav = () => {
     >
       <button
         onClick={() => setNavOpen((prev) => !prev)}
-        className='absolute -right-[11px] top-[2rem] z-10 h-[15px] w-[22px] rounded-[5px] bg-primary-1 ring-[7px] ring-primary-13/60'
-      />
+        className='absolute -right-[11px] top-[2rem] z-10 h-[17px] w-[22px] rounded-[5px] bg-primary-1 ring-[7px] ring-primary-13/60'
+      >
+        <div className='flex h-full w-full items-center justify-center'>
+          {navOpen ? <ArrowLeft size={12} color='#fff' /> : <ArrowRight size={12} color='#fff' />}
+        </div>
+      </button>
       <div className=' pb-[2.5rem]'>
         <div
           // onClick={() => navigate(`/`)}

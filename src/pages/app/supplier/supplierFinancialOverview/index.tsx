@@ -53,7 +53,6 @@ const SupplierFinancialOverview = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Supplier Dashboard'
-            customBgClass='bg-primary-22'
           />
         </div>
         <div>

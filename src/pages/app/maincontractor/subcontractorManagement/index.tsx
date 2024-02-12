@@ -53,9 +53,6 @@ const SubcontractorManagement = () => {
           <FunkyPagesHero
             description='list of your active and inactive projects'
             title='Contractor Dashboard'
-            iconType='funkyPagesHero2'
-            customBgClass='bg-primary-20'
-            textColor='text-black'
           />
         </div>
         <div>
@@ -64,18 +61,18 @@ const SubcontractorManagement = () => {
             <NormalTableInfoCard
               title='Total Subcontractors'
               value={10}
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Newly hired '
               value={20}
-              bgColor='bg-primary-20'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
               title='Add Subcontractor'
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients that are linked to another.'
             >
               <AddSubcontractorModal
