@@ -208,6 +208,7 @@ function ProjectStatusTable() {
         return (
           <div className='flex items-center gap-4'>
             <AddSubcontractorModal
+              projectName={page.title}
               trigger={
                 <Button
                   variant='outline'

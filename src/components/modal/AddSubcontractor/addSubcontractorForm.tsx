@@ -36,6 +36,11 @@ import { sub } from 'date-fns';
 interface Iprops {
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   refetch?: any;
+  projectId?: string;
+  projectName?: string;
+  projectLocation?: string;
+  projectType?: string;
+  contractSum?: string;
 }
 
 const FormSchema = z.object({
@@ -66,7 +71,7 @@ const FormSchema = z.object({
   }),
 });
 
-const CreateProjectForm = ({ setModalOpen, refetch }: Iprops) => {
+const CreateProjectForm = ({ setModalOpen, refetch, contractSum, projectName }: Iprops) => {
   const [formIsLoading, setFormIsLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -88,6 +93,15 @@ const CreateProjectForm = ({ setModalOpen, refetch }: Iprops) => {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
+    defaultValues: {
+      projectName: projectName ?? '',
+      email: '',
+      phone: '',
+
+      contractSum: contractSum ?? '',
+      nameOfSubcontractor: '',
+      companyOfSubcontractor: '',
+    },
   });
 
   async function onSubmit(data: z.infer<typeof FormSchema>) {

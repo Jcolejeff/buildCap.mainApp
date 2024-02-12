@@ -164,6 +164,7 @@ const CreateProject = () => {
               />
 
               <AddSubcontractorModal
+                projectName={form.watch('name')}
                 trigger={
                   <Button
                     type='button'
