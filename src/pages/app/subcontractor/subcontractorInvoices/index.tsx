@@ -62,24 +62,24 @@ const SubcontractorInvoices = () => {
             <NormalTableInfoCard
               title='Approved Invoices'
               value={40}
-              bgColor='bg-primary-17'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Total Payments'
               value={45}
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
               title='Total Suppliers'
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-1/10'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
               title='Total Amount Spent'
-              bgColor='bg-primary-13'
+              bgColor='bg-primary-1/10'
               value='N15.6m'
               description='This is the total number of patients that are linked to another.'
             />

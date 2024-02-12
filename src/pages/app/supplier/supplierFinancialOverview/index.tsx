@@ -56,7 +56,7 @@ const SupplierFinancialOverview = () => {
           />
         </div>
         <div>
-          <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
+          <p className='font-bold md:text-[19px] '>Financial Overview</p>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr]  '>
             <NormalTableInfoCard
               title='Active Projects '
@@ -66,7 +66,7 @@ const SupplierFinancialOverview = () => {
             />
             <NormalTableInfoCard
               title='In Review'
-              bgColor='bg-primary-17'
+              bgColor='bg-primary-20'
               value='N12.6m'
               description='This is the total number of patients that are linked to another.'
             />

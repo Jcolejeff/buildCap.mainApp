@@ -62,7 +62,7 @@ const SubcontractorFinancialOverview = () => {
             <NormalTableInfoCard
               title='Total Loans'
               value={40}
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
@@ -79,7 +79,7 @@ const SubcontractorFinancialOverview = () => {
             />
             <NormalTableInfoCard
               title='Total Amount Settled'
-              bgColor='bg-primary-13'
+              bgColor='bg-primary-1/10'
               value='N15.6m'
               description='This is the total number of patients that are linked to another.'
             />

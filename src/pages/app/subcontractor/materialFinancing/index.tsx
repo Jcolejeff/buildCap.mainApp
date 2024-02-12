@@ -64,7 +64,7 @@ const MaterialFinancing = () => {
             <NormalTableInfoCard
               title='Total Requests'
               value={40}
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
@@ -75,13 +75,13 @@ const MaterialFinancing = () => {
             />
             <NormalTableInfoCard
               title='Approved Requests'
-              bgColor='bg-primary-17'
+              bgColor='bg-primary-1/10'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
               title='Pending Loans Disbursed'
-              bgColor='bg-primary-13'
+              bgColor='bg-primary-20'
               value={9}
               description='This is the total number of patients that are linked to another.'
             />

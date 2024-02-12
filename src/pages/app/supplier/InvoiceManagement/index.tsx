@@ -41,24 +41,24 @@ const InvoiceManagement = () => {
             <NormalTableInfoCard
               title='Today’s Money'
               value='N72.6m'
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Total Sales '
               value='N12.6m'
-              bgColor='bg-primary-15'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
               title='Total Invoices Sent'
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-1/10'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
               title='Paid Invoices'
-              bgColor='bg-primary-20'
+              bgColor='bg-primary-1/10'
               value={9}
               description='This is the total number of patients that are linked to another.'
             />

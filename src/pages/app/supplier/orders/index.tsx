@@ -62,13 +62,13 @@ const SupplierInvoices = () => {
             <NormalTableInfoCard
               title='Pending Orders'
               value={40}
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-20'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Pending Orders'
               value={45}
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-20'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
@@ -79,7 +79,7 @@ const SupplierInvoices = () => {
             />
             <NormalTableInfoCard
               title='Our Clients'
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-1/10'
               value={9}
               description='This is the total number of patients that are linked to another.'
             />

@@ -39,7 +39,7 @@ const ProjectManagement = () => {
             <NormalTableInfoCard
               title='All Projects'
               value={40}
-              bgColor='bg-primary-15'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
@@ -50,13 +50,13 @@ const ProjectManagement = () => {
             />
             <NormalTableInfoCard
               title='In Review'
-              bgColor='bg-primary-17'
+              bgColor='bg-primary-20'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
             <NormalTableInfoCard
               title='Not Approved'
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-15'
               value={9}
               description='This is the total number of patients that are linked to another.'
             />

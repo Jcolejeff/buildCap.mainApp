@@ -57,18 +57,18 @@ const PaymentStatus = () => {
           />
         </div>
         <div>
-          <p className='font-bold md:text-[19px] '>Subcontractor Management</p>
+          <p className='font-bold md:text-[19px] '>Payment Status</p>
           <section className='mt-8 grid grid-cols-[1fr_1fr]  gap-[2rem] rounded-lg md:grid-cols-[1fr_1fr] '>
             <NormalTableInfoCard
               title='Received Payments'
               value={10}
-              bgColor='bg-primary-19'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Pending Payments '
               value={20}
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-20'
               description='This is the total number of patients you have registered this month.'
             />
           </section>
