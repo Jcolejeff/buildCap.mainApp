@@ -56,18 +56,18 @@ const MainContractorOverview = () => {
             <NormalTableInfoCard
               title='All Projects'
               value={40}
-              bgColor='bg-primary-15'
+              bgColor='bg-primary-1/10'
               description='This is the total number of patients you have registered today'
             />
             <NormalTableInfoCard
               title='Active Projects '
               value={45}
-              bgColor='bg-primary-16'
+              bgColor='bg-primary-20'
               description='This is the total number of patients you have registered this month.'
             />
             <NormalTableInfoCard
               title='Completed Projects'
-              bgColor='bg-primary-17'
+              bgColor='bg-primary-1/10'
               value={89}
               description='This is the total number of patients that are linked to another.'
             />
