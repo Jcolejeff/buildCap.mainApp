@@ -121,7 +121,7 @@ function ProjectManagementTable() {
       header: ({ column }) => {
         return (
           <Button
-            className='px-0'
+            className='whitespace-nowrap px-0'
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
@@ -143,7 +143,7 @@ function ProjectManagementTable() {
       header: 'Duration',
       cell: ({ row }) => (
         // <Link to={`/mc/${CONSTANTS.ROUTES['overview']}}`}>
-        <div className='text-sm capitalize'>
+        <div className='whitespace-nowrap text-sm capitalize'>
           {/* {Number(row.original.id) * 1245632} */}
           {row.getValue('duration')}
         </div>
@@ -156,7 +156,7 @@ function ProjectManagementTable() {
       header: ({ column }) => {
         return (
           <Button
-            className='px-0 '
+            className='whitespace-nowrap px-0'
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
@@ -179,7 +179,7 @@ function ProjectManagementTable() {
       header: ({ column }) => {
         return (
           <Button
-            className='px-0'
+            className='whitespace-nowrap px-0'
             variant='ghost'
             onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
           >
@@ -289,10 +289,10 @@ function ProjectManagementTable() {
 
   return (
     <div className='flex w-full flex-col gap-2 rounded-xl bg-slate-50 px-6  py-6'>
-      <div className='flex items-center justify-between '>
+      <div className='flex flex-col justify-between gap-4 md:flex-row md:items-center '>
         <h3 className='font-semibold'>Project Status</h3>
-        <div className='flex items-center gap-3'>
-          <div className='flex  items-center rounded-lg border px-4'>
+        <div className='flex  items-center justify-between gap-3'>
+          <div className='flex items-center  rounded-lg border px-4'>
             <input
               value={(table.getColumn('title')?.getFilterValue() as string) ?? ''}
               onChange={(event) => table.getColumn('title')?.setFilterValue(event.target.value)}
@@ -354,52 +354,51 @@ function ProjectManagementTable() {
         </div>
       </div>
 
-      <div className='  '>
-        <Table className=''>
-          <TableHeader className='border-0  [&_tr]:border-b-0'>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <TableRow key={headerGroup.id} className='border-0 '>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id} className='border-b border-b-black/30 px-0'>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(header.column.columnDef.header, header.getContext())}
-                    </TableHead>
-                  );
-                })}
+      <Table className=''>
+        <TableHeader className='border-0  [&_tr]:border-b-0'>
+          {table.getHeaderGroups().map((headerGroup) => (
+            <TableRow key={headerGroup.id} className='border-0 '>
+              {headerGroup.headers.map((header) => {
+                return (
+                  <TableHead key={header.id} className='mx-4 border-b border-b-black/30 px-0'>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          ))}
+        </TableHeader>
+        <TableBody>
+          {table.getRowModel().rows?.length ? (
+            table.getRowModel().rows.map((row) => (
+              <TableRow
+                key={row.id}
+                data-state={row.getIsSelected() && 'selected'}
+                className='border-0'
+              >
+                {row.getVisibleCells().map((cell) => (
+                  <TableCell key={cell.id} className='px-0 py-3 font-medium'>
+                    {/* <Link to={`/${CONSTANTS.ROUTES['view-projects']}/${cell.id}`}> */}
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    {/* </Link> */}
+                  </TableCell>
+                ))}
               </TableRow>
-            ))}
-          </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && 'selected'}
-                  className='border-0'
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className='px-0 py-3 font-medium'>
-                      {/* <Link to={`/${CONSTANTS.ROUTES['view-projects']}/${cell.id}`}> */}
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                      {/* </Link> */}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell colSpan={columns.length} className='h-[400px] text-center'>
-                  <div>
-                    <p className='text-base font-semibold text-gray-500'>No Project Records</p>
-                  </div>
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
+            ))
+          ) : (
+            <TableRow>
+              <TableCell colSpan={columns.length} className='h-[400px] text-center'>
+                <div>
+                  <p className='text-base font-semibold text-gray-500'>No Project Records</p>
+                </div>
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+
       <div className='flex items-center justify-end space-x-2 py-4'>
         <div className='flex-1 text-sm text-muted-foreground'>
           Showing {table.getRowModel().rows?.length ?? 0} of {data.length} results
